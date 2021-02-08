@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="blue_200">#6ec6ff</color>
+    <color name="blue_500">#2196f3</color>
+    <color name="blue_700">#0069c0</color>
+    <color name="teal_200">#FF03DAC5</color>
+    <color name="teal_700">#FF018786</color>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="light_grey">#B39C9C9C</color>
+
+
+    <color name="selectedDepartment">#802196F3</color>
+
+    <color name="splashBackground">#4391B8</color>
+
+
+
+
+    <!-- LINE COLORS    ========================================================= -->
+    <color name="lineColor1">#4391B8</color>
+    <color name="lineColor2">#55B843</color>
+    <color name="lineColor3">#B8B243</color>
+    <color name="lineColor4">#7A43B8</color>
+    <color name="lineColor5">#B84343</color>
+    <color name="lineColor6">#B443B8</color>
+    <color name="lineColor7">#43B893</color>
+    <color name="lineColor8">#4391B8</color>
+    <color name="lineColor9">#4391B8</color>
+    <color name="lineColor10">#4391B8</color>
+    <color name="lineColor11">#4391B8</color>
+    <color name="lineColor12">#4391B8</color>
+    <color name="lineColor13">#4391B8</color>
+    <color name="lineColor14">#4391B8</color>
+    <color name="lineColor15">#4391B8</color>
+    <color name="lineColor16">#4391B8</color>
+    <color name="lineColor17">#4391B8</color>
+    <color name="lineColor18">#4391B8</color>
+    <color name="lineColor19">#4391B8</color>
+    <color name="lineColor20">#4391B8</color>
+    <!-- ========================================================================= -->
+
+    <color name="toolbarTest">#1E4485</color>
+</resources>

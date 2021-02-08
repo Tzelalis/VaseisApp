@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/dashboard_nav_graph"
+    app:startDestination="@id/departmentFragment2">
+
+    <fragment
+        android:id="@+id/departmentFragment2"
+        android:name="com.example.vaseisapp.ui.department.DepartmentFragment"
+        android:label="DepartmentFragment"
+        tools:layout="@layout/fragment_department_layout"/>
+    <fragment
+        android:id="@+id/baseFragment"
+        android:name="com.example.vaseisapp.base.BaseFragment"
+        android:label="BaseFragment" />
+</navigation>
