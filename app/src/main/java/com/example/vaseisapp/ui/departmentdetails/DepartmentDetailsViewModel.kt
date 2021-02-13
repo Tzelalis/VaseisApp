@@ -85,4 +85,8 @@ class DepartmentDetailsViewModel : BaseViewModel() {
         _departmentItems.value = dummy
     }
 
+    fun departmentPopularity(){
+        //todo return a double about popularity of department. Calculate with positions (firstPos*3 + secondPos*2...etc)
+    }
+
 }

@@ -52,10 +52,11 @@ class DepartmentsComparisonAdapter(private val listener : DepartmentsListener) :
                 }
 
 
-
                 root.setOnClickListener {
                     listener.onDepartmentClick(position)
                 }
+
+                root.clipToOutline = true
             }
         }
     }

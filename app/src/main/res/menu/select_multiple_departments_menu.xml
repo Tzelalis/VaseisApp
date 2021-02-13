@@ -6,5 +6,5 @@
         android:enabled="true"
         android:title="0"
         android:icon="@drawable/ic_check"
-        app:showAsAction="always"/>
+        app:showAsAction="never"/>
 </menu>

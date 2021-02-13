@@ -44,10 +44,6 @@ class DepartmentFragment : BaseFragment<FragmentDepartmentLayoutBinding>() {
         //findNavController().addOnDestinationChangedListener { controller, destination, arguments -> Log.v("MPIKA", "DEPARTMENTFRAGMENT GAMW") }
     }
 
-    override fun onResume() {
-        super.onResume()
-    }
-
     private fun setupObservers() {
         with(viewModel) {
             departments.observe(viewLifecycleOwner, {
@@ -63,6 +59,7 @@ class DepartmentFragment : BaseFragment<FragmentDepartmentLayoutBinding>() {
             loadDepartments()
         }
     }
+
 
     private fun setupRecyclerView(list: List<DepartmentWithSelected>) {
         val listener = object : DepartmentAdapter.DepartmentClickListener {
@@ -83,11 +80,9 @@ class DepartmentFragment : BaseFragment<FragmentDepartmentLayoutBinding>() {
             }
 
             override fun onItemLongClickListener(position: Int): Boolean {
-                adapter.currentList[position].isSelected = !adapter.currentList[position].isSelected
-                adapter.currentList[position].isNowSelected = true
-                adapter.notifyItemChanged(position)
-
                 viewModel.setDepartmentsIsSelected(position)
+                list[position].isNowSelected = true
+                adapter.notifyItemChanged(position)
                 return true
             }
 
@@ -100,10 +95,10 @@ class DepartmentFragment : BaseFragment<FragmentDepartmentLayoutBinding>() {
         manager.orientation = LinearLayoutManager.VERTICAL
 
         with(binding) {
-            binding.recyclerView.adapter = adapter
-            binding.recyclerView.layoutManager = manager
+            recyclerView.adapter = adapter
+            recyclerView.layoutManager = manager
 
-            binding.recyclerView.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+            recyclerView.addOnScrollListener(object : RecyclerView.OnScrollListener() {
                 override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
                     super.onScrolled(recyclerView, dx, dy)
 

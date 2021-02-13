@@ -42,6 +42,8 @@ class AppActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        //window.setBackgroundDrawable(null)
+
         val binding = ActivityMainLayoutBinding.inflate(layoutInflater)
         _binding = binding
 

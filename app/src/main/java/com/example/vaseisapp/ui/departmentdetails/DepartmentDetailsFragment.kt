@@ -2,12 +2,10 @@ package com.example.vaseisapp.ui.departmentdetails
 
 import android.graphics.Color
 import android.graphics.Typeface
-import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
-import android.view.MenuItem
+import android.text.Html
 import android.view.View
 import androidx.constraintlayout.widget.ConstraintLayout
-import androidx.core.content.ContextCompat
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
@@ -22,9 +20,7 @@ import com.example.vaseisapp.utils.centersnap.CenterDecoration
 import com.example.vaseisapp.utils.centersnap.CenterSnapHelper
 import com.example.vaseisapp.utils.centersnap.SnapOnScrollListener
 import com.github.mikephil.charting.components.XAxis
-import com.github.mikephil.charting.data.Entry
-import com.github.mikephil.charting.data.LineData
-import com.github.mikephil.charting.data.LineDataSet
+import com.github.mikephil.charting.data.*
 import com.github.mikephil.charting.formatter.ValueFormatter
 import com.github.mikephil.charting.highlight.Highlight
 import com.github.mikephil.charting.listener.OnChartValueSelectedListener
@@ -36,6 +32,9 @@ class DepartmentDetailsFragment : BaseFragment<FragmentDepartmentDetailsLayoutBi
     private val appViewModel: AppViewModel by activityViewModels()
     private val args: DepartmentDetailsFragmentArgs by navArgs()
     private lateinit var toolbarBinding: MainToolbarBinding
+    private lateinit var yearsAdapter : YearsAdapter
+    private lateinit var departmentsAdapter : DepartmentsComparisonAdapter
+    private lateinit var currentDepartment : DepartmentItem
 
     override fun getViewBinding(): FragmentDepartmentDetailsLayoutBinding = FragmentDepartmentDetailsLayoutBinding.inflate(layoutInflater)
 
@@ -56,7 +55,7 @@ class DepartmentDetailsFragment : BaseFragment<FragmentDepartmentDetailsLayoutBi
             toolbarBinding = MainToolbarBinding.bind(it)
             with(toolbarBinding) {
                 toolbar.title = "Σύγκριση"
-                toolbar.setNavigationOnClickListener { 
+                toolbar.setNavigationOnClickListener {
                     findNavController().navigateUp()
                 }
             }
@@ -75,6 +74,28 @@ class DepartmentDetailsFragment : BaseFragment<FragmentDepartmentDetailsLayoutBi
     }
 
     private fun setupViews(departments: List<DepartmentItem>) {
+        with(binding){
+            //successfulBarChart.clipToOutline = true
+            vaseisConstraintLayout.clipToOutline = true
+            totalPeopleLinearLayout.clipToOutline = true
+            successfulConstraintLayout.clipToOutline = true
+        }
+
+
+
+        setupVaseisLineChart(departments)
+        setupDepartmentsRecyclerView(departments)
+        setupBarChart(departments)
+
+
+        val years = mutableListOf<String>()
+        for(year in departments[0].entries){
+            years.add(year.x.toInt().toString())
+        }
+        setupYearsRecyclerView(years)
+    }
+
+    private fun setupVaseisLineChart(departments: List<DepartmentItem>) {
         with(binding) {
             lineChart.setScaleEnabled(false)
             lineChart.description.isEnabled = false
@@ -84,6 +105,8 @@ class DepartmentDetailsFragment : BaseFragment<FragmentDepartmentDetailsLayoutBi
             lineChart.setDrawMarkers(false)
             //lineChart.marker = CustomMarkerView(context, R.layout.item_marker_view, R.color.purple_500)
             lineChart.enableScroll()
+            lineChart.setViewPortOffsets(0f, 0f, 0f, 50f)
+
 
             lineChart.axisLeft.isEnabled = false
 
@@ -92,6 +115,7 @@ class DepartmentDetailsFragment : BaseFragment<FragmentDepartmentDetailsLayoutBi
             lineChart.axisRight.setDrawAxisLine(false)
             lineChart.axisRight.typeface = Typeface.SERIF
             lineChart.axisRight.textColor = Color.GRAY
+            lineChart.axisRight.setDrawGridLines(false)
 
             val xAxisFormatter = object : ValueFormatter() {
                 override fun getFormattedValue(value: Float): String {
@@ -164,7 +188,11 @@ class DepartmentDetailsFragment : BaseFragment<FragmentDepartmentDetailsLayoutBi
                 }
 
             })
+        }
+    }
 
+    private fun setupDepartmentsRecyclerView(departments: List<DepartmentItem>) {
+        with(binding) {
             val snapHelper = CenterSnapHelper()
             snapHelper.attachToRecyclerView(departmentRecyclerView)
             departmentRecyclerView.addItemDecoration(CenterDecoration(0))
@@ -193,33 +221,173 @@ class DepartmentDetailsFragment : BaseFragment<FragmentDepartmentDetailsLayoutBi
             }
 
 
-            val adapter = DepartmentsComparisonAdapter(listener)
-            adapter.submitList(departments)
-            departmentRecyclerView.adapter = adapter
+            departmentsAdapter = DepartmentsComparisonAdapter(listener)
+            departmentsAdapter.submitList(departments)
+            departmentRecyclerView.adapter = departmentsAdapter
 
             departmentRecyclerView.addOnScrollListener(
                 SnapOnScrollListener(snapHelper,
                     SnapOnScrollListener.Behavior.NOTIFY_ON_SCROLL_STATE_IDLE,
                     object : SnapOnScrollListener.OnSnapPositionChangeListener {
                         override fun onSnapPositionChange(position: Int, oldPosition: Int) {
-                            adapter.currentList[position].isBackgroundColorful = true
-                            adapter.notifyItemChanged(position)
+                            departmentsAdapter.currentList[position].isBackgroundColorful = true
+                            departmentsAdapter.notifyItemChanged(position)
 
 
-                            adapter.currentList[oldPosition].isBackgroundColorful = false
-                            adapter.notifyItemChanged(oldPosition)
+                            departmentsAdapter.currentList[oldPosition].isBackgroundColorful = false
+                            departmentsAdapter.notifyItemChanged(oldPosition)
 
                             lineChart.data.dataSets[position].setDrawValues(true)
                             //lineChart.data.dataSets[position].setDrawFilled(true)
 
-
                             lineChart.data.dataSets[oldPosition].setDrawValues(false)
                             //lineChart.data.dataSets[oldPosition].setDrawFilled(false)
+
+                            val years = mutableListOf<String>()
+                            for(year in departments[position].entries)
+                                years.add(year.x.toInt().toString())
+
+                            yearsAdapter.submitList(years)
+                            yearsAdapter.notifyDataSetChanged()
 
                             lineChart.invalidate()
                         }
                     })
             )
+        }
+    }
+
+    private fun setupYearsRecyclerView(years : List<String>){
+        with(binding){
+            val snapHelper = CenterSnapHelper()
+            snapHelper.attachToRecyclerView(yearsRecyclerView)
+            yearsRecyclerView.addItemDecoration(CenterDecoration(-1))
+
+            val manager = LinearLayoutManager(context)
+            manager.orientation = LinearLayoutManager.HORIZONTAL
+            manager.stackFromEnd = true
+
+            val listener = object : YearsAdapter.YearsListener{
+                override fun onYearClick(position: Int) {
+                    //smooth scroll to center when item has clicked
+                    val view = manager.findViewByPosition(position)
+                    if (view != null) {
+                        val snapDistance = snapHelper.calculateDistanceToFinalSnap(manager, view)
+
+                        val distance0 = snapDistance?.get(0) ?: 0
+                        val distance1 = snapDistance?.get(1) ?: 0
+
+                        if (distance0 != 0 || distance1 != 0) {
+                            yearsRecyclerView.smoothScrollBy(distance0, distance1)
+                        }
+                    }
+                }
+
+            }
+
+            yearsAdapter = YearsAdapter(listener)
+            yearsAdapter.submitList(years)
+
+            yearsRecyclerView.adapter = yearsAdapter
+            yearsRecyclerView.layoutManager = manager
+
+            yearsRecyclerView.addOnScrollListener(
+                SnapOnScrollListener(snapHelper,
+                    SnapOnScrollListener.Behavior.NOTIFY_ON_SCROLL_STATE_IDLE,
+                    object : SnapOnScrollListener.OnSnapPositionChangeListener {
+                        override fun onSnapPositionChange(position: Int, oldPosition: Int) {
+
+                        }
+                    })
+            )
+        }
+    }
+
+    private fun setupBarChart(departments: List<DepartmentItem>) {
+        with(binding) {
+            successfulBarChart.description.isEnabled = false
+            successfulBarChart.animateY(500)
+            successfulBarChart.isScaleXEnabled = false
+            successfulBarChart.isScaleYEnabled = false
+            successfulBarChart.legend.isEnabled = false
+            successfulBarChart.isHighlightPerTapEnabled = false
+            successfulBarChart.setFitBars(true)
+
+
+            val xAxisFormatter = object : ValueFormatter() {
+                override fun getFormattedValue(value: Float): String {
+                    return "${value.toInt()}η"
+                }
+            }
+
+            successfulBarChart.xAxis.valueFormatter = xAxisFormatter
+            successfulBarChart.xAxis.labelCount = 6
+            successfulBarChart.xAxis.position = XAxis.XAxisPosition.BOTTOM
+            successfulBarChart.xAxis.setDrawGridLines(false)
+            successfulBarChart.xAxis.setDrawAxisLine(false)
+            //successfulBarChart.xAxis.spaceMax = lineChart.xChartMax + 0.5f
+            //successfulBarChart.xAxis.spaceMin = lineChart.xChartMin + 0.5f
+            successfulBarChart.xAxis.typeface = Typeface.SERIF
+            successfulBarChart.xAxis.textColor = Color.GRAY
+            successfulBarChart.xAxis.spaceMax = 0.1f
+
+            successfulBarChart.axisRight.isEnabled = true
+            successfulBarChart.axisRight.setDrawGridLines(true)
+            successfulBarChart.axisRight.setDrawAxisLine(false)
+            successfulBarChart.axisRight.typeface = Typeface.SERIF
+            successfulBarChart.axisRight.textColor = Color.GRAY
+
+            successfulBarChart.axisLeft.isEnabled = true
+            successfulBarChart.axisLeft.setDrawGridLines(true)
+            successfulBarChart.axisLeft.setDrawAxisLine(false)
+            successfulBarChart.axisLeft.typeface = Typeface.SERIF
+            successfulBarChart.axisLeft.textColor = Color.GRAY
+
+
+            val valueList = ArrayList<Double>()
+            val entries: ArrayList<BarEntry> = ArrayList()
+            val title = "Title"
+
+            //input data
+            for (i in 1..7) {
+                valueList.add(i * 2 + 10.toDouble())
+            }
+
+            for (i in 1 until 7) {
+                val barEntry = BarEntry(i.toFloat(), valueList[i].toFloat())
+                entries.add(barEntry)
+            }
+
+            val barDataSet = BarDataSet(entries, title)
+            barDataSet.color = resources.getColor(R.color.blue_500)
+            barDataSet.isHighlightEnabled = false
+
+            val valueList1 = ArrayList<Double>()
+            val entries1: ArrayList<BarEntry> = ArrayList()
+            val title1 = "Title"
+
+            //input data
+            for (i in 1..7) {
+                valueList1.add(i * 2 + 2.toDouble())
+            }
+
+            for (i in 1 until 7) {
+                val barEntry1 = BarEntry(i.toFloat(), valueList1[i].toFloat())
+                entries.add(barEntry1)
+            }
+
+            val barDataSet1 = BarDataSet(entries1, title1)
+            barDataSet1.color = resources.getColor(R.color.black)
+            barDataSet1.isHighlightEnabled = false
+
+
+            val data = BarData()
+            data.addDataSet(barDataSet)
+            data.addDataSet(barDataSet1)
+            data.barWidth = 0.9f
+
+            successfulBarChart.data = data
+            successfulBarChart.invalidate()
         }
     }
 }

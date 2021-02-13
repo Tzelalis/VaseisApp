@@ -48,6 +48,8 @@ class DepartmentAdapter(
         @SuppressLint("ResourceAsColor")
         fun bindTo(department: DepartmentWithSelected, position: Int) {
             with(binding) {
+                root.clipToOutline = true
+
                 titleTextView.text = department.name
                 cityTextView.text = "Θεσσαλονίκη"
                 universityTextView.text = "${department.uniTitle}, "
@@ -66,11 +68,11 @@ class DepartmentAdapter(
                 }
 
                 if (department.isSelected) {
-                    root.setCardBackgroundColor(Color.argb(50, 33, 150, 243))
+                    root.background = ContextCompat.getDrawable(context, R.drawable.cardview_background_16_selectable)
                     idTextView.text = ""
                     idTextView.background = ContextCompat.getDrawable(context, R.drawable.ic_check)
                 } else {
-                    root.setCardBackgroundColor(Color.WHITE)
+                    root.background =  ContextCompat.getDrawable(context, R.drawable.cardview_background_16_clicable)
                     idTextView.text = department.code.toString()
                     idTextView.background = ContextCompat.getDrawable(context, R.drawable.circle_view)
                 }

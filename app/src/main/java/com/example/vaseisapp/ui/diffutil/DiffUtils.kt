@@ -17,3 +17,10 @@ val DEPARTMENT_ITEM_DIFF_UTIL = object : DiffUtil.ItemCallback<DepartmentItem>()
 
     override fun areContentsTheSame(oldItem: DepartmentItem, newItem: DepartmentItem): Boolean = oldItem == newItem
 }
+
+val YEAR_ITEM_DIFF_UTIL = object : DiffUtil.ItemCallback<String>() {
+    override fun areItemsTheSame(oldItem: String, newItem: String): Boolean = oldItem == newItem
+
+    override fun areContentsTheSame(oldItem: String, newItem: String): Boolean = oldItem == newItem
+}
+
