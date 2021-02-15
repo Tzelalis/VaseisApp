@@ -30,7 +30,7 @@
         <argument
             android:name="code"
             android:defaultValue="-1L"
-            app:argType="long" />
+            app:argType="string" />
         <argument
             android:name="name"
             android:defaultValue=""

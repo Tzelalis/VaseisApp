@@ -53,7 +53,7 @@ class DepartmentViewModel @ViewModelInject constructor(
             val list = mutableListOf<DepartmentWithSelected>()
 
             for (item in departments.value!!) {
-                if (item.name?.toUpperCase(Locale.getDefault())!!.contains(input.toUpperCase(Locale.getDefault()))
+                if (item.name.toUpperCase(Locale.getDefault()).contains(input.toUpperCase(Locale.getDefault()))
                     || item.code.toString().contains(input)
                 ) {
                     list.add(item)

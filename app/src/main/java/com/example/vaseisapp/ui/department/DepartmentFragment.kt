@@ -66,7 +66,7 @@ class DepartmentFragment : BaseFragment<FragmentDepartmentLayoutBinding>() {
 
             override fun onItemClickListener(position: Int) {
                 val action = DepartmentFragmentDirections.actionDepartmentFragmentToDepartmentDetailsFragment(
-                    adapter.currentList[position].code, adapter.currentList[position].name ?: ""
+                    adapter.currentList[position].code, adapter.currentList[position].name
                 )
                 findNavController().navigate(action)
 
@@ -144,7 +144,7 @@ class DepartmentFragment : BaseFragment<FragmentDepartmentLayoutBinding>() {
                     if (!p0.isNullOrEmpty()) {
                         adapter.notifyItemRangeRemoved(0, adapter.currentList.size - 1)
                         for (item in list) {
-                            if (item.name?.toUpperCase(Locale.getDefault())!!.contains(p0.toString().toUpperCase(Locale.getDefault()))
+                            if (item.name.toUpperCase(Locale.getDefault()).contains(p0.toString().toUpperCase(Locale.getDefault()))
                                 || item.code.toString().contains(p0.toString())
                             ) {
                                 filteredList.add(item)

@@ -15,3 +15,7 @@ annotation class UniversitiesHttpClient
 @Qualifier
 @Retention(AnnotationRetention.BINARY)
 annotation class DepartmentHttpClient
+
+@Qualifier
+@Retention(AnnotationRetention.BINARY)
+annotation class BasesHttpClient

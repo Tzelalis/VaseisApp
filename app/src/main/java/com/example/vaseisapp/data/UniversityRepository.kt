@@ -1,7 +1,7 @@
 package com.example.vaseisapp.data
 
-import com.example.vaseisapp.data.university.RemoteUniversity
+import com.example.vaseisapp.domain.entities.University
 
 interface UniversityRepository {
-    suspend fun fetchAllUniversities() : List<RemoteUniversity>
+    suspend fun fetchAllUniversities() : List<University>
 }

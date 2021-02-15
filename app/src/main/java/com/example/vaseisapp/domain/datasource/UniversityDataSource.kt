@@ -1,7 +1,7 @@
 package com.example.vaseisapp.domain.datasource
 
-import com.example.vaseisapp.data.university.RemoteUniversity
+import com.example.vaseisapp.domain.entities.University
 
 interface UniversityDataSource {
-    suspend fun fetchAllUniversities() : List<RemoteUniversity>
+    suspend fun fetchAllUniversities() : List<University>
 }
