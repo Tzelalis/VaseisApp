@@ -1,7 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
     <style name="ToolbarTheme" parent="@style/Widget.MaterialComponents.Toolbar.Surface">
         <!-- Customize color of navigation drawer icon and back arrow -->
         <item name="android:homeAsUpIndicator">@color/black</item>
+    </style>
+
+    <!--  Personalization Styles  -->
+    <style name="personalizationTitle">
+        <item name="android:layout_marginTop">32dp</item>
+        <item name="android:layout_marginStart">16dp</item>
+        <item name="android:layout_marginEnd">16dp</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:textColor">@color/blue_500</item>
+        <item name="android:fontFamily">@font/roboto_bold</item>
+        <item name="android:gravity">center</item>
+    </style>
+
+    <style name="personalizationSubtitle">
+        <item name="android:layout_marginTop">8dp</item>
+        <item name="android:layout_marginStart">16dp</item>
+        <item name="android:layout_marginEnd">16dp</item>
+        <item name="android:textSize">13sp</item>
+        <item name="android:fontFamily">@font/roboto</item>
+        <item name="android:gravity">center</item>
+    </style>
+
+    <style name="personalizationProceedButton" parent="Widget.MaterialComponents.Button">
+        <item name="android:layout_margin">16dp</item>
+        <item name="android:fontFamily">@font/roboto</item>
+    </style>
+
+    <style name="personalizationRadioButtons" parent="Base.Widget.AppCompat.CompoundButton.RadioButton">
+        <item name="android:textSize">16sp</item>
+        <item name="android:layout_marginTop">8dp</item>
+        <item name="android:fontFamily">@font/roboto</item>
+        <item name="android:gravity">center</item>
     </style>
 </resources>

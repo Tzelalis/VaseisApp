@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Vaseis App</string>
+
+    <!-- Dashboard Bottom Nav Menu-->
+    <string name="basesTitle">Βάσες</string>
+    <string name="topicTitle">Θέματα</string>
+    <string name="calculatorTitle">Μόρια</string>
+    <string name="accountTitle">Λογαριασμός</string>
+
+    <!--Personalization-->
+    <string name="proceed_button">Συνέχεια</string>
+
+    <!-- Category Fragment-->
+    <string name="category_title">Κατηγορία</string>
+    <string name="category_subtitle">Ποια κατηγορία πανελληνίων σας ενδιαφέρει; \n
+        Μπορείτε να αλλάξετε την επιλογή σας αργότερα από τις ρυθμίσεις.</string>
+
+    <!-- UserType Fragment -->
+    <string name="user_type_title">Τύπος χρήστη</string>
+    <string name="user_type_subtitle">Τι τύπου χρήστης είστε; \n
+        Μπορείτε να αλλάξετε την επιλογή σας αργότερα από τις ρυθμίσεις.</string>
+
+
+
+    <string name="department_more_stats">Στατιστικά τμήματος ανά έτος   </string>
+
+
+
+</resources>

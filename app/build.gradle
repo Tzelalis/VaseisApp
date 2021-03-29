@@ -68,6 +68,8 @@ dependencies {
     implementation "androidx.lifecycle:lifecycle-common-java8:$lifecycle_version"
     implementation "androidx.lifecycle:lifecycle-livedata-ktx:$lifecycle_version"
 
+    //Concat Adapter
+    implementation "androidx.recyclerview:recyclerview:1.2.0-beta02"
 
     //glide
     def glide_version = '4.11.0'

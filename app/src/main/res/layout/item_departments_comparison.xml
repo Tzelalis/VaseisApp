@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/departmentConstraintLayout"
     android:layout_width="150dp"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
     android:layout_marginStart="8dp"
     android:layout_marginEnd="8dp"
     android:background="@drawable/cardview_background_16"
@@ -37,19 +37,20 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/mainConstraintLayout"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:padding="2dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:padding="4dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@id/codeLinearLayout">
 
         <TextView
             android:id="@+id/nameTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="2dp"
-            android:gravity="center_horizontal"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_margin="4dp"
+            android:gravity="center"
             android:shadowColor="@color/light_grey"
             android:shadowDx="1"
             android:shadowDy="1"
@@ -57,6 +58,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
             tools:text="Τμήμα Μηχανικών Πληροφορικής και Ηλεκτρονικων Συστημάτων" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 

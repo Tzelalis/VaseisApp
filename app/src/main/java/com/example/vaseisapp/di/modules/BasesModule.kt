@@ -1,17 +1,11 @@
 package com.example.vaseisapp.di.modules
 
-import com.example.vaseisapp.data.BasesDataSourceImpl
-import com.example.vaseisapp.data.BasesRepository
-import com.example.vaseisapp.data.DepartmentDataSourceImpl
-import com.example.vaseisapp.data.DepartmentRepository
+import com.example.vaseisapp.data.bases.BasesDataSourceImpl
+import com.example.vaseisapp.data.bases.BasesRepository
 import com.example.vaseisapp.di.scopes.BasesHttpClient
-import com.example.vaseisapp.di.scopes.DepartmentHttpClient
-import com.example.vaseisapp.domain.datasource.BasesDataSource
-import com.example.vaseisapp.domain.datasource.DepartmentDataSource
+import com.example.vaseisapp.domain.bases.BasesDataSource
 import com.example.vaseisapp.framework.network.BasesApi
-import com.example.vaseisapp.framework.network.DepartmentApi
 import com.example.vaseisapp.framework.repository.BasesRepositoryImpl
-import com.example.vaseisapp.framework.repository.DepartmentRepositoryImpl
 import com.example.vaseisapp.utils.Utf8Interceptor
 import com.squareup.moshi.Moshi
 import dagger.Module

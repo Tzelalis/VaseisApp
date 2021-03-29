@@ -2,16 +2,59 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/dashboard_nav_graph"
-    app:startDestination="@id/departmentFragment2">
+    android:id="@+id/main_nav_grap"
+    android:label="Departments"
+    app:startDestination="@id/departmentFragment">
 
     <fragment
-        android:id="@+id/departmentFragment2"
-        android:name="com.example.vaseisapp.ui.department.DepartmentFragment"
+        android:id="@+id/departmentFragment"
+        android:name="com.example.vaseisapp.ui.dashboard.departmentcenter.department.DepartmentFragment"
         android:label="DepartmentFragment"
-        tools:layout="@layout/fragment_department_layout"/>
+        tools:layout="@layout/fragment_department_layout">
+        <action
+            android:id="@+id/action_departmentFragment_to_departmentDetailsFragment"
+            app:destination="@id/departmentDetailsFragment"
+            app:enterAnim="@anim/slide_in_left"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_right"
+            app:popExitAnim="@anim/slide_out_right"
+            app:popUpTo="@id/departmentFragment" />
+        <action
+            android:id="@+id/action_departmentFragment_to_accountFragment"
+            app:destination="@id/accountFragment"
+            app:launchSingleTop="true"
+            app:popUpTo="@id/accountFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
     <fragment
-        android:id="@+id/baseFragment"
-        android:name="com.example.vaseisapp.base.BaseFragment"
-        android:label="BaseFragment" />
+        android:id="@+id/departmentDetailsFragment"
+        android:name="com.example.vaseisapp.ui.dashboard.departmentcenter.departmentdetails.DepartmentDetailsFragment"
+        android:label="Comparation"
+        tools:layout="@layout/fragment_department_details_layout">
+        <argument
+            android:name="departments"
+            app:argType="com.example.vaseisapp.ui.dashboard.departmentcenter.departmentdetails.model.DepartmentDetailsArguments[]" />
+    </fragment>
+    <fragment
+        android:id="@+id/accountFragment"
+        android:name="com.example.vaseisapp.ui.dashboard.accountcenter.AccountFragment"
+        android:label="AccountFragment"
+        tools:layout="@layout/fragment_account">
+        <action
+            android:id="@+id/action_accountFragment_to_departmentFragment"
+            app:destination="@id/departmentFragment"
+            app:launchSingleTop="true"
+            app:popUpTo="@id/departmentFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/fragmentCalculator"
+        android:name="com.example.vaseisapp.ui.dashboard.calculator.FragmentCalculator"
+        android:label="FragmentCalculator"
+        tools:layout="@layout/fragment_calculator"/>
+    <fragment
+        android:id="@+id/topicsFragment"
+        android:name="com.example.vaseisapp.ui.dashboard.topicscenter.TopicsFragment"
+        android:label="TopicsFragment"
+        tools:layout="@layout/fragment_topics"/>
 </navigation>

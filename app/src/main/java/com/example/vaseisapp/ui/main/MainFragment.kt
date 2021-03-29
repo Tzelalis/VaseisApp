@@ -1,23 +1,13 @@
 package com.example.vaseisapp.ui.main
 
 import android.os.Bundle
-import android.text.TextUtils
-import android.util.Log
-import android.view.MenuItem
 import android.view.View
-import androidx.core.view.isVisible
 import androidx.navigation.NavController
-import androidx.navigation.NavDestination
 import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
-import androidx.navigation.ui.AppBarConfiguration
-import androidx.navigation.ui.onNavDestinationSelected
-import androidx.navigation.ui.setupWithNavController
 import com.example.vaseisapp.R
 import com.example.vaseisapp.base.BaseFragment
 import com.example.vaseisapp.databinding.FragmentMainLayoutBinding
-import com.example.vaseisapp.ui.AppActivity
-import kotlinx.android.synthetic.main.fragment_main_layout.*
 
 
 class MainFragment : BaseFragment<FragmentMainLayoutBinding>() {
@@ -28,43 +18,70 @@ class MainFragment : BaseFragment<FragmentMainLayoutBinding>() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        setupViews()
+
         //(activity as? AppActivity)?.setCustomSupportActionBar(binding.toolbar)
         setHasOptionsMenu(true)
         //setupNavigation()
     }
 
     private fun setupViews() {
-
-    }
-
-
-
-
-
-   /* override fun onResume() {
-        super.onResume()
-        mainNavController.addOnDestinationChangedListener(listener)
-    }
-
-    override fun onPause() {
-        mainNavController.removeOnDestinationChangedListener(listener)
-        super.onPause()
-    }
-
-    private val listener = NavController.OnDestinationChangedListener { controller, destination, arguments ->
-        when (destination.id) {
-            R.id.departmentDetailsFragment -> {
-                binding.bottomNavigation.isVisible = false
-                binding.toolbar.isVisible = true
-            }
-
-            R.id.departmentFragment -> {
-                binding.bottomNavigation.isVisible = true
-                binding.toolbar.isVisible = false
+        with(binding) {
+            bottomNavigation.setOnNavigationItemSelectedListener { item ->
+                when (item.itemId) {
+                    R.id.accountItem -> {
+                        if(bottomNavigation.selectedItemId != R.id.accountItem)
+                            mainNavController.navigate(R.id.accountFragment)
+                        true
+                    }
+                    R.id.basesItem -> {
+                        if(bottomNavigation.selectedItemId != R.id.basesItem)
+                            mainNavController.navigate(R.id.departmentFragment)
+                        true
+                    }
+                    R.id.calculatorItem -> {
+                        if(bottomNavigation.selectedItemId != R.id.calculatorItem)
+                            mainNavController.navigate(R.id.fragmentCalculator)
+                        true
+                    }
+                    R.id.topicsItem -> {
+                        if(bottomNavigation.selectedItemId != R.id.topicsItem)
+                            mainNavController.navigate(R.id.topicsFragment)
+                        true
+                    }
+                    else -> {
+                        true
+                    }
+                }
             }
         }
+    }
 
-        Log.v("MPIKA", "MPIKARE MOUNI")
-    }*/
+
+    /* override fun onResume() {
+         super.onResume()
+         mainNavController.addOnDestinationChangedListener(listener)
+     }
+
+     override fun onPause() {
+         mainNavController.removeOnDestinationChangedListener(listener)
+         super.onPause()
+     }
+
+     private val listener = NavController.OnDestinationChangedListener { controller, destination, arguments ->
+         when (destination.id) {
+             R.id.departmentDetailsFragment -> {
+                 binding.bottomNavigation.isVisible = false
+                 binding.toolbar.isVisible = true
+             }
+
+             R.id.departmentFragment -> {
+                 binding.bottomNavigation.isVisible = true
+                 binding.toolbar.isVisible = false
+             }
+         }
+
+         Log.v("MPIKA", "MPIKARE MOUNI")
+     }*/
 
 }

@@ -1,7 +1,9 @@
 package com.example.vaseisapp.di.modules
 
-import com.example.vaseisapp.domain.datasource.DepartmentDataSource
-import com.example.vaseisapp.domain.datasource.UniversityDataSource
+import com.example.vaseisapp.domain.bases.BasesDataSource
+import com.example.vaseisapp.domain.department.DepartmentDataSource
+import com.example.vaseisapp.domain.university.UniversityDataSource
+import com.example.vaseisapp.usecase.bases.GetDepartmentBases
 import com.example.vaseisapp.usecase.department.FetchAllDepartmentsUseCase
 import com.example.vaseisapp.usecase.university.FetchAllUniversitiesUseCase
 import dagger.Module
@@ -25,4 +27,11 @@ object UseCaseModule {
     fun provideFetchAllDepartmentsUseCase(dataSource : DepartmentDataSource): FetchAllDepartmentsUseCase {
         return FetchAllDepartmentsUseCase(dataSource)
     }
+
+    @ActivityScoped
+    @Provides
+    fun provideGetDepartmentBases(dataSource : BasesDataSource): GetDepartmentBases {
+        return GetDepartmentBases(dataSource)
+    }
+
 }

@@ -1,7 +1,6 @@
 package com.example.vaseisapp.usecase.university
 
-import com.example.vaseisapp.data.university.RemoteUniversity
-import com.example.vaseisapp.domain.datasource.UniversityDataSource
+import com.example.vaseisapp.domain.university.UniversityDataSource
 import com.example.vaseisapp.domain.entities.University
 
 class FetchAllUniversitiesUseCase(private val dataSource: UniversityDataSource) {

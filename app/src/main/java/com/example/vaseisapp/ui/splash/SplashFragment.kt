@@ -25,7 +25,8 @@ class SplashFragment : BaseFragment<FragmentSplashLayoutBinding>() {
     private fun setupObservers(){
         with(viewModel) {
             showMainUi.observe(viewLifecycleOwner, {
-                val action = SplashFragmentDirections.actionSplashFragmentToDepartmentFragment()
+                //val action = SplashFragmentDirections.actionSplashFragmentToPersonalizationFragment()    //testing
+                val action = SplashFragmentDirections.toMainFragment()
                 findNavController().navigate(action)
             })
 

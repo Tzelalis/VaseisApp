@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/basesItem"
+        android:enabled="true"
+        android:icon="@drawable/ic_baseline_bases_24"
+        android:title="@string/basesTitle"/>
+    <item
+        android:id="@+id/topicsItem"
+        android:enabled="true"
+        android:icon="@drawable/ic_baseline_topics_24"
+        android:title="@string/topicTitle"/>
+    <item
+        android:id="@+id/calculatorItem"
+        android:enabled="true"
+        android:icon="@drawable/ic_calculator_24"
+        android:title="@string/calculatorTitle"/>
+    <item
+        android:id="@+id/accountItem"
+        android:enabled="true"
+        android:icon="@drawable/ic_baseline_account_circle_24"
+        android:title="@string/accountTitle"/>
+</menu>

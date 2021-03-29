@@ -1,6 +1,6 @@
 package com.example.vaseisapp.framework.repository
 
-import com.example.vaseisapp.data.UniversityRepository
+import com.example.vaseisapp.data.university.UniversityRepository
 import com.example.vaseisapp.data.university.toResponseUniversity
 import com.example.vaseisapp.domain.entities.University
 import com.example.vaseisapp.framework.network.UniversityApi

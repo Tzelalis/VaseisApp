@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="custom_number_picker">
+        <attr name="leftIcon" format="reference" />
+        <attr name="rightIcon" format="reference" />
+        <attr name="minValue" format="string" />
+        <attr name="maxValue" format="string" />
+    </declare-styleable>
+</resources>

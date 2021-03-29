@@ -11,7 +11,7 @@
         android:label="SplashFragment"
         tools:layout="@layout/fragment_splash_layout">
         <action
-            android:id="@+id/action_splashFragment_to_departmentFragment"
+            android:id="@+id/to_mainFragment"
             app:destination="@id/mainFragment"
             app:enterAnim="@anim/pop_enter_anim"
             app:exitAnim="@anim/pop_exit_anim"

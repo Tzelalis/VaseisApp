@@ -4,8 +4,9 @@ import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.MutableLiveData
 import com.example.vaseisapp.base.BaseViewModel
 import com.example.vaseisapp.utils.SingleLiveEvent
+import javax.inject.Inject
 
-class AppViewModel @ViewModelInject constructor() : BaseViewModel() {
+class AppViewModel  @ViewModelInject constructor(): BaseViewModel() {
     private var _toolbarTitle = MutableLiveData<String>()
     val toolbarTitle = _toolbarTitle
 

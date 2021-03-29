@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/personalization_nav_graph"
+    app:startDestination="@id/categoryFragment">
+
+    <fragment
+        android:id="@+id/categoryFragment"
+        android:name="com.example.vaseisapp.ui.personalization.category.CategoryFragment"
+        android:label="CategoryFragment"
+        tools:layout="@layout/fragment_personalization_category"/>
+    <fragment
+        android:id="@+id/userTypeFragment"
+        android:name="com.example.vaseisapp.ui.personalization.usertype.UserTypeFragment"
+        android:label="UserTypeFragment"
+        tools:layout="@layout/fragment_user_type"/>
+</navigation>

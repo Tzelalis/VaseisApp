@@ -17,7 +17,8 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/departmentRecyclerView"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
+            app:layout_constraintDimensionRatio="3:1"
             android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp"
             android:clipToPadding="false"
@@ -178,7 +179,6 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/successfulTextView" />
         </androidx.constraintlayout.widget.ConstraintLayout>
-
 
         <LinearLayout
             android:id="@+id/totalPeopleLinearLayout"

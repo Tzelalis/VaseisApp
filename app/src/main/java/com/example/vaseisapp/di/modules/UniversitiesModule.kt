@@ -1,9 +1,9 @@
 package com.example.vaseisapp.di.modules
 
-import com.example.vaseisapp.data.UniversityDataSourceImpl
-import com.example.vaseisapp.data.UniversityRepository
+import com.example.vaseisapp.data.university.UniversityDataSourceImpl
+import com.example.vaseisapp.data.university.UniversityRepository
 import com.example.vaseisapp.di.scopes.UniversitiesHttpClient
-import com.example.vaseisapp.domain.datasource.UniversityDataSource
+import com.example.vaseisapp.domain.university.UniversityDataSource
 import com.example.vaseisapp.framework.network.UniversityApi
 import com.example.vaseisapp.framework.repository.UniversityRepositoryImpl
 import com.example.vaseisapp.utils.Utf8Interceptor

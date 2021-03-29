@@ -9,7 +9,7 @@ class SplashViewModel @ViewModelInject constructor() : BaseViewModel(){
     val showMainUi = _showMainUi
 
     fun loadStartData() {
-        launch(true, 0){
+        launch(true, 2000){
             _showMainUi.value = true
         }
 

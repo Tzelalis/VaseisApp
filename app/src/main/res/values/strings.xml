@@ -1,6 +1,25 @@
 <resources>
-    <string name="app_name">VaseisApp</string>
+    <string name="app_name">Vaseis App</string>
 
+    <!-- Dashboard Bottom Nav Menu-->
+    <string name="basesTitle">Bases</string>
+    <string name="topicTitle">Topics</string>
+    <string name="calculatorTitle">Calculator</string>
+    <string name="accountTitle">Account</string>
 
-    <string name="department_more_stats">Στατιστικά τμήματος ανά έτος   </string>
+    <!--Personalization-->
+    <string name="proceed_button">Proceed</string>
+
+    <!--Category Fragment-->
+    <string name="category_title">Category</string>
+    <string name="category_subtitle">Ποια κατηγορία πανελληνίων σας ενδιαφέρει; \n
+        You can change your choice later into app.</string>
+
+    <!-- UserType Fragment -->
+    <string name="user_type_title">User type</string>
+    <string name="user_type_subtitle">Ποια κατηγορία πανελληνίων σας ενδιαφέρει; \n
+        You can change your choice later into app.</string>
+
+    <string name="department_more_stats">Statistics by year   </string>
+
 </resources>
