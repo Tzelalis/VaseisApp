@@ -1,4 +1,4 @@
-package com.example.vaseisapp.utils.views
+package com.example.vaseisapp.ui.dashboard.calculator.adapter
 
 import android.graphics.Typeface
 import android.view.LayoutInflater
@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.vaseisapp.R
 import com.example.vaseisapp.databinding.ItemGroupBinding
+import com.example.vaseisapp.ui.dashboard.calculator.model.GroupItem
 import com.example.vaseisapp.ui.diffutil.GROUP_ITEM_DIFF_UTIL
 
 class GroupAdapter(private val listener: GroupListener) : ListAdapter<GroupItem, GroupAdapter.GroupBindingViewHolder>(GROUP_ITEM_DIFF_UTIL) {
@@ -36,7 +37,7 @@ class GroupAdapter(private val listener: GroupListener) : ListAdapter<GroupItem,
                 if (item.isSelected) {
                     groupTitleTextView.setTextColor(ContextCompat.getColor(root.context, R.color.black))
                     groupTitleTextView.background = ContextCompat.getDrawable(root.context, R.drawable.shape_group_not_selected)
-                    groupTitleTextView.setTypeface(null, Typeface.BOLD)
+                    groupTitleTextView.setTypeface(groupTitleTextView.typeface, Typeface.BOLD)
                 } else {
                     groupTitleTextView.background = null
                     groupTitleTextView.setTextColor(ContextCompat.getColor(root.context, R.color.text_dr_grey))
@@ -51,8 +52,6 @@ class GroupAdapter(private val listener: GroupListener) : ListAdapter<GroupItem,
                         notifyDataSetChanged()
                         selected = position
                     }
-
-
                 }
             }
         }

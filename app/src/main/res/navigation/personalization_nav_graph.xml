@@ -3,16 +3,24 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/personalization_nav_graph"
-    app:startDestination="@id/categoryFragment">
+    app:startDestination="@id/examTypeFragment">
 
     <fragment
-        android:id="@+id/categoryFragment"
-        android:name="com.example.vaseisapp.ui.personalization.category.CategoryFragment"
-        android:label="CategoryFragment"
-        tools:layout="@layout/fragment_personalization_category"/>
+        android:id="@+id/examTypeFragment"
+        android:name="com.example.vaseisapp.ui.personalization.examtype.ExamTypeFragment"
+        android:label="ExamTypeFragment"
+        tools:layout="@layout/fragment_exam_type">
+        <action
+            android:id="@+id/action_examTypeFragment_to_groupFragment"
+            app:destination="@id/groupFragment" />
+    </fragment>
     <fragment
-        android:id="@+id/userTypeFragment"
-        android:name="com.example.vaseisapp.ui.personalization.usertype.UserTypeFragment"
-        android:label="UserTypeFragment"
-        tools:layout="@layout/fragment_user_type"/>
+        android:id="@+id/groupFragment"
+        android:name="com.example.vaseisapp.ui.personalization.group.GroupFragment"
+        android:label="GroupFragment"
+        tools:layout="@layout/fragment_group">
+        <argument
+            android:name="examType"
+            app:argType="string" />
+    </fragment>
 </navigation>

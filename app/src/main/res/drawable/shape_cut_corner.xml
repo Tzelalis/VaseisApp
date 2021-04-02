@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <item>
+        <shape android:shape="ring" >
+
+
+            <solid android:color="#3F8EEB" />
+        </shape>
+    </item>
+    <item>
+        <rotate
+            android:fromDegrees="45"
+            android:pivotX="50%"
+            android:pivotY="90%"
+            >
+            <shape android:shape="rectangle" >
+                <solid android:color="#2C619F" />
+            </shape>
+        </rotate>
+    </item>
+
+</layer-list>
+

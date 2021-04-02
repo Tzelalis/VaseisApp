@@ -1,4 +1,4 @@
-package com.example.vaseisapp.ui.dashboard.calculator.adapter
+package com.example.vaseisapp.utils.adapters
 
 import android.content.Context
 import android.util.Log
@@ -9,7 +9,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.vaseisapp.R
 import com.example.vaseisapp.ui.dashboard.topicscenter.adapters.TopicsAdapter
-import com.example.vaseisapp.utils.adapters.BaseConcatHolder
 import kotlinx.android.synthetic.main.item_topic_concat_row.view.*
 
 
@@ -37,6 +36,8 @@ class HorizontalConcatAdapter(private val context: Context, private val topicAda
     inner class ConcatViewHolder(itemView: View) : BaseConcatHolder<TopicsAdapter>(itemView) {
         override fun bind(adapter: TopicsAdapter) {
             itemView.topics_lesson_recycler_view.adapter = adapter
+            itemView.topics_lesson_recycler_view.setHasFixedSize(true)
+
         }
     }
 }

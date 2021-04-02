@@ -1,4 +1,4 @@
-package com.example.vaseisapp.ui.personalization.category
+package com.example.vaseisapp.ui.personalization.examtype
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -7,8 +7,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.vaseisapp.databinding.ItemPersonalizationCategoryBinding
 import com.example.vaseisapp.ui.diffutil.CATEGORY_ITEM_DIFF_UTIL
 
-class CategoryListAdapter(private val listener: CategoryClickListener) :
-    ListAdapter<Category, CategoryListAdapter.CategoryViewHolder>(CATEGORY_ITEM_DIFF_UTIL) {
+class ExamTypeListAdapter(private val listener: CategoryClickListener) :
+    ListAdapter<ExamType, ExamTypeListAdapter.CategoryViewHolder>(CATEGORY_ITEM_DIFF_UTIL) {
 
     interface CategoryClickListener {
         fun onClickListener(position: Int)
@@ -25,10 +25,10 @@ class CategoryListAdapter(private val listener: CategoryClickListener) :
     }
 
     inner class CategoryViewHolder(private val binding: ItemPersonalizationCategoryBinding) : RecyclerView.ViewHolder(binding.root) {
-        fun bindTo(category: Category, position: Int) {
+        fun bindTo(examType: ExamType, position: Int) {
             with(binding) {
-                categoryTitleTextView.text = category.title
-                categoryDescriptionTextView.text = category.description
+                examTypeTitleTextView.text = examType.title
+                examTypeDescriptionTextView.text = examType.description
 
                 root.setOnClickListener { listener.onClickListener(position) }
             }

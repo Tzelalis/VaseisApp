@@ -2,57 +2,46 @@ package com.example.vaseisapp.ui.main
 
 import android.os.Bundle
 import android.view.View
+import androidx.fragment.app.viewModels
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
 import com.example.vaseisapp.R
 import com.example.vaseisapp.base.BaseFragment
 import com.example.vaseisapp.databinding.FragmentMainLayoutBinding
+import dagger.hilt.android.AndroidEntryPoint
 
-
+@AndroidEntryPoint
 class MainFragment : BaseFragment<FragmentMainLayoutBinding>() {
     override fun getViewBinding(): FragmentMainLayoutBinding = FragmentMainLayoutBinding.inflate(layoutInflater)
 
     private val mainNavController: NavController by lazy { Navigation.findNavController(binding.mainNavHost) }
+    private val viewModel : MainViewModel by viewModels()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         setupViews()
+        setupObservers()
 
         //(activity as? AppActivity)?.setCustomSupportActionBar(binding.toolbar)
         setHasOptionsMenu(true)
         //setupNavigation()
     }
 
+    private fun setupObservers()    {
+        with(viewModel) {
+            navigationUI.observe(viewLifecycleOwner, { action ->
+                mainNavController.currentDestination?.id?.let { mainNavController.safeNavigate(action, it) }
+            })
+        }
+    }
+
     private fun setupViews() {
         with(binding) {
             bottomNavigation.setOnNavigationItemSelectedListener { item ->
-                when (item.itemId) {
-                    R.id.accountItem -> {
-                        if(bottomNavigation.selectedItemId != R.id.accountItem)
-                            mainNavController.navigate(R.id.accountFragment)
-                        true
-                    }
-                    R.id.basesItem -> {
-                        if(bottomNavigation.selectedItemId != R.id.basesItem)
-                            mainNavController.navigate(R.id.departmentFragment)
-                        true
-                    }
-                    R.id.calculatorItem -> {
-                        if(bottomNavigation.selectedItemId != R.id.calculatorItem)
-                            mainNavController.navigate(R.id.fragmentCalculator)
-                        true
-                    }
-                    R.id.topicsItem -> {
-                        if(bottomNavigation.selectedItemId != R.id.topicsItem)
-                            mainNavController.navigate(R.id.topicsFragment)
-                        true
-                    }
-                    else -> {
-                        true
-                    }
-                }
+                viewModel.navigateTo(bottomNavigation.selectedItemId, item.itemId)
+                true
             }
         }
     }

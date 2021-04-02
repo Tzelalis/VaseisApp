@@ -7,19 +7,61 @@
     <string name="calculatorTitle">Calculator</string>
     <string name="accountTitle">Account</string>
 
-    <!--Personalization-->
+    <!-- Personalization -->
     <string name="proceed_button">Proceed</string>
 
-    <!--Category Fragment-->
-    <string name="category_title">Category</string>
-    <string name="category_subtitle">Ποια κατηγορία πανελληνίων σας ενδιαφέρει; \n
-        You can change your choice later into app.</string>
+    <!-- Language Fragment -->
+    <string name="language_title">Language</string>
+    <string name="language_subtitle">Select app language.</string>
+    <string name="language_english" translatable="false">English</string>
+    <string name="language_greek" translatable="false">Ελληνικά</string>
 
     <!-- UserType Fragment -->
     <string name="user_type_title">User type</string>
     <string name="user_type_subtitle">Ποια κατηγορία πανελληνίων σας ενδιαφέρει; \n
         You can change your choice later into app.</string>
 
+    <!-- Exam Type Fragment -->
+    <string name="category_title">Category</string>
+    <string name="category_subtitle">Ποια κατηγορία πανελληνίων σας ενδιαφέρει; \n
+        You can change your choice later into app.</string>
+
+    <!-- Group Fragment -->
+    <string name="group_title">Group</string>
+    <string name="group_subtitle">Select your group</string>
+
+
     <string name="department_more_stats">Statistics by year   </string>
+
+    <!-- Topics Fragment -->
+    <string name="topics_title">Past\nExams\n</string>
+
+    <!-- Account -->
+    <string name="account_account_title">Account</string>
+    <string name="account_category_name">Category</string>
+    <string name="account_user_type">User Type</string>
+    <string name="account_user_type_student">Student</string>
+    <string name="account_user_type_teacher">Teacher</string>
+
+    <string name="account_system">System</string>
+    <string name="account_theme">Theme</string>
+    <string name="account_theme_dark">Dark</string>
+    <string name="account_theme_light">Light</string>
+
+
+    <string name="account_language">Language</string>
+    <string name="account_language_english">English</string>
+    <string name="account_language_greek">Greek</string>
+
+    <string name="account_feedback">Feedback</string>
+    <string name="account_rate">Rate us</string>
+    <string name="account_share">Share with my friends</string>
+    <string name="account_bug">I spotted a Bug</string>
+
+    <string name="account_credits">Credits</string>
+    <string name="account_about_app">About the App</string>
+    <string name="account_about_api">About the API</string>
+    <string name="account_special_thanks">Special Thanks</string>
+
 
 </resources>

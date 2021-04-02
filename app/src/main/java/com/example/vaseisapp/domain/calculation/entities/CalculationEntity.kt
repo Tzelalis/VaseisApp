@@ -1,7 +1,14 @@
 package com.example.vaseisapp.domain.calculation.entities
 
 data class CalculationEntity(
-    val group : List<Group>,
+    val examTypes : List<ExamType>,
+)
+
+data class ExamType(
+    val id : String,
+    val name : String,
+    val short_name : String,
+    val groups : List<Group>
 )
 
 data class Group(

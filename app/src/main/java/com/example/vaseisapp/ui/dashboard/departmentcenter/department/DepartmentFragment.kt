@@ -69,7 +69,7 @@ class DepartmentFragment : BaseFragment<FragmentDepartmentLayoutBinding>() {
                     DepartmentDetailsArguments("106", " TEst 2"),
                     DepartmentDetailsArguments("1010", " TEst 3")
                 )
-                val action = DepartmentFragmentDirections.actionDepartmentFragmentToDepartmentDetailsFragment(array)
+                val action = DepartmentFragmentDirections.actionDepartmentToDepartmentDetails(array)
                 //adapter.currentList[position].code, adapter.currentList[position].name
                 findNavController().navigate(action)
 

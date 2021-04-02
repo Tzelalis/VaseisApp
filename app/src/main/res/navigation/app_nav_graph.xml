@@ -20,10 +20,18 @@
             app:popExitAnim="@anim/pop_exit_anim"
             app:popUpTo="@id/main_nav_graph"
             app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_splashFragment_to_personalization_nav_graph"
+            app:destination="@id/personalization_nav_graph" />
     </fragment>
     <fragment
         android:id="@+id/mainFragment"
         android:name="com.example.vaseisapp.ui.main.MainFragment"
         android:label="MainFragment"
         tools:layout="@layout/fragment_main_layout"/>
+    <include app:graph="@navigation/personalization_nav_graph" />
+
+    <action
+        android:id="@+id/action_to_main"
+        app:destination="@id/mainFragment" />
 </navigation>

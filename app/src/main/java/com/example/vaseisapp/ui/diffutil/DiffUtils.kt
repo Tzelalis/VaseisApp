@@ -3,12 +3,11 @@ package com.example.vaseisapp.ui.diffutil
 import androidx.recyclerview.widget.DiffUtil
 import com.example.vaseisapp.domain.calculation.entities.Lesson
 import com.example.vaseisapp.domain.topics.Topic
-import com.example.vaseisapp.domain.topics.TopicLesson
 import com.example.vaseisapp.ui.dashboard.accountcenter.model.PropertyItem
+import com.example.vaseisapp.ui.dashboard.calculator.model.ExamTypeItem
 import com.example.vaseisapp.ui.dashboard.departmentcenter.department.DepartmentWithSelected
 import com.example.vaseisapp.ui.dashboard.departmentcenter.departmentdetails.model.DepartmentItem
-import com.example.vaseisapp.ui.personalization.category.Category
-import com.example.vaseisapp.utils.views.GroupItem
+import com.example.vaseisapp.ui.dashboard.calculator.model.GroupItem
 
 val DEPARTMENT_DIFF_UTIL = object : DiffUtil.ItemCallback<DepartmentWithSelected>() {
     override fun areItemsTheSame(oldItem: DepartmentWithSelected, newItem: DepartmentWithSelected): Boolean =
@@ -30,10 +29,10 @@ val YEAR_ITEM_DIFF_UTIL = object : DiffUtil.ItemCallback<String>() {
     override fun areContentsTheSame(oldItem: String, newItem: String): Boolean = oldItem == newItem
 }
 
-val CATEGORY_ITEM_DIFF_UTIL = object : DiffUtil.ItemCallback<Category>() {
-    override fun areItemsTheSame(oldItem: Category, newItem: Category): Boolean = oldItem == newItem
+val CATEGORY_ITEM_DIFF_UTIL = object : DiffUtil.ItemCallback<com.example.vaseisapp.ui.personalization.examtype.ExamType>() {
+    override fun areItemsTheSame(oldItem: com.example.vaseisapp.ui.personalization.examtype.ExamType, newItem: com.example.vaseisapp.ui.personalization.examtype.ExamType): Boolean = oldItem == newItem
 
-    override fun areContentsTheSame(oldItem: Category, newItem: Category): Boolean = oldItem == newItem
+    override fun areContentsTheSame(oldItem: com.example.vaseisapp.ui.personalization.examtype.ExamType, newItem: com.example.vaseisapp.ui.personalization.examtype.ExamType): Boolean = oldItem == newItem
 }
 
 val PROPERTY_ITEM_DIFF_UTIL = object : DiffUtil.ItemCallback<PropertyItem>() {
@@ -65,5 +64,11 @@ val GROUP_ITEM_DIFF_UTIL = object : DiffUtil.ItemCallback<GroupItem>() {
     override fun areItemsTheSame(oldItem: GroupItem, newItem: GroupItem): Boolean = oldItem == newItem
 
     override fun areContentsTheSame(oldItem: GroupItem, newItem: GroupItem): Boolean = oldItem == newItem
+}
+
+val EXAM_TYPE_ITEM_DIFF_UTIL = object : DiffUtil.ItemCallback<ExamTypeItem>() {
+    override fun areItemsTheSame(oldItem: ExamTypeItem, newItem: ExamTypeItem): Boolean = oldItem.examType.id == newItem.examType.id
+
+    override fun areContentsTheSame(oldItem: ExamTypeItem, newItem: ExamTypeItem): Boolean = oldItem == newItem
 }
 

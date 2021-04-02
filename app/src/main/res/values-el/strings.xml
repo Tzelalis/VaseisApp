@@ -11,20 +11,57 @@
     <!--Personalization-->
     <string name="proceed_button">Συνέχεια</string>
 
-    <!-- Category Fragment-->
-    <string name="category_title">Κατηγορία</string>
-    <string name="category_subtitle">Ποια κατηγορία πανελληνίων σας ενδιαφέρει; \n
-        Μπορείτε να αλλάξετε την επιλογή σας αργότερα από τις ρυθμίσεις.</string>
+    <!-- Language Fragment -->
+    <string name="language_title">Γλώσσα</string>
+    <string name="language_subtitle">Επιλέξτε την γλώσσα της εφαρμογής.</string>
 
     <!-- UserType Fragment -->
     <string name="user_type_title">Τύπος χρήστη</string>
     <string name="user_type_subtitle">Τι τύπου χρήστης είστε; \n
         Μπορείτε να αλλάξετε την επιλογή σας αργότερα από τις ρυθμίσεις.</string>
 
+    <!-- Exam Type Fragment-->
+    <string name="category_title">Κατηγορία</string>
+    <string name="category_subtitle">Ποια κατηγορία πανελληνίων σας ενδιαφέρει; \n
+        Μπορείτε να αλλάξετε την επιλογή σας αργότερα από τις ρυθμίσεις.</string>
+
+    <!-- Group Fragment -->
+    <string name="group_title">Πεδίο</string>
+    <string name="group_subtitle">Επιλέξτε το πεδίο που επιθυμείτε.</string>
 
 
     <string name="department_more_stats">Στατιστικά τμήματος ανά έτος   </string>
 
+    <!-- Topics Fragment -->
+    <string name="topics_title">Παλιά\nΘέματα\nΕξετάσεων </string>
+
+
+    <!-- Account -->
+    <string name="account_account_title">Λογαριασμός</string>
+    <string name="account_category_name">Κατηγορία</string>
+    <string name="account_user_type">Τύπος χρήστη</string>
+    <string name="account_user_type_student">Μαθητής</string>
+    <string name="account_user_type_teacher">Φοιτητής</string>
+
+    <string name="account_system">Σύστημα</string>
+    <string name="account_theme">Θέμα</string>
+    <string name="account_theme_dark">Σκοτεινό</string>
+    <string name="account_theme_light">Φωτεινό</string>
+
+
+    <string name="account_language">Γλώσσα</string>
+    <string name="account_language_english">Αγγλικά</string>
+    <string name="account_language_greek">Ελληνικά</string>
+
+    <string name="account_feedback">Feedback</string>
+    <string name="account_rate">Βαθμολογήστε μας</string>
+    <string name="account_share">Κοινή χρήση</string>
+    <string name="account_bug">Βρήκα ένα bug!</string>
+
+    <string name="account_credits">Πληροφορίες</string>
+    <string name="account_about_app">Σχετικά με την εφαρμογή</string>
+    <string name="account_about_api">Σχετικά με το API</string>
+    <string name="account_special_thanks">Special Thanks</string>
 
 
 </resources>

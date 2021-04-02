@@ -3,25 +3,20 @@ package com.example.vaseisapp.ui.dashboard.topicscenter
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.ConcatAdapter
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.LinearSnapHelper
-import androidx.recyclerview.widget.SnapHelper
 import com.example.vaseisapp.base.BaseFragment
 import com.example.vaseisapp.databinding.FragmentTopicsBinding
-import com.example.vaseisapp.databinding.LayoutGroupRecyclerViewBinding
 import com.example.vaseisapp.domain.topics.Topic
 import com.example.vaseisapp.domain.topics.TopicLesson
-import com.example.vaseisapp.ui.dashboard.calculator.adapter.HorizontalConcatAdapter
+import com.example.vaseisapp.utils.adapters.HorizontalConcatAdapter
 import com.example.vaseisapp.ui.dashboard.topicscenter.adapters.TopicsAdapter
 import com.example.vaseisapp.ui.dashboard.topicscenter.adapters.TopicsTitleAdapter
-import com.example.vaseisapp.utils.views.GroupAdapter
-import com.example.vaseisapp.utils.views.GroupItem
+import com.example.vaseisapp.ui.dashboard.calculator.adapter.GroupAdapter
+import com.example.vaseisapp.ui.dashboard.calculator.model.GroupItem
 import dagger.hilt.android.AndroidEntryPoint
-import java.security.acl.Group
 
 
 @AndroidEntryPoint
@@ -42,12 +37,16 @@ class TopicsFragment : BaseFragment<FragmentTopicsBinding>(), GroupAdapter.Group
         setupObservers()
     }
 
+    override fun onResume() {
+        super.onResume()
+    }
+
     private fun setupViews() {
         binding.topicsRecyclerView.adapter = topicsAdapter
-        binding.groupLayout.groupRecyclerView.adapter = groupAdapter
+        binding.groupsRecyclerView.adapter = groupAdapter
 
         val snapHelper = LinearSnapHelper()
-        snapHelper.attachToRecyclerView(binding.groupLayout.groupRecyclerView)
+        snapHelper.attachToRecyclerView(binding.groupsRecyclerView)
 
     }
 
@@ -89,6 +88,6 @@ class TopicsFragment : BaseFragment<FragmentTopicsBinding>(), GroupAdapter.Group
     }
 
     override fun onGroupClickListener(selectedGroup: GroupItem, position: Int) {
-        binding.groupLayout.groupRecyclerView.smoothScrollToPosition(position)
+        binding.groupsRecyclerView.smoothScrollToPosition(position)
     }
 }

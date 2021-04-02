@@ -1,6 +1,6 @@
-package com.example.vaseisapp.ui.personalization.category
+package com.example.vaseisapp.ui.personalization.examtype
 
-data class Category(
+data class ExamType(
     val title: String,
     val description: String,
     val isSelected : Boolean

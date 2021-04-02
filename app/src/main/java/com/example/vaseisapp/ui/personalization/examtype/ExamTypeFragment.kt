@@ -1,4 +1,4 @@
-package com.example.vaseisapp.ui.personalization.category
+package com.example.vaseisapp.ui.personalization.examtype
 
 import android.os.Bundle
 import android.view.View
@@ -7,7 +7,7 @@ import com.example.vaseisapp.databinding.FragmentPersonalizationCategoryBinding
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class CategoryFragment : BaseFragment<FragmentPersonalizationCategoryBinding>() {
+class ExamTypeFragment : BaseFragment<FragmentPersonalizationCategoryBinding>() {
 
     override fun getViewBinding(): FragmentPersonalizationCategoryBinding = FragmentPersonalizationCategoryBinding.inflate(layoutInflater)
 
@@ -19,16 +19,16 @@ class CategoryFragment : BaseFragment<FragmentPersonalizationCategoryBinding>() 
 
     private fun setupViews()    {
         with(binding){
-            val dummyList = listOf(Category("ΓΕΛ 90%", "Πρόκειτε για την πιο δημοφιλή κατηγορία", false), Category("ΕΠΑΛ", "Πρόκειτε για την πιο δημοφιλή κατηγορία", false), Category("ΕΣΠΕΡΙΝΑ", "Πρόκειτε για την πιο δημοφιλή κατηγορία", false))
+            val dummyList = listOf(ExamType("ΓΕΛ 90%", "Πρόκειτε για την πιο δημοφιλή κατηγορία", false), ExamType("ΕΠΑΛ", "Πρόκειτε για την πιο δημοφιλή κατηγορία", false), ExamType("ΕΣΠΕΡΙΝΑ", "Πρόκειτε για την πιο δημοφιλή κατηγορία", false))
 
-            val listener = object : CategoryListAdapter.CategoryClickListener {
+            val listener = object : ExamTypeListAdapter.CategoryClickListener {
                 override fun onClickListener(position: Int) {
 
                 }
 
             }
 
-            val adapter = CategoryListAdapter(listener)
+            val adapter = ExamTypeListAdapter(listener)
             adapter.submitList(dummyList)
             categoryRecyclerView.adapter = adapter
         }

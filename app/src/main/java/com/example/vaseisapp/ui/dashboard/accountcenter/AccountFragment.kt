@@ -13,6 +13,7 @@ import com.example.vaseisapp.ui.dashboard.accountcenter.adapters.PropertyImageAd
 import com.example.vaseisapp.ui.dashboard.accountcenter.model.PropertyFragment
 import com.example.vaseisapp.ui.dashboard.accountcenter.model.PropertyItem
 import dagger.hilt.android.AndroidEntryPoint
+import java.util.*
 
 
 @AndroidEntryPoint
@@ -27,32 +28,33 @@ class AccountFragment : BaseFragment<FragmentAccountBinding>() {
 
     private fun setupViews() {
         with(binding) {
-            val dummy = listOf(
-                PropertyItem(null, "My Account", ""),
-                PropertyItem(PropertyFragment.CATEGORY, "Category", "ΓΕΛ 90%"),
-                PropertyItem(PropertyFragment.USER_TYPE, "User Type", "Student"),
-            )
-            val dummy1 = listOf(
-                PropertyItem(null, "System", ""),
-                PropertyItem(PropertyFragment.THEME, "Theme", "Dark"),
-                PropertyItem(PropertyFragment.LANGUAGE, "Language", "English"),
+             val account = listOf(
+                PropertyItem(null, resources.getString(R.string.account_account_title), ""),
+                PropertyItem(PropertyFragment.CATEGORY, resources.getString(R.string.account_category_name), "ΓΕΛ 90%"),
+                PropertyItem(PropertyFragment.USER_TYPE, resources.getString(R.string.account_user_type), "Student"),
             )
 
-            val dummy2 = listOf(
-                PropertyItem(null, "Feedback", ""),
-                PropertyItem(PropertyFragment.RATE_US, "Rate us", ""),
-                PropertyItem(PropertyFragment.SHARE, "Share with my friends", ""),
-                PropertyItem(PropertyFragment.BUG, "I spotted a Bug", ""),
+             val system = listOf(
+                PropertyItem(null, resources.getString(R.string.account_system), ""),
+                PropertyItem(PropertyFragment.THEME, resources.getString(R.string.account_theme), "Light"),
+                PropertyItem(PropertyFragment.LANGUAGE, resources.getString(R.string.account_language), "English"),
             )
 
-            val dummy3 = listOf(
-                PropertyItem(null, "Credits", ""),
-                PropertyItem(null, "About the App", ""),
-                PropertyItem(null, "About the API", ""),
-                PropertyItem(null, "Special Thanks", ""),
+             val feedback = listOf(
+                PropertyItem(null, resources.getString(R.string.account_feedback), ""),
+                PropertyItem(PropertyFragment.RATE_US, resources.getString(R.string.account_rate), ""),
+                PropertyItem(PropertyFragment.SHARE, resources.getString(R.string.account_share), ""),
+                PropertyItem(PropertyFragment.BUG, resources.getString(R.string.account_bug), ""),
             )
 
-            setupRecyclerView(listOf(dummy, dummy1, dummy2, dummy3), R.drawable.img_logo)
+             val credits = listOf(
+                PropertyItem(null, resources.getString(R.string.account_credits), ""),
+                PropertyItem(null, resources.getString(R.string.account_about_app), ""),
+                PropertyItem(null, resources.getString(R.string.account_about_api), ""),
+                PropertyItem(null, resources.getString(R.string.account_special_thanks), ""),
+            )
+
+            setupRecyclerView(listOf(account, system, feedback, credits), R.drawable.img_logo)
         }
     }
 
@@ -64,6 +66,7 @@ class AccountFragment : BaseFragment<FragmentAccountBinding>() {
                 when (property.id) {
                     PropertyFragment.SHARE -> shareApp()
                     PropertyFragment.BUG -> sendBug()
+                    PropertyFragment.LANGUAGE -> changeLanguage()
                     else -> {
                     }
                 }
@@ -106,5 +109,12 @@ class AccountFragment : BaseFragment<FragmentAccountBinding>() {
             putExtra(Intent.EXTRA_SUBJECT, "Vaseis App, Bug Report")
         }, null)
         startActivity(intent)
+    }
+
+    fun changeLanguage() {
+        val locale = Locale("el")
+        Locale.setDefault(locale)
+        activity?.resources?.configuration?.setLocale(locale)
+        activity?.resources?.updateConfiguration(activity?.resources?.configuration, activity?.resources?.displayMetrics)
     }
 }

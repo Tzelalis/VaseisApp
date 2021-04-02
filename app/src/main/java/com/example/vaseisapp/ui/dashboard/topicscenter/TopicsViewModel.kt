@@ -6,7 +6,7 @@ import androidx.lifecycle.MutableLiveData
 import com.example.vaseisapp.base.BaseViewModel
 import com.example.vaseisapp.domain.topics.Topic
 import com.example.vaseisapp.domain.topics.TopicLesson
-import com.example.vaseisapp.utils.views.GroupItem
+import com.example.vaseisapp.ui.dashboard.calculator.model.GroupItem
 
 
 class TopicsViewModel @ViewModelInject constructor() : BaseViewModel() {
@@ -30,7 +30,7 @@ class TopicsViewModel @ViewModelInject constructor() : BaseViewModel() {
     }
 
     fun loadGroups()    {
-        val dummy = listOf(GroupItem("1ο Πεδίο", true), GroupItem("2ο Πεδίο", false), GroupItem("3ο Πεδίο", false), GroupItem("4ο Πεδίο", false))
+        val dummy = listOf(GroupItem("ΓΕΛ 90%", true), GroupItem("ΓΕΛ 10%", false), GroupItem("ΕΠΑΛ", false), GroupItem("ΕΣΠΕΡΙΝΟ", false))
         _groupUI.value = dummy
     }
 }

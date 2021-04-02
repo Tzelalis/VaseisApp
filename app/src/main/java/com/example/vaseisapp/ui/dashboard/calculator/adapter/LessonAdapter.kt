@@ -24,8 +24,6 @@ class LessonAdapter : ListAdapter<Lesson, LessonAdapter.LessonViewHolder>(LESSON
         fun bindTo(lesson: Lesson) {
             with(binding) {
                 lessonsTextView.text = lesson.shortName
-
-
             }
         }
     }
