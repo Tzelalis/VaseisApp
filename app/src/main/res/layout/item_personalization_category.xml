@@ -5,8 +5,6 @@
     android:padding="16dp"
     android:layout_marginTop="4dp"
     android:layout_marginBottom="4dp"
-    android:layout_marginStart="8dp"
-    android:layout_marginEnd="8dp"
     android:background="@drawable/cardview_background_16_white"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
@@ -18,17 +16,6 @@
         android:layout_height="wrap_content"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        tools:text="ΓΕΛ 90%"/>
-
-    <TextView
-        android:id="@+id/exam_type_description_text_view"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
-        app:layout_constraintTop_toBottomOf="@id/exam_type_title_text_view"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:text="Πρόκειτε για την πιο συχνή κατηγορία"/>
-
-
+        tools:text="ΓΕΛ"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -19,24 +19,6 @@
             app:popEnterAnim="@anim/slide_in_right"
             app:popExitAnim="@anim/slide_out_right"
             app:popUpTo="@id/departmentFragment" />
-        <action
-            android:id="@+id/action_department_to_account"
-            app:destination="@id/accountFragment"
-            app:launchSingleTop="true"
-            app:popUpTo="@id/main_nav_grap"
-            app:popUpToInclusive="true" />
-        <action
-            android:id="@+id/action_department_to_topics"
-            app:destination="@id/topicsFragment"
-            app:launchSingleTop="true"
-            app:popUpTo="@id/main_nav_grap"
-            app:popUpToInclusive="true"/>
-        <action
-            android:id="@+id/action_department_to_Calculator"
-            app:destination="@id/fragmentCalculator"
-            app:launchSingleTop="true"
-            app:popUpTo="@id/main_nav_grap"
-            app:popUpToInclusive="true"/>
     </fragment>
     <fragment
         android:id="@+id/departmentDetailsFragment"
@@ -51,72 +33,43 @@
         android:id="@+id/accountFragment"
         android:name="com.example.vaseisapp.ui.dashboard.accountcenter.AccountFragment"
         android:label="AccountFragment"
-        tools:layout="@layout/fragment_account">
-        <action
-            android:id="@+id/action_account_to_department"
-            app:destination="@id/departmentFragment"
-            app:launchSingleTop="true"
-            app:popUpTo="@id/main_nav_grap"
-            app:popUpToInclusive="true" />
-        <action
-            android:id="@+id/action_account_to_Calculator"
-            app:destination="@id/fragmentCalculator"
-            app:launchSingleTop="true"
-            app:popUpTo="@id/main_nav_grap"
-            app:popUpToInclusive="true"/>
-        <action
-            android:id="@+id/action_account_to_topics"
-            app:destination="@id/topicsFragment"
-            app:launchSingleTop="true"
-            app:popUpTo="@id/main_nav_grap"
-            app:popUpToInclusive="true"/>
-    </fragment>
+        tools:layout="@layout/fragment_account"/>
     <fragment
         android:id="@+id/fragmentCalculator"
         android:name="com.example.vaseisapp.ui.dashboard.calculator.CalculatorFragment"
         android:label="FragmentCalculator"
-        tools:layout="@layout/fragment_calculator">
-        <action
-            android:id="@+id/action_Calculator_to_topics"
-            app:destination="@id/topicsFragment"
-            app:launchSingleTop="true"
-            app:popUpTo="@id/main_nav_grap"
-            app:popUpToInclusive="true"/>
-        <action
-            android:id="@+id/action_Calculator_to_account"
-            app:destination="@id/accountFragment"
-            app:launchSingleTop="true"
-            app:popUpTo="@id/main_nav_grap"
-            app:popUpToInclusive="true"/>
-        <action
-            android:id="@+id/action_Calculator_to_department"
-            app:destination="@id/departmentFragment"
-            app:launchSingleTop="true"
-            app:popUpTo="@id/main_nav_grap"
-            app:popUpToInclusive="true"/>
-    </fragment>
+        tools:layout="@layout/fragment_calculator"/>
     <fragment
         android:id="@+id/topicsFragment"
         android:name="com.example.vaseisapp.ui.dashboard.topicscenter.TopicsFragment"
         android:label="TopicsFragment"
-        tools:layout="@layout/fragment_topics">
-        <action
-            android:id="@+id/action_topics_to_account"
-            app:destination="@id/accountFragment"
-            app:launchSingleTop="true"
-            app:popUpTo="@id/main_nav_grap"
-            app:popUpToInclusive="true"/>
-        <action
-            android:id="@+id/action_topics_to_Calculator"
-            app:destination="@id/fragmentCalculator"
-            app:launchSingleTop="true"
-            app:popUpTo="@id/main_nav_grap"
-            app:popUpToInclusive="true" />
-        <action
-            android:id="@+id/action_topics_to_department"
-            app:destination="@id/departmentFragment"
-            app:launchSingleTop="true"
-            app:popUpTo="@id/main_nav_grap"
-            app:popUpToInclusive="true"/>
-    </fragment>
+        tools:layout="@layout/fragment_topics"/>
+
+    <action
+        android:id="@+id/action_to_Topics"
+        app:destination="@id/topicsFragment"
+        app:launchSingleTop="true"
+        app:popUpTo="@id/main_nav_grap"
+        app:popUpToInclusive="true"/>
+
+    <action
+        android:id="@+id/action_to_Account"
+        app:destination="@id/accountFragment"
+        app:launchSingleTop="true"
+        app:popUpTo="@id/main_nav_grap"
+        app:popUpToInclusive="true"/>
+
+    <action
+        android:id="@+id/action_to_Calculator"
+        app:destination="@id/fragmentCalculator"
+        app:launchSingleTop="true"
+        app:popUpTo="@id/main_nav_grap"
+        app:popUpToInclusive="true"/>
+
+    <action
+        android:id="@+id/action_to_Bases"
+        app:destination="@id/departmentFragment"
+        app:launchSingleTop="true"
+        app:popUpTo="@id/main_nav_grap"
+        app:popUpToInclusive="true"/>
 </navigation>

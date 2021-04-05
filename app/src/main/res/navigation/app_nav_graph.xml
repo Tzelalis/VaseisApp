@@ -28,10 +28,59 @@
         android:id="@+id/mainFragment"
         android:name="com.example.vaseisapp.ui.main.MainFragment"
         android:label="MainFragment"
-        tools:layout="@layout/fragment_main_layout"/>
+        tools:layout="@layout/fragment_main_layout">
+        <action
+            android:id="@+id/action_main_to_group"
+            app:destination="@id/groupFragment3"
+            app:enterAnim="@anim/slide_in_left"
+            app:exitAnim="@anim/stable"
+            app:popEnterAnim="@anim/stable"
+            app:popExitAnim="@anim/slide_out_right" />
+        <action
+            android:id="@+id/action_main_to_userType"
+            app:destination="@id/userTypeFragment2"
+            app:enterAnim="@anim/slide_in_left"
+            app:exitAnim="@anim/stable"
+            app:popEnterAnim="@anim/stable"
+            app:popExitAnim="@anim/slide_out_right"/>
+        <action
+            android:id="@+id/action_main_to_examType"
+            app:destination="@id/examTypeFragment3"
+            app:enterAnim="@anim/slide_in_left"
+            app:exitAnim="@anim/stable"
+            app:popEnterAnim="@anim/stable"
+            app:popExitAnim="@anim/slide_out_right"/>
+        <action
+            android:id="@+id/action_main_to_language"
+            app:destination="@id/languageFragment"
+            app:enterAnim="@anim/slide_in_left"
+            app:exitAnim="@anim/stable"
+            app:popEnterAnim="@anim/stable"
+            app:popExitAnim="@anim/slide_out_right"/>
+    </fragment>
     <include app:graph="@navigation/personalization_nav_graph" />
 
     <action
         android:id="@+id/action_to_main"
         app:destination="@id/mainFragment" />
+    <fragment
+        android:id="@+id/groupFragment3"
+        android:name="com.example.vaseisapp.ui.personalization.group.GroupFragment"
+        android:label="GroupFragment"
+        tools:layout="@layout/fragment_group"/>
+    <fragment
+        android:id="@+id/examTypeFragment3"
+        android:name="com.example.vaseisapp.ui.personalization.examtype.ExamTypeFragment"
+        android:label="ExamTypeFragment"
+        tools:layout="@layout/fragment_exam_type"/>
+    <fragment
+        android:id="@+id/userTypeFragment2"
+        android:name="com.example.vaseisapp.ui.personalization.usertype.UserTypeFragment"
+        android:label="UserTypeFragment"
+        tools:layout="@layout/fragment_user_type"/>
+    <fragment
+        android:id="@+id/languageFragment"
+        android:name="com.example.vaseisapp.ui.personalization.language.LanguageFragment"
+        android:label="LanguageFragment"
+        tools:layout="@layout/fragment_language"/>
 </navigation>

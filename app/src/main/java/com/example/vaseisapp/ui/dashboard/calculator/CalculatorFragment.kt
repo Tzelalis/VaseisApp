@@ -2,46 +2,19 @@ package com.example.vaseisapp.ui.dashboard.calculator
 
 import android.os.Bundle
 import android.view.View
-import androidx.fragment.app.viewModels
-import androidx.recyclerview.widget.LinearSnapHelper
+import androidx.fragment.app.activityViewModels
 import com.example.vaseisapp.base.BaseFragment
 import com.example.vaseisapp.databinding.FragmentCalculatorBinding
-import com.example.vaseisapp.domain.calculation.entities.CalculationEntity
-import com.example.vaseisapp.ui.dashboard.calculator.adapter.ExamTypeAdapter
-import com.example.vaseisapp.ui.dashboard.calculator.adapter.LessonAdapter
-import com.example.vaseisapp.ui.dashboard.calculator.adapter.GroupAdapter
-import com.example.vaseisapp.ui.dashboard.calculator.model.ExamTypeItem
-import com.example.vaseisapp.ui.dashboard.calculator.model.GroupItem
+import com.example.vaseisapp.domain.calculation.entities.ExamType
+import com.example.vaseisapp.ui.dashboard.calculator.adapter.ExamTypeViewPagerAdapter
+import com.google.android.material.tabs.TabLayoutMediator
 import dagger.hilt.android.AndroidEntryPoint
 
 
 @AndroidEntryPoint
-class CalculatorFragment : BaseFragment<FragmentCalculatorBinding>(), GroupAdapter.GroupListener {
-    private val lessonsAdapter: LessonAdapter by lazy { LessonAdapter() }
+class CalculatorFragment : BaseFragment<FragmentCalculatorBinding>() {
 
-    private val viewModel: CalculatorViewModel by viewModels()
-    private val groupAdapter: GroupAdapter by lazy { GroupAdapter(groupListener) }
-    private val examTypeAdapter: ExamTypeAdapter by lazy { ExamTypeAdapter(examTypeListener) }
-
-    private val examTypeListener = object : ExamTypeAdapter.ExamTypeListener{
-        override fun onExamTypeListener(item: ExamTypeItem, position: Int) {
-            binding.examsTypeRecyclerView.smoothScrollToPosition(position)
-
-            val nameOfGroups = mutableListOf<GroupItem>()
-            viewModel.dataUI.value?.examTypes?.get(position)?.groups?.get(0)?.let { nameOfGroups.add(GroupItem(it.shortName, true)) }
-            for (i in 1 until viewModel.dataUI.value?.examTypes?.get(position)?.groups?.size!!) {
-                viewModel.dataUI.value?.examTypes?.get(position)?.groups?.get(i)?.let { nameOfGroups.add(GroupItem(it.shortName, false)) }
-            }
-            groupAdapter.submitList(nameOfGroups)
-        }
-    }
-
-    private val groupListener = object : GroupAdapter.GroupListener{
-        override fun onGroupClickListener(selectedGroup: GroupItem, position: Int) {
-            binding.groupsRecyclerView.smoothScrollToPosition(position)
-            lessonsAdapter.submitList(examTypeAdapter.currentList.first { it.isSelected }.examType.groups[position].mandatoryLessons)
-        }
-    }
+    private val viewModel: CalculatorViewModel by activityViewModels()
 
 
     override fun getViewBinding(): FragmentCalculatorBinding = FragmentCalculatorBinding.inflate(layoutInflater)
@@ -49,55 +22,37 @@ class CalculatorFragment : BaseFragment<FragmentCalculatorBinding>(), GroupAdapt
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        setupViews()
         setupObservers()
     }
 
-    private fun setupViews() {
+    private fun setupViews(examsTypes: List<ExamType>) {
         with(binding) {
-            lessonsRecyclerView.adapter = lessonsAdapter
-            groupsRecyclerView.adapter = groupAdapter
-            examsTypeRecyclerView.adapter = examTypeAdapter
-
-            val snapHelper = LinearSnapHelper()
-            snapHelper.attachToRecyclerView(groupsRecyclerView)
-
-        }
+            groupsViewPager.isUserInputEnabled = false
+            groupsViewPager.adapter = ExamTypeViewPagerAdapter(this@CalculatorFragment, examsTypes)
+            TabLayoutMediator(examsTypeTabLayout, groupsViewPager) { tab, position ->
+                tab.text = examsTypes[position].short_name
+            }
+        }.attach()
     }
+
 
     private fun setupObservers() {
         with(viewModel) {
-            dataUI.observe(viewLifecycleOwner, { calculation ->
-                fillData(calculation)
+            examsTypes.observe(viewLifecycleOwner) { listOfExamTypes ->
+                setupViews(listOfExamTypes)
+            }
+
+            examTypePref.observe(viewLifecycleOwner) { pref ->
+                examsTypes.value?.let { list ->
+                    binding.groupsViewPager.currentItem = list.indexOfFirst { examType -> examType.id == pref }
+                }
+            }
+
+            resultUI.observe(viewLifecycleOwner, { result ->
+                binding.resultTextView.text = result
             })
 
-            loadLessons()
+            loadData()
         }
-    }
-
-    private fun fillData(calculation: CalculationEntity) {
-        val itemsOfExamTypes = mutableListOf<ExamTypeItem>()
-        itemsOfExamTypes.add(ExamTypeItem(calculation.examTypes[0], true))
-        for(i in 1 until calculation.examTypes.size){
-            itemsOfExamTypes.add(ExamTypeItem(calculation.examTypes[i], false))
-        }
-        examTypeAdapter.submitList(itemsOfExamTypes)
-
-        lessonsAdapter.submitList(calculation.examTypes[0].groups[0].mandatoryLessons)
-
-        val nameOfGroups = mutableListOf<GroupItem>()
-        nameOfGroups.add(GroupItem(calculation.examTypes[0].groups[0].shortName, true))
-        for (i in 1 until calculation.examTypes[0].groups.size) {
-            nameOfGroups.add(GroupItem(calculation.examTypes[0].groups[i].shortName, false))
-        }
-
-        groupAdapter.submitList(nameOfGroups)
-
-    }
-
-    override fun onGroupClickListener(selectedGroup: GroupItem, position: Int) {
-        binding.groupsRecyclerView.smoothScrollToPosition(position)
-
-        lessonsAdapter.submitList(viewModel.dataUI.value?.examTypes?.get(0)?.groups?.get(position)?.mandatoryLessons)
     }
 }

@@ -80,6 +80,8 @@ dependencies {
     def moshi_version = '1.11.0'
     implementation "com.squareup.moshi:moshi-kotlin:$moshi_version"
 
+    implementation 'com.google.code.gson:gson:2.8.6'
+
     //retrofit
     def retrofit_version = '2.9.0'
     implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
@@ -100,5 +102,12 @@ dependencies {
     kapt "androidx.hilt:hilt-compiler:$hilt_viewmodel_version"
 
     implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0'
+
+    def room_version = "2.2.6"
+
+    implementation "androidx.room:room-runtime:$room_version"
+    kapt "androidx.room:room-compiler:$room_version"
+    implementation "androidx.room:room-ktx:$room_version"
+
 
 }

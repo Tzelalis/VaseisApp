@@ -1,5 +1,6 @@
 package com.example.vaseisapp.base
 
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -16,7 +17,7 @@ abstract class BaseViewModel : ViewModel() {
 
                 function.invoke()
             } catch (exception: Exception) {
-
+                Log.e("TZEL", exception.message.toString())
             }
         }
     }

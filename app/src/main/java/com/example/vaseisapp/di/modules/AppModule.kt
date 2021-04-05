@@ -2,6 +2,7 @@ package com.example.vaseisapp.di.modules
 
 import android.content.Context
 import android.content.SharedPreferences
+import com.google.gson.Gson
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import dagger.Module
@@ -24,4 +25,16 @@ object AppModule {
     fun provideContext(@ApplicationContext context: Context): Context {
         return context
     }
+
+    @Singleton
+    @Provides
+    fun provideSharedPreferences(@ApplicationContext context: Context): SharedPreferences {
+        return context.getSharedPreferences("VASEIS_SHARED_PREFS", Context.MODE_PRIVATE)
+    }
+
+    @Singleton
+    @Provides
+    fun provideGson(): Gson = Gson()
+
+
 }

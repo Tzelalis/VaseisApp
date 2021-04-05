@@ -15,6 +15,7 @@
     <string name="language_subtitle">Select app language.</string>
     <string name="language_english" translatable="false">English</string>
     <string name="language_greek" translatable="false">Ελληνικά</string>
+    <string name="language_system_default">System Default</string>
 
     <!-- UserType Fragment -->
     <string name="user_type_title">User type</string>
@@ -38,8 +39,9 @@
 
     <!-- Account -->
     <string name="account_account_title">Account</string>
-    <string name="account_category_name">Category</string>
+    <string name="account_exam_type_name">Category</string>
     <string name="account_user_type">User Type</string>
+    <string name="account_group_type">Group Type</string>
     <string name="account_user_type_student">Student</string>
     <string name="account_user_type_teacher">Teacher</string>
 

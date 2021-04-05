@@ -23,7 +23,7 @@ import java.util.concurrent.TimeUnit
 @InstallIn(ActivityComponent::class)
 object BasesModule {
 
-    @ActivityScoped // Instance only available on TicketsActivity
+    @ActivityScoped
     @Provides
     fun provideBasesRepository(api: BasesApi): BasesRepository {
         return BasesRepositoryImpl(api)
@@ -35,7 +35,7 @@ object BasesModule {
         return BasesDataSourceImpl(repository)
     }
 
-    @ActivityScoped // Instance only available on TicketsActivity
+    @ActivityScoped
     @Provides
     fun provideRetrofitForBases(@BasesHttpClient okHttpClient: OkHttpClient, moshi: Moshi): BasesApi {
         val retrofit = Retrofit.Builder()

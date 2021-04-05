@@ -14,6 +14,7 @@
     <!-- Language Fragment -->
     <string name="language_title">Γλώσσα</string>
     <string name="language_subtitle">Επιλέξτε την γλώσσα της εφαρμογής.</string>
+    <string name="language_system_default">Γλώσσα συστήματος</string>
 
     <!-- UserType Fragment -->
     <string name="user_type_title">Τύπος χρήστη</string>
@@ -38,8 +39,9 @@
 
     <!-- Account -->
     <string name="account_account_title">Λογαριασμός</string>
-    <string name="account_category_name">Κατηγορία</string>
     <string name="account_user_type">Τύπος χρήστη</string>
+    <string name="account_exam_type_name">Τύπος εξετάσης</string>
+    <string name="account_group_type">Πεδίο</string>
     <string name="account_user_type_student">Μαθητής</string>
     <string name="account_user_type_teacher">Φοιτητής</string>
 

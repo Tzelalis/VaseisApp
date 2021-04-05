@@ -2,10 +2,11 @@ package com.example.vaseisapp.ui.main
 
 import android.os.Bundle
 import android.view.View
-import androidx.fragment.app.viewModels
+import androidx.fragment.app.activityViewModels
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.navGraphViewModels
 import com.example.vaseisapp.R
 import com.example.vaseisapp.base.BaseFragment
 import com.example.vaseisapp.databinding.FragmentMainLayoutBinding
@@ -16,7 +17,8 @@ class MainFragment : BaseFragment<FragmentMainLayoutBinding>() {
     override fun getViewBinding(): FragmentMainLayoutBinding = FragmentMainLayoutBinding.inflate(layoutInflater)
 
     private val mainNavController: NavController by lazy { Navigation.findNavController(binding.mainNavHost) }
-    private val viewModel : MainViewModel by viewModels()
+
+    private val viewModel : MainViewModel by activityViewModels()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -29,10 +31,14 @@ class MainFragment : BaseFragment<FragmentMainLayoutBinding>() {
         //setupNavigation()
     }
 
-    private fun setupObservers()    {
+    private fun setupObservers() {
         with(viewModel) {
             navigationUI.observe(viewLifecycleOwner, { action ->
-                mainNavController.currentDestination?.id?.let { mainNavController.safeNavigate(action, it) }
+                mainNavController.navigate(action)
+            })
+
+            navigateFromAppNavGraphUI.observe(viewLifecycleOwner, { action ->
+                findNavController().safeNavigate(action, R.id.mainFragment)
             })
         }
     }

@@ -12,44 +12,35 @@ import com.example.vaseisapp.ui.dashboard.topicscenter.TopicsFragmentDirections
 import com.example.vaseisapp.utils.SingleLiveEvent
 
 class MainViewModel @ViewModelInject constructor() : BaseViewModel() {
-    private var _navigateUI = SingleLiveEvent<NavDirections>()
-    val navigationUI: LiveData<NavDirections> = _navigateUI
+    private var _navigateUI = SingleLiveEvent<Int>()
+    val navigationUI: LiveData<Int> = _navigateUI
+
+    private var _navigateFromAppNavGraphUI = SingleLiveEvent<NavDirections>()
+    val navigateFromAppNavGraphUI: LiveData<NavDirections> = _navigateFromAppNavGraphUI
 
     fun navigateTo(currentItemId: Int, destinationItemId: Int) {
         launch(true) {
             if (currentItemId == destinationItemId)
                 return@launch
 
-            when (currentItemId) {
+            when (destinationItemId) {
                 R.id.basesItem -> {
-                    when (destinationItemId) {
-                        R.id.topicsItem -> _navigateUI.value = DepartmentFragmentDirections.actionDepartmentToTopics()
-                        R.id.calculatorItem -> _navigateUI.value = DepartmentFragmentDirections.actionDepartmentToCalculator()
-                        R.id.accountItem -> _navigateUI.value = DepartmentFragmentDirections.actionDepartmentToAccount()
-                    }
+                    _navigateUI.value = R.id.action_to_Bases
                 }
                 R.id.topicsItem -> {
-                    when (destinationItemId) {
-                        R.id.basesItem -> _navigateUI.value = TopicsFragmentDirections.actionTopicsToDepartment()
-                        R.id.calculatorItem -> _navigateUI.value = TopicsFragmentDirections.actionTopicsToCalculator()
-                        R.id.accountItem -> _navigateUI.value = TopicsFragmentDirections.actionTopicsToAccount()
-                    }
+                    _navigateUI.value = R.id.action_to_Topics
                 }
                 R.id.calculatorItem -> {
-                    when (destinationItemId) {
-                        R.id.basesItem -> _navigateUI.value = CalculatorFragmentDirections.actionCalculatorToDepartment()
-                        R.id.topicsItem -> _navigateUI.value = CalculatorFragmentDirections.actionCalculatorToTopics()
-                        R.id.accountItem -> _navigateUI.value = CalculatorFragmentDirections.actionCalculatorToAccount()
-                    }
+                    _navigateUI.value = R.id.action_to_Calculator
                 }
                 R.id.accountItem -> {
-                    when (destinationItemId) {
-                        R.id.basesItem -> _navigateUI.value = AccountFragmentDirections.actionAccountToDepartment()
-                        R.id.topicsItem -> _navigateUI.value = AccountFragmentDirections.actionAccountToTopics()
-                        R.id.calculatorItem -> _navigateUI.value = AccountFragmentDirections.actionAccountToCalculator()
-                    }
+                    _navigateUI.value = R.id.action_to_Account
                 }
             }
         }
+    }
+
+    fun navigate(action : NavDirections)  {
+        _navigateFromAppNavGraphUI.value = action
     }
 }

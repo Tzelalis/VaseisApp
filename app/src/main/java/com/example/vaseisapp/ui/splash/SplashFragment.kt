@@ -30,7 +30,7 @@ class SplashFragment : BaseFragment<FragmentSplashLayoutBinding>() {
                 findNavController().navigate(action)
             })
 
-            loadStartData()
+            loadCalculator()
         }
     }
 }

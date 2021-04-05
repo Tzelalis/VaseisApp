@@ -11,22 +11,31 @@ import com.example.vaseisapp.base.BaseFragment
 import com.example.vaseisapp.databinding.FragmentTopicsBinding
 import com.example.vaseisapp.domain.topics.Topic
 import com.example.vaseisapp.domain.topics.TopicLesson
-import com.example.vaseisapp.utils.adapters.HorizontalConcatAdapter
 import com.example.vaseisapp.ui.dashboard.topicscenter.adapters.TopicsAdapter
+import com.example.vaseisapp.ui.dashboard.topicscenter.adapters.TopicsExamsTypeAdapter
 import com.example.vaseisapp.ui.dashboard.topicscenter.adapters.TopicsTitleAdapter
-import com.example.vaseisapp.ui.dashboard.calculator.adapter.GroupAdapter
-import com.example.vaseisapp.ui.dashboard.calculator.model.GroupItem
+import com.example.vaseisapp.ui.dashboard.topicscenter.model.ExamTypeItem
+import com.example.vaseisapp.ui.personalization.examtype.ExamTypeListAdapter
+import com.example.vaseisapp.utils.adapters.HorizontalConcatAdapter
 import dagger.hilt.android.AndroidEntryPoint
 
 
 @AndroidEntryPoint
-class TopicsFragment : BaseFragment<FragmentTopicsBinding>(), GroupAdapter.GroupListener {
+class TopicsFragment : BaseFragment<FragmentTopicsBinding>() {
 
     private val topicsAdapter: ConcatAdapter by lazy { ConcatAdapter() }
     private val viewModel: TopicsViewModel by viewModels()
 
 
-    private val groupAdapter: GroupAdapter by lazy { GroupAdapter(this) }
+    private val examTypeAdapter: TopicsExamsTypeAdapter by lazy { TopicsExamsTypeAdapter(examTypeItemListener) }
+
+    private val examTypeItemListener = object : TopicsExamsTypeAdapter.ExamTypeItemListener {
+
+        override fun onExamTypeItemClickListener(selectedGroup: ExamTypeItem, position: Int) {
+            binding.groupsRecyclerView.smoothScrollToPosition(position)
+        }
+
+    }
 
     override fun getViewBinding(): FragmentTopicsBinding = FragmentTopicsBinding.inflate(layoutInflater)
 
@@ -37,13 +46,9 @@ class TopicsFragment : BaseFragment<FragmentTopicsBinding>(), GroupAdapter.Group
         setupObservers()
     }
 
-    override fun onResume() {
-        super.onResume()
-    }
-
     private fun setupViews() {
         binding.topicsRecyclerView.adapter = topicsAdapter
-        binding.groupsRecyclerView.adapter = groupAdapter
+        binding.groupsRecyclerView.adapter = examTypeAdapter
 
         val snapHelper = LinearSnapHelper()
         snapHelper.attachToRecyclerView(binding.groupsRecyclerView)
@@ -55,8 +60,8 @@ class TopicsFragment : BaseFragment<FragmentTopicsBinding>(), GroupAdapter.Group
             topicLesson.observe(viewLifecycleOwner, { lessons ->
                 fillData(lessons)
             })
-            groupUI.observe(viewLifecycleOwner, { groups ->
-                groupAdapter.submitList(groups)
+            examTypeUI.observe(viewLifecycleOwner, { examsTypes ->
+                examTypeAdapter.submitList(examsTypes)
             })
 
             loadGroups()
@@ -64,13 +69,13 @@ class TopicsFragment : BaseFragment<FragmentTopicsBinding>(), GroupAdapter.Group
         }
     }
 
-    private fun fillData(lessons: List<TopicLesson>)  {
-        for(lesson in lessons)  {
+    private fun fillData(lessons: List<TopicLesson>) {
+        for (lesson in lessons) {
             val titleAdapter = TopicsTitleAdapter()
             titleAdapter.submitList(listOf(Topic("", lesson.lesson, "")))
             topicsAdapter.addAdapter(titleAdapter)
 
-            val listener = object : TopicsAdapter.TopicListener{
+            val listener = object : TopicsAdapter.TopicListener {
                 override fun topicOnClick(topic: Topic) {
                     //todo open pdf in app
 
@@ -85,9 +90,5 @@ class TopicsFragment : BaseFragment<FragmentTopicsBinding>(), GroupAdapter.Group
             adapter.submitList(lesson.topics)
             topicsAdapter.addAdapter(HorizontalConcatAdapter(requireContext(), adapter))
         }
-    }
-
-    override fun onGroupClickListener(selectedGroup: GroupItem, position: Int) {
-        binding.groupsRecyclerView.smoothScrollToPosition(position)
     }
 }

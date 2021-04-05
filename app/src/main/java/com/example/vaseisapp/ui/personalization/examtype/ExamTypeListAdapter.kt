@@ -1,17 +1,25 @@
 package com.example.vaseisapp.ui.personalization.examtype
 
+import android.content.Context
+import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.example.vaseisapp.R
 import com.example.vaseisapp.databinding.ItemPersonalizationCategoryBinding
-import com.example.vaseisapp.ui.diffutil.CATEGORY_ITEM_DIFF_UTIL
+import com.example.vaseisapp.ui.dashboard.topicscenter.model.ExamTypeItem
+import com.example.vaseisapp.ui.diffutil.EXAM_TYPE_ITEM_DIFF_UTIL
 
-class ExamTypeListAdapter(private val listener: CategoryClickListener) :
-    ListAdapter<ExamType, ExamTypeListAdapter.CategoryViewHolder>(CATEGORY_ITEM_DIFF_UTIL) {
+class ExamTypeListAdapter(private val listener: ExamTypeClickListener) : ListAdapter<ExamTypeItem, ExamTypeListAdapter.CategoryViewHolder>(
+    EXAM_TYPE_ITEM_DIFF_UTIL
+) {
 
-    interface CategoryClickListener {
-        fun onClickListener(position: Int)
+    private var selectedIndex: Int? = null
+
+    interface ExamTypeClickListener {
+        fun onClickListener(item: ExamTypeItem)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CategoryViewHolder {
@@ -25,12 +33,29 @@ class ExamTypeListAdapter(private val listener: CategoryClickListener) :
     }
 
     inner class CategoryViewHolder(private val binding: ItemPersonalizationCategoryBinding) : RecyclerView.ViewHolder(binding.root) {
-        fun bindTo(examType: ExamType, position: Int) {
+        fun bindTo(examTypeItem: ExamTypeItem, position: Int) {
             with(binding) {
-                examTypeTitleTextView.text = examType.title
-                examTypeDescriptionTextView.text = examType.description
+                examTypeTitleTextView.text = examTypeItem.examType.short_name
 
-                root.setOnClickListener { listener.onClickListener(position) }
+
+                if (examTypeItem.isSelected) {
+                    root.setBackgroundResource(R.drawable.cardview_background_16_selectable)
+                    examTypeTitleTextView.setTextColor(ContextCompat.getColor(root.context, R.color.white))
+                    selectedIndex = position
+                } else {
+                    root.setBackgroundResource(R.drawable.cardview_background_16_white)
+                    examTypeTitleTextView.setTextColor(ContextCompat.getColor(root.context, R.color.text_dr_grey))
+                }
+
+                root.setOnClickListener {
+                    selectedIndex?.let { selectedIndex ->
+                        getItem(selectedIndex).isSelected = false
+                    }
+                    examTypeItem.isSelected = true
+                    notifyDataSetChanged()
+
+                    listener.onClickListener(examTypeItem)
+                }
             }
         }
     }

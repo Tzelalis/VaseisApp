@@ -37,4 +37,10 @@
         <item name="android:fontFamily">@font/roboto</item>
         <item name="android:gravity">center</item>
     </style>
+
+    <style name="calculator_exams_type_tabs_text" parent="Base.Widget.AppCompat.CompoundButton.RadioButton">
+        <item name="android:textSize">26sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:fontFamily">@font/roboto_bold</item>
+    </style>
 </resources>

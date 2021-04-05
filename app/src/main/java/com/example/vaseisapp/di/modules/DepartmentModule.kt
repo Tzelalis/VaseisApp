@@ -22,7 +22,7 @@ import java.util.concurrent.TimeUnit
 @Module
 @InstallIn(ActivityComponent::class)
 object DepartmentModule {
-    @ActivityScoped // Instance only available on TicketsActivity
+    @ActivityScoped
     @Provides
     fun provideDepartmentRepository(api: DepartmentApi): DepartmentRepository {
         return DepartmentRepositoryImpl(api)
@@ -34,7 +34,7 @@ object DepartmentModule {
         return DepartmentDataSourceImpl(repository)
     }
 
-    @ActivityScoped // Instance only available on TicketsActivity
+    @ActivityScoped
     @Provides
     fun provideRetrofitForDepartment(@DepartmentHttpClient okHttpClient: OkHttpClient, moshi: Moshi): DepartmentApi {
         val retrofit = Retrofit.Builder()

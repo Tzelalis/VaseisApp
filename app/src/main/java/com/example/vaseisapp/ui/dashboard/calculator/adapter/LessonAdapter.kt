@@ -1,5 +1,7 @@
 package com.example.vaseisapp.ui.dashboard.calculator.adapter
 
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
@@ -9,7 +11,12 @@ import com.example.vaseisapp.domain.calculation.entities.Lesson
 import com.example.vaseisapp.ui.diffutil.LESSON_ITEM_DIFF_UTIL
 
 
-class LessonAdapter : ListAdapter<Lesson, LessonAdapter.LessonViewHolder>(LESSON_ITEM_DIFF_UTIL) {
+class LessonAdapter(private val listener: LessonListener) : ListAdapter<Lesson, LessonAdapter.LessonViewHolder>(LESSON_ITEM_DIFF_UTIL) {
+
+    interface LessonListener    {
+        fun onLessonTextChanged()
+    }
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): LessonViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
         val binding = ItemLessonsBinding.inflate(layoutInflater, parent, false)
@@ -24,6 +31,15 @@ class LessonAdapter : ListAdapter<Lesson, LessonAdapter.LessonViewHolder>(LESSON
         fun bindTo(lesson: Lesson) {
             with(binding) {
                 lessonsTextView.text = lesson.shortName
+                lessonsNumberPicker.binding.lessonEdittext.addTextChangedListener(object : TextWatcher {
+                    override fun afterTextChanged(s: Editable) {}
+                    override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {}
+
+                    override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int
+                    ) {
+                        listener.onLessonTextChanged()
+                    }
+                })
             }
         }
     }

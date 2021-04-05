@@ -12,6 +12,16 @@ class UserTypeFragment : BaseFragment<FragmentUserTypeBinding>(){
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        setupViews()
+    }
+
+    private fun setupViews()    {
+        with(binding)   {
+            backButtonLayout.backButtonImageView.setOnClickListener {
+                activity?.onBackPressed()
+            }
+        }
     }
 
 }

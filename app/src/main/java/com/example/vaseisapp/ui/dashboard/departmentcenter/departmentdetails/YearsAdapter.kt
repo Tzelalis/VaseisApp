@@ -5,9 +5,9 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.vaseisapp.databinding.ItemYearBinding
-import com.example.vaseisapp.ui.diffutil.YEAR_ITEM_DIFF_UTIL
+import com.example.vaseisapp.ui.diffutil.STRING_DIFF_UTIL
 
-class YearsAdapter(private val listener: YearsListener) : ListAdapter<String, YearsAdapter.YearsViewHolder>(YEAR_ITEM_DIFF_UTIL) {
+class YearsAdapter(private val listener: YearsListener) : ListAdapter<String, YearsAdapter.YearsViewHolder>(STRING_DIFF_UTIL) {
 
     interface YearsListener {
         fun onYearClick(position: Int)
