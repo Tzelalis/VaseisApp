@@ -10,55 +10,55 @@
         layout="@layout/layout_back_button" />
 
     <TextView
-        android:id="@+id/languageTitleTextView"
+        android:id="@+id/themeTitleTextView"
         style="@style/personalizationTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
-        android:text="@string/language_title"
+        android:text="@string/theme_title"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/languageSubTitleTextView"
+        android:id="@+id/themeSubTitleTextView"
         style="@style/personalizationSubtitle"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="@string/language_subtitle"
+        android:text="@string/theme_subtitle"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
         android:gravity="center_horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/languageTitleTextView" />
+        app:layout_constraintTop_toBottomOf="@id/themeTitleTextView" />
 
     <RadioGroup
-        android:id="@+id/language_radio_group"
+        android:id="@+id/theme_radio_group"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
-        app:layout_constraintTop_toBottomOf="@id/languageSubTitleTextView"
+        app:layout_constraintTop_toBottomOf="@id/themeSubTitleTextView"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
         <RadioButton
             android:id="@+id/default_radio_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/language_system_default"/>
+            android:text="@string/theme_default"/>
 
         <RadioButton
-            android:id="@+id/greek_radio_button"
+            android:id="@+id/light_radio_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/language_greek"/>
+            android:text="@string/theme_light"/>
 
         <RadioButton
-            android:id="@+id/english_radio_button"
+            android:id="@+id/dark_radio_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/language_english"/>
+            android:text="@string/theme_dark"/>
     </RadioGroup>
 
     <Button

@@ -12,7 +12,7 @@
 
     <!-- Language Fragment -->
     <string name="language_title">Language</string>
-    <string name="language_subtitle">Select app language.</string>
+    <string name="language_subtitle">Select app language.\nSome texts will always display on Greek</string>
     <string name="language_english" translatable="false">English</string>
     <string name="language_greek" translatable="false">Ελληνικά</string>
     <string name="language_system_default">System Default</string>
@@ -31,8 +31,13 @@
     <string name="group_title">Group</string>
     <string name="group_subtitle">Select your group</string>
 
+    <!-- Theme Fragment -->
+    <string name="theme_title">Theme</string>
+    <string name="theme_subtitle">Choose your favourite theme for app.</string>
+    <string name="theme_dark">Dark</string>
+    <string name="theme_light">Light</string>
+    <string name="theme_default">System Default</string>
 
-    <string name="department_more_stats">Statistics by year   </string>
 
     <!-- Topics Fragment -->
     <string name="topics_title">Past\nExams\n</string>
@@ -44,26 +49,26 @@
     <string name="account_group_type">Group Type</string>
     <string name="account_user_type_student">Student</string>
     <string name="account_user_type_teacher">Teacher</string>
-
     <string name="account_system">System</string>
     <string name="account_theme">Theme</string>
     <string name="account_theme_dark">Dark</string>
     <string name="account_theme_light">Light</string>
-
-
     <string name="account_language">Language</string>
     <string name="account_language_english">English</string>
     <string name="account_language_greek">Greek</string>
-
     <string name="account_feedback">Feedback</string>
     <string name="account_rate">Rate us</string>
     <string name="account_share">Share with my friends</string>
     <string name="account_bug">I spotted a Bug</string>
-
     <string name="account_credits">Credits</string>
     <string name="account_about_app">About the App</string>
     <string name="account_about_api">About the API</string>
     <string name="account_special_thanks">Special Thanks</string>
+
+    <!-- Calculator Fragment -->
+    <string name="calculator_degree_title">Degree</string>
+
+    <string name="department_more_stats">Statistics by year   </string>
 
 
 </resources>

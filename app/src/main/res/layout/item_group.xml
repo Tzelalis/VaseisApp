@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:layout_margin="4dp">
+    android:padding="4dp">
 
     <TextView
         android:id="@+id/group_title_text_view"
@@ -15,11 +15,9 @@
         android:paddingTop="8dp"
         android:paddingEnd="16dp"
         android:paddingBottom="8dp"
-        android:textSize="13sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:background="@drawable/cardview_background_16_white"
-        tools:backgroundTint="@color/blue_500"
         tools:text="1o Πεδίο" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

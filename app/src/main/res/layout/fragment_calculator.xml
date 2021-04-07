@@ -4,14 +4,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-
     <TextView
         android:id="@+id/result_label_text_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:fontFamily="@font/roboto_thin"
-        android:text="Μόρια"
+        android:text="@string/calculator_degree_title"
         android:textColor="@color/black"
         app:layout_constraintBottom_toTopOf="@id/result_text_view"
         app:layout_constraintEnd_toEndOf="parent"
@@ -62,10 +61,10 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/divider_view"
         app:tabBackground="@null"
-        app:tabRippleColor="@null"
         app:tabGravity="start"
         app:tabIndicator="@null"
         app:tabMode="scrollable"
+        app:tabRippleColor="@null"
         app:tabSelectedTextColor="@color/black"
         app:tabTextAppearance="@style/calculator_exams_type_tabs_text" />
 
@@ -74,6 +73,7 @@
         android:id="@+id/groups_view_pager"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:layout_marginTop="@dimen/margin_8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

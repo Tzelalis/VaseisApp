@@ -7,6 +7,7 @@ import java.io.Serializable
 
 data class PropertiesFromPrefs(
     @IntegerRes val language: Int,
+    @IntegerRes val theme : Int,
     val examsType: String,
     val groupType: String
 )

@@ -16,7 +16,6 @@ class CalculatorFragment : BaseFragment<FragmentCalculatorBinding>() {
 
     private val viewModel: CalculatorViewModel by activityViewModels()
 
-
     override fun getViewBinding(): FragmentCalculatorBinding = FragmentCalculatorBinding.inflate(layoutInflater)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -27,12 +26,16 @@ class CalculatorFragment : BaseFragment<FragmentCalculatorBinding>() {
 
     private fun setupViews(examsTypes: List<ExamType>) {
         with(binding) {
-            groupsViewPager.isUserInputEnabled = false
-            groupsViewPager.adapter = ExamTypeViewPagerAdapter(this@CalculatorFragment, examsTypes)
-            TabLayoutMediator(examsTypeTabLayout, groupsViewPager) { tab, position ->
-                tab.text = examsTypes[position].short_name
+            if(groupsViewPager.adapter ==null)  {   //viewpager keep adapter (for some reason) after change fragment
+                groupsViewPager.offscreenPageLimit = 3
+                groupsViewPager.isUserInputEnabled = false
+
+                groupsViewPager.adapter = ExamTypeViewPagerAdapter(this@CalculatorFragment, examsTypes)
+                TabLayoutMediator(examsTypeTabLayout, groupsViewPager) { tab, position ->
+                    tab.text = examsTypes[position].short_name
+                }.attach()
             }
-        }.attach()
+        }
     }
 
 
@@ -43,9 +46,7 @@ class CalculatorFragment : BaseFragment<FragmentCalculatorBinding>() {
             }
 
             examTypePref.observe(viewLifecycleOwner) { pref ->
-                examsTypes.value?.let { list ->
-                    binding.groupsViewPager.currentItem = list.indexOfFirst { examType -> examType.id == pref }
-                }
+                binding.groupsViewPager.post { binding.groupsViewPager.setCurrentItem(pref, true)}
             }
 
             resultUI.observe(viewLifecycleOwner, { result ->

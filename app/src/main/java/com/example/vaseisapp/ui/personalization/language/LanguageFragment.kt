@@ -57,7 +57,11 @@ class LanguageFragment : BaseFragment<FragmentLanguageBinding>() {
     }
 
     private fun changeLanguage(lang: Language) {
-        val locale = Locale(lang.code)
+        var locale = Locale(lang.code)
+
+        if(lang == Language.SYSTEM_DEFAULT)
+            locale = Locale.getDefault()
+
         Locale.setDefault(locale)
         activity?.resources?.configuration?.setLocale(locale)
         activity?.resources?.updateConfiguration(activity?.resources?.configuration, activity?.resources?.displayMetrics)

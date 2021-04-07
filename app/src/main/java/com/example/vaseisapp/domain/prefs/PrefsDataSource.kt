@@ -15,8 +15,8 @@ interface PrefsDataSource {
 
     suspend fun getGroupType() : PrefProperty
 
-    suspend fun setTheme(theme : PrefProperty)
+    suspend fun setTheme(theme : Theme)
 
-    suspend fun getTheme() : PrefProperty
+    suspend fun getTheme() : Theme
 
 }

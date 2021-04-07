@@ -7,7 +7,9 @@ import androidx.navigation.fragment.findNavController
 import com.example.vaseisapp.R
 import com.example.vaseisapp.base.BaseFragment
 import com.example.vaseisapp.databinding.FragmentSplashLayoutBinding
+import com.example.vaseisapp.domain.prefs.Language
 import dagger.hilt.android.AndroidEntryPoint
+import java.util.*
 
 @AndroidEntryPoint
 class SplashFragment : BaseFragment<FragmentSplashLayoutBinding>() {
@@ -30,7 +32,24 @@ class SplashFragment : BaseFragment<FragmentSplashLayoutBinding>() {
                 findNavController().navigate(action)
             })
 
+            langPref.observe(viewLifecycleOwner, { lang ->
+                changeLanguage(lang)
+            })
+
+            loadLanguage()
+
             loadCalculator()
         }
+    }
+
+    private fun changeLanguage(lang: Language) {
+        var locale = Locale(lang.code)
+
+        if(lang == Language.SYSTEM_DEFAULT)
+            locale = Locale.getDefault()
+
+        Locale.setDefault(locale)
+        resources?.configuration?.setLocale(locale)
+        resources?.updateConfiguration(resources.configuration, resources.displayMetrics)
     }
 }

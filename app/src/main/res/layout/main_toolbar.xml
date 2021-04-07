@@ -19,9 +19,9 @@
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:background="@color/white"
-            app:title="Test"
-            app:menu="@menu/select_multiple_departments_menu"
-            app:navigationIcon="@drawable/ic_baseline_arrow_back_24"
+            app:title="Επιλέξτε"
+            app:menu="@menu/contextual_comparison_menu"
+            app:navigationIcon="@drawable/ic_outline_clear_24"
             style="@style/Widget.MaterialComponents.Toolbar.Surface"
             />
 

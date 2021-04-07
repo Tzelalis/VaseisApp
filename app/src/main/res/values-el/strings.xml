@@ -13,7 +13,7 @@
 
     <!-- Language Fragment -->
     <string name="language_title">Γλώσσα</string>
-    <string name="language_subtitle">Επιλέξτε την γλώσσα της εφαρμογής.</string>
+    <string name="language_subtitle">Επιλέξτε την γλώσσα της εφαρμογής.\nΚάποιες πληροφοριές θα εμφανίζοντε πάντα στα ελληνικά.</string>
     <string name="language_system_default">Γλώσσα συστήματος</string>
 
     <!-- UserType Fragment -->
@@ -23,19 +23,21 @@
 
     <!-- Exam Type Fragment-->
     <string name="category_title">Κατηγορία</string>
-    <string name="category_subtitle">Ποια κατηγορία πανελληνίων σας ενδιαφέρει; \n
-        Μπορείτε να αλλάξετε την επιλογή σας αργότερα από τις ρυθμίσεις.</string>
+    <string name="category_subtitle">Ποια κατηγορία πανελληνίων σας ενδιαφέρει;\n</string>
 
     <!-- Group Fragment -->
     <string name="group_title">Πεδίο</string>
-    <string name="group_subtitle">Επιλέξτε το πεδίο που επιθυμείτε.</string>
+    <string name="group_subtitle">Επιλέξτε το πεδίο που επιθυμείτε.\n</string>
 
-
-    <string name="department_more_stats">Στατιστικά τμήματος ανά έτος   </string>
+    <!-- Theme Fragment -->
+    <string name="theme_title">Θέμα</string>
+    <string name="theme_subtitle">Επιλέξτε το θέμα που σας ταιρίαζει καλύτερα.</string>
+    <string name="theme_dark">Σκοτείνό</string>
+    <string name="theme_light">Φωτεινό</string>
+    <string name="theme_default">Προεπιλογή Συστήματος</string>
 
     <!-- Topics Fragment -->
     <string name="topics_title">Παλιά\nΘέματα\nΕξετάσεων </string>
-
 
     <!-- Account -->
     <string name="account_account_title">Λογαριασμός</string>
@@ -44,26 +46,26 @@
     <string name="account_group_type">Πεδίο</string>
     <string name="account_user_type_student">Μαθητής</string>
     <string name="account_user_type_teacher">Φοιτητής</string>
-
     <string name="account_system">Σύστημα</string>
     <string name="account_theme">Θέμα</string>
     <string name="account_theme_dark">Σκοτεινό</string>
     <string name="account_theme_light">Φωτεινό</string>
-
-
     <string name="account_language">Γλώσσα</string>
     <string name="account_language_english">Αγγλικά</string>
     <string name="account_language_greek">Ελληνικά</string>
-
     <string name="account_feedback">Feedback</string>
     <string name="account_rate">Βαθμολογήστε μας</string>
     <string name="account_share">Κοινή χρήση</string>
     <string name="account_bug">Βρήκα ένα bug!</string>
-
     <string name="account_credits">Πληροφορίες</string>
     <string name="account_about_app">Σχετικά με την εφαρμογή</string>
     <string name="account_about_api">Σχετικά με το API</string>
     <string name="account_special_thanks">Special Thanks</string>
 
+    <!-- Calculator Fragment -->
+    <string name="calculator_degree_title">Μόρια</string>
+
+
+    <string name="department_more_stats">Στατιστικά τμήματος ανά έτος</string>
 
 </resources>

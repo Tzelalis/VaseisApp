@@ -1,15 +1,13 @@
 package com.example.vaseisapp.data.prefs
 
-import android.util.Log
 import com.example.vaseisapp.domain.prefs.Language
 import com.example.vaseisapp.domain.prefs.PrefsDataSource
+import com.example.vaseisapp.domain.prefs.Theme
 import com.example.vaseisapp.ui.dashboard.accountcenter.model.PrefProperty
 import com.squareup.moshi.JsonAdapter
 import com.squareup.moshi.Moshi
-import com.squareup.moshi.Types
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
-import java.lang.Exception
 
 class PrefsDataSourceImpl(private val repo: PrefsRepository, private val moshi: Moshi) : PrefsDataSource {
     override suspend fun setLanguage(lang: Language) {
@@ -18,8 +16,8 @@ class PrefsDataSourceImpl(private val repo: PrefsRepository, private val moshi: 
 
     override suspend fun getLanguage(): Language {
         return when (repo.getLanguage()) {
-            "en" -> Language.ENGLISH
-            "el" -> Language.GREEK
+            Language.ENGLISH.code -> Language.ENGLISH
+            Language.GREEK.code -> Language.GREEK
             else -> Language.SYSTEM_DEFAULT
         }
     }
@@ -35,7 +33,7 @@ class PrefsDataSourceImpl(private val repo: PrefsRepository, private val moshi: 
         val adapter: JsonAdapter<PrefProperty> = moshi.adapter(PrefProperty::class.java)
         return try {
             adapter.fromJson(result) ?: PrefProperty("", "")
-        }catch (e : Exception)  {
+        } catch (e: Exception) {
             PrefProperty("", "")
         }
     }
@@ -51,22 +49,20 @@ class PrefsDataSourceImpl(private val repo: PrefsRepository, private val moshi: 
         val adapter: JsonAdapter<PrefProperty> = moshi.adapter(PrefProperty::class.java)
         return try {
             adapter.fromJson(result) ?: PrefProperty("", "")
-        }catch (e : Exception)  {
+        } catch (e: Exception) {
             PrefProperty("", "")
         }
     }
 
-    override suspend fun setTheme(theme: PrefProperty) {
-        val adapter: JsonAdapter<PrefProperty> = moshi.adapter(PrefProperty::class.java)
-        repo.setTheme(adapter.toJson(theme))
+    override suspend fun setTheme(theme: Theme ) {
+        repo.setTheme(theme.code)
     }
 
-    override suspend fun getTheme(): PrefProperty {
-        val result = repo.getTheme()
-
-        val adapter: JsonAdapter<PrefProperty> = moshi.adapter(PrefProperty::class.java)
-        return withContext(Dispatchers.IO) {
-            adapter.fromJson(result) ?: PrefProperty("", "")
+    override suspend fun getTheme(): Theme {
+        return when(repo.getTheme())    {
+            Theme.DARK.code -> Theme.DARK
+            Theme.LIGHT.code -> Theme.LIGHT
+            else -> Theme.SYSTEM_DEFAULT
         }
     }
 }

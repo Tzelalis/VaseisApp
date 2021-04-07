@@ -26,11 +26,11 @@ class GroupAdapter(private val listener: GroupListener) : ListAdapter<GroupItem,
     }
 
     override fun onBindViewHolder(holder: GroupBindingViewHolder, position: Int) {
-        holder.bindTo(getItem(position), position, getItem(selected), selected)
+        holder.bindTo(getItem(position), position)
     }
 
     inner class GroupBindingViewHolder(private val binding: ItemGroupBinding) : RecyclerView.ViewHolder(binding.root) {
-        fun bindTo(item: GroupItem, position: Int, oldItem: GroupItem, oldPossition: Int) {
+        fun bindTo(item: GroupItem, position: Int) {
             with(binding) {
                 groupTitleTextView.text = item.group.shortName
 
@@ -44,13 +44,20 @@ class GroupAdapter(private val listener: GroupListener) : ListAdapter<GroupItem,
                     groupTitleTextView.setTypeface(null, Typeface.NORMAL)
                 }
 
+                if(item.isSelected && position!=selected)
+                    selected = position
+
                 root.setOnClickListener {
-                    if (oldItem != item) {
-                        listener.onGroupClickListener(item, position)
+                    if (position != selected) {
+                        getItem(selected).isSelected = false
                         item.isSelected = true
-                        oldItem.isSelected = false
-                        notifyDataSetChanged()
+                        notifyItemChanged(position)
+                        notifyItemChanged(selected)
+
                         selected = position
+
+
+                        listener.onGroupClickListener(item, position)
                     }
                 }
             }

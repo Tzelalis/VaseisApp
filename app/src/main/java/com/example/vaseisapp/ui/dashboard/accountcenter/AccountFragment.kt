@@ -38,17 +38,14 @@ class AccountFragment : BaseFragment<FragmentAccountBinding>() {
     private val listener = object : PropertyAdapter.PropertyListener {
         override fun onClickListener(property: PropertyItem) {
             when (property.id) {
-                PropertyFragment.SHARE -> shareApp()
-                PropertyFragment.BUG -> sendBug()
                 PropertyFragment.LANGUAGE -> mainViewModel.navigate(MainFragmentDirections.actionMainToLanguage())
                 PropertyFragment.USER_TYPE -> mainViewModel.navigate(MainFragmentDirections.actionMainToUserType())
                 PropertyFragment.EXAM_TYPE -> mainViewModel.navigate(MainFragmentDirections.actionMainToExamType())
                 PropertyFragment.GROUP_TYPE -> mainViewModel.navigate(MainFragmentDirections.actionMainToGroup())
+                PropertyFragment.THEME -> mainViewModel.navigate(MainFragmentDirections.actionMainToTheme())
                 PropertyFragment.RATE_US -> rateUs()
-                PropertyFragment.THEME -> {
-
-                    activity?.recreate()
-                }
+                PropertyFragment.SHARE -> shareApp()
+                PropertyFragment.BUG -> sendBug()
                 else -> {
                 }
             }
@@ -96,7 +93,7 @@ class AccountFragment : BaseFragment<FragmentAccountBinding>() {
         )
         val systemList = listOf(
             PropertyItem(null, getString(R.string.account_system), ""),
-            PropertyItem(PropertyFragment.THEME, getString(PropertyFragment.THEME.stringId), ""),
+            PropertyItem(PropertyFragment.THEME, getString(PropertyFragment.THEME.stringId), getString(prefs.theme)),
             PropertyItem(PropertyFragment.LANGUAGE, getString(PropertyFragment.LANGUAGE.stringId), getString(prefs.language)),
         )
         val feedbackList = listOf(

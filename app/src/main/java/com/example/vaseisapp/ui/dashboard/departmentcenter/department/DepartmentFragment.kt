@@ -9,7 +9,6 @@ import android.view.MenuInflater
 import android.view.View
 import android.view.inputmethod.EditorInfo
 import android.widget.TextView
-import androidx.appcompat.content.res.AppCompatResources
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
@@ -180,7 +179,7 @@ class DepartmentFragment : BaseFragment<FragmentDepartmentLayoutBinding>() {
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         super.onCreateOptionsMenu(menu, inflater)
-        activity?.menuInflater?.inflate(R.menu.select_multiple_departments_menu, menu)
+        activity?.menuInflater?.inflate(R.menu.contextual_comparison_menu, menu)
 
 
     }

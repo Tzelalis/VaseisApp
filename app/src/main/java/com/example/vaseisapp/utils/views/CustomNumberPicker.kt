@@ -3,13 +3,15 @@ package com.example.vaseisapp.utils.views
 import android.content.Context
 import android.content.res.TypedArray
 import android.util.AttributeSet
+import android.util.Log
 import android.view.LayoutInflater
 import android.widget.LinearLayout
 import androidx.annotation.StyleableRes
 import androidx.core.content.res.getResourceIdOrThrow
 import com.example.vaseisapp.R
 import com.example.vaseisapp.databinding.LayoutCustomNumberPickerBinding
-import com.example.vaseisapp.utils.filters.ValidDegree
+import java.text.DecimalFormat
+import java.util.*
 
 
 class CustomNumberPicker(context: Context, attrs: AttributeSet) : LinearLayout(context, attrs) {
@@ -51,8 +53,6 @@ class CustomNumberPicker(context: Context, attrs: AttributeSet) : LinearLayout(c
         val max = maxValue?.toDouble() ?: defMax
 
         binding.lessonEdittext.apply {
-            filters = arrayOf(ValidDegree(min, max))
-
             setOnFocusChangeListener { _, hasFocus ->
                 if(hasFocus)
                     binding.root.setBackgroundResource(R.drawable.shape_calculator_edittext_selected)
@@ -74,22 +74,22 @@ class CustomNumberPicker(context: Context, attrs: AttributeSet) : LinearLayout(c
             }
 
             setOnClickListener {
+                binding.lessonEdittext.requestFocus()
+
                 try {
                     val degree = binding.lessonEdittext.text.toString()
                     if(degree == ""){
-                        binding.lessonEdittext.setText("0.0")
-                        binding.lessonEdittext.requestFocus()
+                        setLessonText(0.0)
                         return@setOnClickListener
                     }
-
                     val newDegree = degree.toDouble() - 1
-
                     if (newDegree in min..max)
-                        binding.lessonEdittext.setText(newDegree.toString())
+                        setLessonText(newDegree)
                     else
-                        binding.lessonEdittext.setText("0.0")
+                        setLessonText(0.0)
 
-                    binding.lessonEdittext.requestFocus()
+
+
                 } catch (e: NumberFormatException) {
                 }
             }
@@ -99,30 +99,35 @@ class CustomNumberPicker(context: Context, attrs: AttributeSet) : LinearLayout(c
         binding.increaseButton.apply {
             try {
                 setImageResource(rightIcon)
-            } catch (ex: Exception) {
-            }
+            } catch (ex: Exception) {}
 
             setOnClickListener {
-                var degreeText = ""
+                binding.lessonEdittext.requestFocus()
 
                 try {
                     val degree = binding.lessonEdittext.text.toString()
-                    if(degree == ""){
-                        binding.lessonEdittext.setText("1.0")
+                    if (degree == "") {
+                        setLessonText(1.0)
                         return@setOnClickListener
                     }
 
                     val newDegree = degree.toDouble() + 1
                     if (newDegree in min..max)
-                        degreeText = newDegree.toString()
+                        setLessonText(newDegree)
                     else
-                        degreeText = max.toString()
+                        setLessonText(max)
 
-                    binding.lessonEdittext.setText(degreeText)
-                    binding.lessonEdittext.requestFocus()
                 } catch (e: NumberFormatException) {
                 }
             }
         }
+    }
+
+    private fun setLessonText(degree : Double)  {
+        if(degree%1.0 == 0.0)
+            binding.lessonEdittext.setText(String.format(Locale.ENGLISH,"%.0f", degree))
+        else
+            binding.lessonEdittext.setText(String.format(Locale.ENGLISH,"%.2f", degree))
+
     }
 }

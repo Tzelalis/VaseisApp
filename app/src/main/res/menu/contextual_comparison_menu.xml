@@ -5,6 +5,6 @@
         android:id="@+id/countItem"
         android:enabled="true"
         android:title="Σύκριση"
-        android:icon="@drawable/ic_fast_forward"
+        android:icon="@drawable/ic_baseline_done_24"
         app:showAsAction="always"/>
 </menu>
