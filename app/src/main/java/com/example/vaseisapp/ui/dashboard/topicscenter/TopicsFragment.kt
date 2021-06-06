@@ -5,12 +5,10 @@ import android.net.Uri
 import android.os.Bundle
 import android.view.View
 import androidx.core.view.isVisible
-import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
-import androidx.navigation.navGraphViewModels
 import androidx.recyclerview.widget.ConcatAdapter
 import androidx.recyclerview.widget.LinearSnapHelper
-import com.example.vaseisapp.R
+import androidx.recyclerview.widget.RecyclerView.OnFlingListener
 import com.example.vaseisapp.base.BaseFragment
 import com.example.vaseisapp.databinding.FragmentTopicsBinding
 import com.example.vaseisapp.domain.topics.Topic
@@ -20,11 +18,18 @@ import com.example.vaseisapp.ui.dashboard.topicscenter.adapters.TopicsExamsTypeA
 import com.example.vaseisapp.ui.dashboard.topicscenter.adapters.TopicsTitleAdapter
 import com.example.vaseisapp.ui.dashboard.topicscenter.model.ExamTypeItem
 import com.example.vaseisapp.utils.adapters.HorizontalConcatAdapter
+import com.example.vaseisapp.utils.views.enforceSingleScrollDirection
 import dagger.hilt.android.AndroidEntryPoint
+import kotlin.math.abs
+import kotlin.math.sign
 
 
 @AndroidEntryPoint
 class TopicsFragment : BaseFragment<FragmentTopicsBinding>() {
+
+    companion object {
+        private const val MAX_VELOCITY_Y = 9000
+    }
 
     private val topicsAdapter: ConcatAdapter by lazy { ConcatAdapter() }
 
@@ -44,11 +49,25 @@ class TopicsFragment : BaseFragment<FragmentTopicsBinding>() {
     }
 
     private fun setupViews() {
-        binding.topicsRecyclerView.adapter = topicsAdapter
-        binding.groupsRecyclerView.adapter = examTypeAdapter
+        with(binding) {
+            groupsRecyclerView.adapter = examTypeAdapter
+            topicsRecyclerView.adapter = topicsAdapter
+            topicsRecyclerView.enforceSingleScrollDirection()
 
-        val snapHelper = LinearSnapHelper()
-        snapHelper.attachToRecyclerView(binding.groupsRecyclerView)
+            topicsRecyclerView.onFlingListener = object : OnFlingListener() {
+                override fun onFling(velocityX: Int, velocityY: Int): Boolean {
+                    if (abs(velocityY) > MAX_VELOCITY_Y) {
+                        val newVelocityY = MAX_VELOCITY_Y * sign(velocityY.toDouble()).toInt()
+                        topicsRecyclerView.fling(velocityX, newVelocityY)
+                        return true
+                    }
+                    return false
+                }
+            }
+
+            val snapHelper = LinearSnapHelper()
+            snapHelper.attachToRecyclerView(groupsRecyclerView)
+        }
     }
 
     private fun setupObservers() {
@@ -71,7 +90,7 @@ class TopicsFragment : BaseFragment<FragmentTopicsBinding>() {
     }
 
     private fun fillData(lessons: List<TopicLesson>) {
-        if(lessons.isEmpty()){
+        if (lessons.isEmpty()) {
             binding.noResultsImg.isVisible = true
             return
         }

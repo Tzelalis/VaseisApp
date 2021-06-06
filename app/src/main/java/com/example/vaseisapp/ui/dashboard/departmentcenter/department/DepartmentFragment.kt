@@ -47,12 +47,10 @@ class DepartmentFragment : BaseFragment<FragmentDepartmentLayoutBinding>() {
             departmentsFiltered.observe(viewLifecycleOwner, { list ->
                 binding.progressIndicator.isVisible = false
                 adapter.submitList(list)
+                totalAdapter.submitList(listOf(list.size.toString()))
 
                 if (list.isNullOrEmpty()) {
                     binding.errorMessage.text = "Δε βρέθηκε κανένα αποτέλεσμα"
-                }
-                else{
-                    totalAdapter.submitList(listOf(list.size.toString()))
                 }
 
                 binding.errorImageView.isVisible = list.isNullOrEmpty()
