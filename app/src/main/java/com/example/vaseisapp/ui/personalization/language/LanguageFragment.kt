@@ -1,7 +1,9 @@
 package com.example.vaseisapp.ui.personalization.language
 
+import android.content.Context
 import android.os.Bundle
 import android.view.View
+import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.viewModels
 import com.example.vaseisapp.base.BaseFragment
 import com.example.vaseisapp.databinding.FragmentLanguageBinding
@@ -23,16 +25,27 @@ class LanguageFragment : BaseFragment<FragmentLanguageBinding>() {
         setupObservers()
     }
 
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        val callback: OnBackPressedCallback = object : OnBackPressedCallback(
+            true // default to enabled
+        ) {
+            override fun handleOnBackPressed() {
+                    saveLanguage()
+
+                    isEnabled = false
+                    activity?.onBackPressed()
+            }
+        }
+        requireActivity().onBackPressedDispatcher.addCallback(this, callback)
+    }
+
     private fun setupViews() {
         with(binding) {
             backButtonLayout.backButtonImageView.setOnClickListener { activity?.onBackPressed() }
 
             proceedButton.setOnClickListener {
-                when (languageRadioGroup.checkedRadioButtonId) {
-                    defaultRadioButton.id -> viewModel.saveLanguage(Language.SYSTEM_DEFAULT)
-                    englishRadioButton.id -> viewModel.saveLanguage(Language.ENGLISH)
-                    greekRadioButton.id -> viewModel.saveLanguage(Language.GREEK)
-                }
+                saveLanguage()
             }
         }
     }
@@ -49,7 +62,6 @@ class LanguageFragment : BaseFragment<FragmentLanguageBinding>() {
 
             savedLangUI.observe(viewLifecycleOwner, { lang ->
                 changeLanguage(lang)
-                activity?.onBackPressed()
             })
 
             loadLanguage()
@@ -59,11 +71,21 @@ class LanguageFragment : BaseFragment<FragmentLanguageBinding>() {
     private fun changeLanguage(lang: Language) {
         var locale = Locale(lang.code)
 
-        if(lang == Language.SYSTEM_DEFAULT)
+        if (lang == Language.SYSTEM_DEFAULT)
             locale = Locale.getDefault()
 
         Locale.setDefault(locale)
         activity?.resources?.configuration?.setLocale(locale)
         activity?.resources?.updateConfiguration(activity?.resources?.configuration, activity?.resources?.displayMetrics)
+    }
+
+    private fun saveLanguage() {
+        with(binding) {
+            when (languageRadioGroup.checkedRadioButtonId) {
+                defaultRadioButton.id -> viewModel.saveLanguage(Language.SYSTEM_DEFAULT)
+                englishRadioButton.id -> viewModel.saveLanguage(Language.ENGLISH)
+                greekRadioButton.id -> viewModel.saveLanguage(Language.GREEK)
+            }
+        }
     }
 }

@@ -32,12 +32,13 @@ class GroupAdapter(private val listener: GroupListener) : ListAdapter<GroupItem,
     inner class GroupBindingViewHolder(private val binding: ItemGroupBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bindTo(item: GroupItem, position: Int) {
             with(binding) {
-                groupTitleTextView.text = item.group.shortName
+                groupTitleTextView.text = item.calculatorGroup.shortName
 
                 if (item.isSelected) {
                     groupTitleTextView.setTextColor(ContextCompat.getColor(root.context, R.color.black))
                     groupTitleTextView.background = ContextCompat.getDrawable(root.context, R.drawable.shape_group_not_selected)
                     groupTitleTextView.setTypeface(groupTitleTextView.typeface, Typeface.BOLD)
+
                 } else {
                     groupTitleTextView.background = null
                     groupTitleTextView.setTextColor(ContextCompat.getColor(root.context, R.color.text_dr_grey))

@@ -14,6 +14,12 @@ import com.example.vaseisapp.utils.views.CutCornerShape
 
 class TopicsAdapter(private val listener: TopicListener) : ListAdapter<Topic, TopicsAdapter.TopicsViewHolder>(TOPIC_ITEM_DIFF_UTIL) {
 
+    companion object{
+        private const val FIRST_ITEM = 1
+        private const val NORMAL_ITEM = 2
+        private const val LAST_ITEM = 0
+    }
+
     interface TopicListener {
         fun topicOnClick(topic: Topic)
     }
@@ -24,20 +30,27 @@ class TopicsAdapter(private val listener: TopicListener) : ListAdapter<Topic, To
         return TopicsViewHolder(binding)
     }
 
+    override fun getItemViewType(position: Int): Int {
+        return when (position) {
+            0 -> FIRST_ITEM
+            itemCount - 1 -> LAST_ITEM
+            else -> NORMAL_ITEM
+        }
+    }
+
     override fun onBindViewHolder(holder: TopicsViewHolder, position: Int) {
-        if (position == 0)
-            holder.bindFirstTo(getItem(position))
-        else if (position == itemCount - 1)
-            holder.bindLastTo(getItem(position))
-        else
-            holder.bindTo(getItem(position))
+        when (holder.itemViewType) {
+            FIRST_ITEM -> holder.bindFirstTo(getItem(position))
+            LAST_ITEM -> holder.bindLastTo(getItem(position))
+            else -> holder.bindTo(getItem(position))
+        }
     }
 
     inner class TopicsViewHolder(private val binding: ItemTopicBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bindTo(topic: Topic) {
             with(binding) {
                 yearTextView.text = topic.year
-                Glide.with(root).load(topic.imgSrc).placeholder(R.color.white).into(topicImageView)
+                Glide.with(root).load(topic.imgSrc).placeholder(R.color.white_stable).into(topicImageView)
                 root.setOnClickListener { listener.topicOnClick(topic) }
                 yearTextView.background = ShapeDrawable(CutCornerShape())
             }

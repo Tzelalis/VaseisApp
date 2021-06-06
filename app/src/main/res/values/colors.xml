@@ -5,21 +5,30 @@
     <color name="blue_700">#0069c0</color>
     <color name="teal_200">#FF03DAC5</color>
     <color name="teal_700">#FF018786</color>
-    <color name="black">#FF000000</color>
-    <color name="white">#FFFFFF</color>
+    <color name="black_stable">#000000</color>
+    <color name="white_stable">#FFFFFF</color>
     <color name="backgroundColor">#F3F3F3</color>
     <color name="light_grey">#B3EFEFEF</color>
 
 
     <color name="selectedDepartment">#802196F3</color>
-
     <color name="splashBackground">#4391B8</color>
-
-    <color name="text_dr_grey">#6C6C6C</color>
-
     <color name="topics_year_transparent">#B35D8BB1</color>
     <color name="topics_group_background">#FAFAFA</color>
+    <color name="university_selected_background">#4D2196F3</color>
 
+    <color name="night_dark_grey">#171717</color>
+
+    <!--Day Night Colors-->
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFF</color>
+    <color name="white_background">#FFFFFF</color>
+    <color name="text_dr_grey">#6C6C6C</color>
+
+    <!--No Results Colors-->
+    <color name="no_result_icon_page_color">#dee8f5</color>
+    <color name="no_result_icon_top_page_color">#f3f5fd</color>
+    <color name="no_result_icon_face_color">#fff</color>
 
 
     <!-- LINE COLORS    ========================================================= -->

@@ -31,9 +31,9 @@ class GroupViewModel @ViewModelInject constructor(
             val examTypePref = getExamTypeUseCase()
             val examType = listOfExamTypes.firstOrNull { examType -> examType.id == examTypePref.id   }
 
-            val listOfItems = map(examType?.groups)
+            val listOfItems = map(examType?.calculatorGroups)
             listOfItems.firstOrNull { item ->
-                item.group.id == getGroupTypeUseCase().id
+                item.calculatorGroup.id == getGroupTypeUseCase().id
             }?.isSelected = true
 
             _groupsUI.value = listOfItems

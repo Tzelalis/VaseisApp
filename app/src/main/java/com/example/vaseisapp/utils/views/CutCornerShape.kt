@@ -29,7 +29,7 @@ class CutCornerShape() : Shape() {
     }
 
     companion object {
-        private val COLOUR = Color.parseColor("#B35D8BB1")
+        private val COLOUR = Color.parseColor("#5D8BB1")
         private const val STROKE_WIDTH = 1.0f
         private const val CORNER = 16.0f
     }

@@ -26,7 +26,7 @@ class TopicsTitleAdapter : ListAdapter<Topic, TopicsTitleAdapter.TopicsViewHolde
     inner class TopicsViewHolder(private val binding: ItemTopicTitleBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bindTo(topic: Topic) {
             with(binding) {
-                topicTitleTextView.text = topic.imgSrc
+                topicTitleTextView.text = topic.pdfUrl
             }
         }
     }

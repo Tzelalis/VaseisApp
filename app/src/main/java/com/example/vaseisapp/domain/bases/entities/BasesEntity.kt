@@ -1,4 +1,4 @@
-package com.example.vaseisapp.domain.bases
+package com.example.vaseisapp.domain.bases.entities
 
 class BasesResponse : ArrayList<DepartmentBases>()
 

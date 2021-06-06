@@ -4,6 +4,7 @@ import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.vaseisapp.utils.SingleLiveEvent
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import java.lang.Exception
@@ -21,4 +22,20 @@ abstract class BaseViewModel : ViewModel() {
             }
         }
     }
+
+    protected fun launchWithProgress(preload: suspend () -> Unit = {}, function: suspend () -> Unit) {
+        viewModelScope.launch {
+            preload.invoke()
+            LoadingLiveData.postValue(true)
+            function.invoke()
+        }.apply {
+            invokeOnCompletion {
+                LoadingLiveData.postValue(false)
+            }
+        }
+    }
+
+
 }
+
+object LoadingLiveData : SingleLiveEvent<Boolean>()

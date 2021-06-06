@@ -7,11 +7,13 @@ import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import com.example.vaseisapp.base.BaseFragment
 import com.example.vaseisapp.databinding.FragmentCalculatorGroupBinding
-import com.example.vaseisapp.domain.calculation.entities.Group
+import com.example.vaseisapp.domain.calculation.entities.CalculatorGroup
+import com.example.vaseisapp.domain.calculation.entities.CalculatorLesson
 import com.example.vaseisapp.ui.dashboard.calculator.CalculatorViewModel
 import com.example.vaseisapp.ui.dashboard.calculator.adapter.GroupAdapter
 import com.example.vaseisapp.ui.dashboard.calculator.adapter.LessonAdapter
 import com.example.vaseisapp.ui.dashboard.calculator.model.GroupItem
+import com.example.vaseisapp.ui.dashboard.calculator.model.LessonItem
 import dagger.hilt.android.AndroidEntryPoint
 
 
@@ -28,17 +30,15 @@ class CalculatorGroupFragment : BaseFragment<FragmentCalculatorGroupBinding>() {
     private val lessonsAdapter: LessonAdapter by lazy { LessonAdapter(lessonListener) }
     private val lessonListener = object : LessonAdapter.LessonListener {
         override fun onLessonTextChanged() {
-
             setResultDegree()
         }
-
     }
 
     private val groupAdapter: GroupAdapter by lazy { GroupAdapter(groupListener) }
     private val groupListener = object : GroupAdapter.GroupListener {
         override fun onGroupClickListener(selectedGroup: GroupItem, position: Int) {
             binding.groupsRecyclerView.smoothScrollToPosition(position)
-            viewModel.groupsUI.value?.get(position)?.group?.mandatoryLessons?.let { viewModel.loadLessons(it) }
+            viewModel.groupsUI.value?.get(position)?.calculatorGroup?.mandatoryCalculatorLessons?.let { viewModel.loadLessons(it) }
 
             setResultDegree()
         }
@@ -51,7 +51,8 @@ class CalculatorGroupFragment : BaseFragment<FragmentCalculatorGroupBinding>() {
 
         setupViews()
         setupObservers()
-        arguments?.getParcelableArrayList<Group>(GROUP_KEY)?.let { viewModel.loadGroups((it)) }
+
+        arguments?.getParcelableArrayList<CalculatorGroup>(GROUP_KEY)?.let { viewModel.loadGroups((it)) }
     }
 
     override fun onResume() {
@@ -74,11 +75,7 @@ class CalculatorGroupFragment : BaseFragment<FragmentCalculatorGroupBinding>() {
             })
 
             lessonsUI.observe(viewLifecycleOwner, { lessonItems ->
-                lessonsAdapter.submitList(lessonItems.filter { it.lesson.isMandatory })
-            })
-
-            visibleUI.observe(viewLifecycleOwner, {
-                setVisibleViews()
+                lessonsAdapter.submitList(lessonItems.filter { it.calculatorLesson.isMandatory })
             })
         }
 
@@ -89,13 +86,13 @@ class CalculatorGroupFragment : BaseFragment<FragmentCalculatorGroupBinding>() {
         groupAdapter.submitList(groups)
 
         val index = groups.indexOf((groups.firstOrNull { it.isSelected } ?: groups[0]))
-        viewModel.loadLessons(groups[index].group.mandatoryLessons)
+        viewModel.loadLessons(groups[index].calculatorGroup.mandatoryCalculatorLessons)
     }
 
     private fun setResultDegree() {
         var result = 0.0
         for (i in 0 until lessonsAdapter.currentList.size) {
-            result += (lessonsAdapter.currentList[i].degree.toDoubleOrNull() ?: 0.0) * lessonsAdapter.currentList[i].lesson.gravity
+            result += (lessonsAdapter.currentList[i].degree.toDoubleOrNull() ?: 0.0) * lessonsAdapter.currentList[i].calculatorLesson.gravity
         }
 
         calculatorViewModel.changeResult(result.toInt().toString())

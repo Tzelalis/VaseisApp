@@ -18,8 +18,6 @@ class TopicsExamsTypeAdapter(private val listener: ExamTypeItemListener) :
         EXAM_TYPE_ITEM_DIFF_UTIL
     ) {
 
-    private var selected: Int = 0
-
     interface ExamTypeItemListener {
         fun onExamTypeItemClickListener(selectedGroup: ExamTypeItem, position: Int)
     }
@@ -31,13 +29,13 @@ class TopicsExamsTypeAdapter(private val listener: ExamTypeItemListener) :
     }
 
     override fun onBindViewHolder(holder: ExamTypeItemBindingViewHolder, position: Int) {
-        holder.bindTo(getItem(position), position, getItem(selected), selected)
+        holder.bindTo(getItem(position), position)
     }
 
     inner class ExamTypeItemBindingViewHolder(private val binding: ItemGroupBinding) : RecyclerView.ViewHolder(binding.root) {
-        fun bindTo(item: ExamTypeItem, position: Int, oldItem: ExamTypeItem, oldPossition: Int) {
+        fun bindTo(item: ExamTypeItem, position: Int) {
             with(binding) {
-                groupTitleTextView.text = item.examType.short_name
+                groupTitleTextView.text = item.examType.shortName
 
                 if (item.isSelected) {
                     groupTitleTextView.setTextColor(ContextCompat.getColor(root.context, R.color.black))
@@ -50,13 +48,7 @@ class TopicsExamsTypeAdapter(private val listener: ExamTypeItemListener) :
                 }
 
                 root.setOnClickListener {
-                    if (oldItem != item) {
-                        listener.onExamTypeItemClickListener(item, position)
-                        item.isSelected = true
-                        oldItem.isSelected = false
-                        notifyDataSetChanged()
-                        selected = position
-                    }
+                    listener.onExamTypeItemClickListener(item, position)
                 }
             }
         }

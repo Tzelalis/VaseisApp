@@ -8,12 +8,13 @@ import com.example.vaseisapp.ui.dashboard.accountcenter.model.PrefProperty
 import com.example.vaseisapp.ui.dashboard.topicscenter.model.ExamTypeItem
 import com.example.vaseisapp.ui.dashboard.topicscenter.model.map
 import com.example.vaseisapp.usecase.calculator.GetAllExamsTypesUseCase
+import com.example.vaseisapp.usecase.calculator.GetPropertiesExamsTypes
 import com.example.vaseisapp.usecase.prefs.GetExamTypeUseCase
 import com.example.vaseisapp.usecase.prefs.SetExamTypeUseCase
 import com.example.vaseisapp.usecase.prefs.SetGroupTypeUseCase
 
 class ExamTypeViewModel @ViewModelInject constructor(
-    private val getAllExamsTypesUseCase: GetAllExamsTypesUseCase,
+    private val getAllExamsTypesUseCase: GetPropertiesExamsTypes,
     private val setExamTypeUseCase: SetExamTypeUseCase,
     private val getExamTypeUseCase: GetExamTypeUseCase,
     private val setGroupTypeUseCase: SetGroupTypeUseCase

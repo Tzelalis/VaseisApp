@@ -145,9 +145,7 @@ class AccountFragment : BaseFragment<FragmentAccountBinding>() {
 
     private fun rateUs() {
         try {
-            //todo change to real id
-            //startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + activity?.packageName)))
-            startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=com.facebook.katana")))
+            startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + activity?.packageName)))
         } catch (e: ActivityNotFoundException) {
             startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=" + activity?.packageName)))
         }

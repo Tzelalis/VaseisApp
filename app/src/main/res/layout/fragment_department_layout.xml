@@ -1,14 +1,55 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:tools="http://schemas.android.com/tools">
+    android:layout_height="match_parent">
 
-    <include layout="@layout/main_toolbar"/>
+    <!--<include
+        android:id="@+id/toolbar_layout"
+        layout="@layout/main_toolbar" />-->
 
+    <SearchView
+        android:id="@+id/searchbar"
+        android:layout_width="0dp"
+        android:layout_height="?attr/actionBarSize"
+        android:layout_marginTop="@dimen/margin_8dp"
+        android:layout_marginBottom="@dimen/margin_8dp"
+        android:background="@drawable/shape_search_edittext"
+        android:fontFamily="@font/roboto"
+        android:hint="@string/bases_university_search_hint"
+        android:iconifiedByDefault="false"
+        android:queryBackground="@null"
+        android:queryHint="αναζήτηση..."
+        android:searchIcon="@null"
+        android:singleLine="true"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintWidth_percent="0.9" />
 
-    <com.google.android.material.textfield.TextInputLayout
+    <!--<EditText
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="@dimen/margin_8dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="@dimen/margin_8dp"
+        android:background="@drawable/shape_search_edittext"
+        android:fontFamily="@font/roboto"
+        android:hint="αναζητήστε το τμήμα που επιθυμείτε"
+        android:paddingStart="16dp"
+        android:paddingTop="16dp"
+        android:paddingEnd="16dp"
+        android:paddingBottom="16dp"
+        android:singleLine="true"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />-->
+
+    <!--<com.google.android.material.textfield.TextInputLayout
         android:id="@+id/searchTextField"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="0dp"
@@ -17,13 +58,13 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="8dp"
+        android:hint="Αναζήτηση"
+        android:visibility="gone"
         app:boxCornerRadiusBottomEnd="16dp"
         app:boxCornerRadiusBottomStart="16dp"
         app:boxCornerRadiusTopEnd="16dp"
         app:boxCornerRadiusTopStart="16dp"
         app:endIconMode="clear_text"
-        android:visibility="gone"
-        android:hint="Αναζήτηση"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -34,7 +75,7 @@
             android:layout_height="wrap_content"
             android:imeOptions="actionSearch"
             android:singleLine="true" />
-    </com.google.android.material.textfield.TextInputLayout>
+    </com.google.android.material.textfield.TextInputLayout>-->
 
     <!--<ImageView
         android:id="@+id/filterImageView"
@@ -45,30 +86,40 @@
         app:layout_constraintBottom_toBottomOf="@id/searchTextField"
         android:src="@drawable/ic_more"/>-->
 
+    <com.google.android.material.progressindicator.CircularProgressIndicator
+        android:id="@+id/progress_indicator"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:indeterminate="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/searchbar"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="parent"
+        android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:orientation="vertical">
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
             android:id="@+id/errorImageView"
             android:layout_width="150dp"
             android:layout_height="150dp"
+            android:layout_gravity="center"
             android:layout_marginBottom="48dp"
-            android:visibility="invisible"
             android:src="@drawable/ic_magnifying_glass"
-            android:layout_gravity="center" />
+            android:visibility="invisible" />
 
         <TextView
             android:id="@+id/errorMessage"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:visibility="invisible"
-            android:gravity="center" />
+            android:gravity="center"
+            android:visibility="invisible" />
 
     </LinearLayout>
 
@@ -76,9 +127,28 @@
         android:id="@+id/recyclerView"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:orientation="vertical"
+        android:scrollbars="none"
+        android:overScrollMode="never"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/toolbar_layout"
-        tools:listitem="@layout/item_department"/>
+        app:layout_constraintTop_toBottomOf="@id/searchbar"
+        tools:listitem="@layout/item_department" />
+
+    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+        android:id="@+id/filter_fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/margin_16dp"
+        android:fontFamily="@font/roboto"
+        android:text="@string/filter_fab"
+        android:textAllCaps="false"
+        android:textColor="@color/white_stable"
+        app:icon="@drawable/ic_settings"
+        app:iconSize="18dp"
+        app:iconTint="@color/white_stable"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

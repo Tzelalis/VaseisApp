@@ -11,5 +11,7 @@ data class Department(
     val name : String,
     @Json(name = "uni-id") val uniId : String,
     @Json(name = "title") val uniTitle : String,
-    @Json(name = "fullTitle")val uniFullTitle : String
+    @Json(name = "fullTitle")val uniFullTitle : String,
+    val isActive: Boolean,
+    @Json(name = "logoURL") val logoUrl: String
 )

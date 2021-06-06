@@ -1,13 +1,16 @@
 package com.example.vaseisapp.ui.personalization.examtype
 
+import android.content.Context
 import android.os.Bundle
 import android.view.View
+import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.viewModels
 import com.example.vaseisapp.base.BaseFragment
 import com.example.vaseisapp.databinding.FragmentExamTypeBinding
 import com.example.vaseisapp.ui.dashboard.accountcenter.model.PrefProperty
 import com.example.vaseisapp.ui.dashboard.topicscenter.model.ExamTypeItem
 import dagger.hilt.android.AndroidEntryPoint
+
 
 @AndroidEntryPoint
 class ExamTypeFragment : BaseFragment<FragmentExamTypeBinding>() {
@@ -18,7 +21,6 @@ class ExamTypeFragment : BaseFragment<FragmentExamTypeBinding>() {
     private val listener = object : ExamTypeListAdapter.ExamTypeClickListener {
         override fun onClickListener(item: ExamTypeItem) {
         }
-
     }
 
     override fun getViewBinding(): FragmentExamTypeBinding = FragmentExamTypeBinding.inflate(layoutInflater)
@@ -30,7 +32,25 @@ class ExamTypeFragment : BaseFragment<FragmentExamTypeBinding>() {
         setupObservers()
     }
 
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        val callback: OnBackPressedCallback = object : OnBackPressedCallback(
+            true // default to enabled
+        ) {
+            override fun handleOnBackPressed() {
+                adapter.currentList.firstOrNull { item -> item.isSelected }?.examType?.let { group ->
+                    viewModel.saveTypes(PrefProperty(group.id, group.shortName))
+                }
+
+                isEnabled = false
+                activity?.onBackPressed()
+            }
+        }
+        requireActivity().onBackPressedDispatcher.addCallback(this, callback)
+    }
+
     private fun setupViews() {
+
         with(binding) {
             backButtonLayout.backButtonImageView.setOnClickListener {
                 activity?.onBackPressed()
@@ -40,7 +60,7 @@ class ExamTypeFragment : BaseFragment<FragmentExamTypeBinding>() {
 
             proceedButton.setOnClickListener {
                 adapter.currentList.firstOrNull { item -> item.isSelected }?.examType?.let { group ->
-                    viewModel.saveTypes(PrefProperty(group.id, group.short_name))
+                    viewModel.saveTypes(PrefProperty(group.id, group.shortName))
                 }
             }
         }
@@ -53,7 +73,6 @@ class ExamTypeFragment : BaseFragment<FragmentExamTypeBinding>() {
             })
 
             savedUI.observe(viewLifecycleOwner, {
-                activity?.onBackPressed()
             })
 
             loadTypes()

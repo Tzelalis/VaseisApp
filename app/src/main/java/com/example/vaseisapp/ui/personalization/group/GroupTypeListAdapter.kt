@@ -27,12 +27,12 @@ class GroupTypeListAdapter : ListAdapter<GroupItem, GroupTypeListAdapter.GroupTy
     inner class GroupTypeViewHolder(private val binding: ItemPersonalizationCategoryBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bindTo(groupItem: GroupItem, position: Int) {
             with(binding) {
-                examTypeTitleTextView.text = groupItem.group.shortName
+                examTypeTitleTextView.text = groupItem.calculatorGroup.shortName
 
 
                 if (groupItem.isSelected) {
                     root.setBackgroundResource(R.drawable.cardview_background_16_selectable)
-                    examTypeTitleTextView.setTextColor(ContextCompat.getColor(root.context, R.color.white))
+                    examTypeTitleTextView.setTextColor(ContextCompat.getColor(root.context, R.color.white_stable))
                     selectedIndex = position
                 } else {
                     root.setBackgroundResource(R.drawable.cardview_background_16_white)

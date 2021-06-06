@@ -3,64 +3,69 @@ package com.example.vaseisapp.ui.dashboard.departmentcenter.department
 import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.MutableLiveData
 import com.example.vaseisapp.base.BaseViewModel
-import com.example.vaseisapp.usecase.department.FetchAllDepartmentsUseCase
-import com.example.vaseisapp.usecase.university.FetchAllUniversitiesUseCase
+import com.example.vaseisapp.ui.dashboard.departmentcenter.department.models.DepartmentWithSelected
+import com.example.vaseisapp.ui.dashboard.departmentcenter.department.models.map
+import com.example.vaseisapp.usecase.bases.FetchAllDepartmentsUseCase
+import com.example.vaseisapp.usecase.bases.FetchAllUniversitiesUseCase
 import com.example.vaseisapp.utils.SingleLiveEvent
 import java.util.*
 
 class DepartmentViewModel @ViewModelInject constructor(
     private val universityUseCase: FetchAllUniversitiesUseCase,
     private val departmentsUseCase: FetchAllDepartmentsUseCase
-    )  : BaseViewModel(){
+) : BaseViewModel() {
     private var _departments = MutableLiveData<List<DepartmentWithSelected>>()
     val departments = _departments
 
     private var _departmentsFiltered = MutableLiveData<List<DepartmentWithSelected>>()
-    val departmentsFiltered = _departments
+    val departmentsFiltered = _departmentsFiltered
 
-    private var _showDepartementDetailsUI = SingleLiveEvent<Boolean>()
-    val showDepartmentDetailsUI = _showDepartementDetailsUI
+    private var _showDepartmentDetailsUI = SingleLiveEvent<Boolean>()
+    val showDepartmentDetailsUI = _showDepartmentDetailsUI
 
 
-    fun loadDepartments()  {
-        launch(true)    {
+    fun loadDepartments() {
+        launch(true) {
             val list = map(departmentsUseCase().toMutableList())
             _departments.value = list
-            _departmentsFiltered.value =  list
+
+            _departmentsFiltered.value = list.sortedBy { it.name }
         }
     }
 
-    fun showDepartmentDetailsUI(delay : Long){
-        launch(true, delayValue = delay){
-            _showDepartementDetailsUI.value = true
+    fun showDepartmentDetailsUI(delay: Long) {
+        launch(true, delayValue = delay) {
+            _showDepartmentDetailsUI.value = true
         }
     }
 
-    fun setDepartmentsIsSelected(position : Int){
+    fun setDepartmentsIsSelected(position: Int) {
         _departments.value?.let { list ->
             list[position].isSelected = !list[position].isSelected
         }
     }
 
-    fun filterList(input : String){
-        if(departments.value.isNullOrEmpty())
-            return
-
-        if(input.isNotEmpty()){
-            val list = mutableListOf<DepartmentWithSelected>()
-
-            for (item in departments.value!!) {
-                if (item.name.toUpperCase(Locale.getDefault()).contains(input.toUpperCase(Locale.getDefault()))
-                    || item.code.toString().contains(input)
-                ) {
-                    list.add(item)
-                }
-            }
-
-            _departmentsFiltered.value = list
+    fun filterList(input: String) {
+        if (departments.value.isNullOrEmpty()) {
             return
         }
 
-        _departmentsFiltered.value = _departments.value
+        val list = departments.value?.filter {
+            it.name.toUpperCase(Locale.getDefault()).contains(input.toUpperCase(Locale.getDefault()))
+                    || it.uniTitle.toUpperCase(Locale.getDefault()).contains(input.toUpperCase(Locale.getDefault()))
+                    || it.uniFullTitle.toUpperCase(Locale.getDefault()).contains(input.toUpperCase(Locale.getDefault()))
+        }
+
+        _departmentsFiltered.value = list?.sortedBy { it.name } ?: listOf()
     }
+
+    /*private fun List<DepartmentWithSelected>.sortByCode() : List<DepartmentWithSelected> {
+        //todo make functionality
+        return try {
+            this.sortedBy { Integer.parseInt(it.code) }
+        } catch (e: NumberFormatException) {
+            Log.e("APIERROR", "There is a no number code!")
+            this.sortedBy { it.code }
+        }
+    }*/
 }

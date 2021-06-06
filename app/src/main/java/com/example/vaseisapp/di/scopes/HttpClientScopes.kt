@@ -19,3 +19,11 @@ annotation class DepartmentHttpClient
 @Qualifier
 @Retention(AnnotationRetention.BINARY)
 annotation class BasesHttpClient
+
+@Qualifier
+@Retention(AnnotationRetention.BINARY)
+annotation class PropertiesHttpClient
+
+@Qualifier
+@Retention(AnnotationRetention.BINARY)
+annotation class BaseAndroidApiHttpClient

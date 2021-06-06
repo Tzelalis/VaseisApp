@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
-import com.example.vaseisapp.R
 import com.example.vaseisapp.base.BaseFragment
 import com.example.vaseisapp.databinding.FragmentSplashLayoutBinding
 import com.example.vaseisapp.domain.prefs.Language
@@ -36,9 +35,7 @@ class SplashFragment : BaseFragment<FragmentSplashLayoutBinding>() {
                 changeLanguage(lang)
             })
 
-            loadLanguage()
-
-            loadCalculator()
+            loadData()
         }
     }
 

@@ -4,59 +4,98 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/departmentItemConstraintLayout"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_marginStart="4dp"
-    android:layout_marginTop="2dp"
-    android:layout_marginEnd="4dp"
-    android:layout_marginBottom="2dp"
-    android:paddingStart="8dp"
-    android:paddingTop="8dp"
-    android:paddingEnd="8dp"
-    android:paddingBottom="8dp">
+    android:layout_height="wrap_content">
+
+    <View
+        android:id="@+id/background_view"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="@dimen/margin_8dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/idTextView"/>
 
     <TextView
         android:id="@+id/idTextView"
         style="@style/departmentId"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="@dimen/margin_16dp"
+        android:layout_marginEnd="@dimen/margin_8dp"
         android:background="@drawable/circle_view"
         android:singleLine="true"
+        android:visibility="invisible"
+        android:textColor="@color/white_stable"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintWidth_percent="0.11"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:text="1444" />
 
-    <TextView
-        android:id="@+id/cityTextView"
-        style="@style/departmentSecondaryInfo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/titleTextView"
-        tools:text="Θεσσαλονίκη" />
+    <ImageView
+        android:id="@+id/logo_image_view"
+        style="@style/departmentId"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="@dimen/margin_16dp"
+        android:layout_marginEnd="@dimen/margin_8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintWidth_percent="0.11"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/universityTextView"
-        style="@style/departmentSecondaryInfo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintEnd_toStartOf="@id/cityTextView"
-        app:layout_constraintTop_toBottomOf="@id/titleTextView"
-        tools:text="ΔΙ.ΠΑ.Ε." />
 
     <TextView
         android:id="@+id/titleTextView"
         style="@style/departmentTitle"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
+        android:layout_marginStart="@dimen/margin_16dp"
+        android:layout_marginTop="@dimen/margin_16dp"
+        android:layout_marginEnd="@dimen/margin_16dp"
         android:breakStrategy="simple"
+        android:fontFamily="@font/roboto_bold"
+        android:gravity="center_vertical"
         android:lines="2"
         android:maxLines="2"
         android:minLines="2"
+        android:textColor="@color/black"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/idTextView"
         app:layout_constraintTop_toTopOf="parent"
+        tools:targetApi="m"
         tools:text="Μηχανικών πληροφορικής και Ηλεκτρονικών Συστημάτων" />
+
+    <TextView
+        android:id="@+id/cityAndUniversityTextView"
+        style="@style/departmentSecondaryInfo"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/margin_16dp"
+        android:layout_marginEnd="@dimen/margin_16dp"
+        android:layout_marginBottom="@dimen/margin_16dp"
+        android:ellipsize="end"
+        android:textSize="12sp"
+        android:fontFamily="@font/roboto"
+        android:lines="1"
+        android:maxLines="1"
+        android:minLines="1"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/idTextView"
+        app:layout_constraintTop_toBottomOf="@id/titleTextView"
+        tools:text="ΔΙ.ΠΑ.Ε., Θεσσαλονίκη" />
+
+    <View
+        android:layout_width="0dp"
+        android:layout_height="0.5dp"
+        android:layout_marginStart="@dimen/margin_8dp"
+        android:background="@color/black"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/idTextView" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

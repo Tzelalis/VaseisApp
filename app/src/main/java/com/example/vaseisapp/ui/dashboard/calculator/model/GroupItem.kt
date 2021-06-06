@@ -1,16 +1,16 @@
 package com.example.vaseisapp.ui.dashboard.calculator.model
 
-import com.example.vaseisapp.domain.calculation.entities.Group
+import com.example.vaseisapp.domain.calculation.entities.CalculatorGroup
 
 data class GroupItem(
-    val group: Group,
+    val calculatorGroup: CalculatorGroup,
     var isSelected: Boolean
 )
 
-fun Group.toGroupItem(): GroupItem {
+fun CalculatorGroup.toGroupItem(): GroupItem {
     return GroupItem(this, false)
 }
 
-fun map(mappable: List<Group>?): List<GroupItem> {
+fun map(mappable: List<CalculatorGroup>?): List<GroupItem> {
     return mappable?.map { it.toGroupItem() }?.toMutableList() ?: mutableListOf()
 }

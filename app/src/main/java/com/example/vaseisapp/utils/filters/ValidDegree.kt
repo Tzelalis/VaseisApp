@@ -19,6 +19,9 @@ class MinMaxFilter(private val minValue: Double, private val maxValue: Double) :
                 input = dest.toString() + source.toString()
 
 
+            if(input == "")
+                return null
+
             if (isInRange(minValue, maxValue, input.toDouble())) {
                 return null
             }

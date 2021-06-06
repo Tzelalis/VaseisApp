@@ -49,6 +49,10 @@ class MainFragment : BaseFragment<FragmentMainLayoutBinding>() {
                 viewModel.navigateTo(bottomNavigation.selectedItemId, item.itemId)
                 true
             }
+
+            val statusBarHeightId = resources.getIdentifier("status_bar_height", "dimen", "android")
+            val statusBarHeight = resources.getDimensionPixelSize(statusBarHeightId)
+            root.setPadding(0, statusBarHeight , 0, 0)
         }
     }
 

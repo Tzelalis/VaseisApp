@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.view.View
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
+import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
@@ -17,6 +18,8 @@ import com.example.vaseisapp.base.BaseFragment
 import com.example.vaseisapp.databinding.FragmentDepartmentDetailsLayoutBinding
 import com.example.vaseisapp.databinding.MainToolbarBinding
 import com.example.vaseisapp.ui.AppViewModel
+import com.example.vaseisapp.ui.dashboard.departmentcenter.departmentdetails.adapter.DepartmentsComparisonAdapter
+import com.example.vaseisapp.ui.dashboard.departmentcenter.departmentdetails.adapter.YearsAdapter
 import com.example.vaseisapp.ui.dashboard.departmentcenter.departmentdetails.model.DepartmentItem
 import com.example.vaseisapp.utils.centersnap.CenterDecoration
 import com.example.vaseisapp.utils.centersnap.CenterSnapHelper
@@ -47,7 +50,7 @@ class DepartmentDetailsFragment : BaseFragment<FragmentDepartmentDetailsLayoutBi
         //appViewModel.setToolbarTitle(args.name)
         //(activity as? AppActivity)?.supportActionBar?.show()
 
-        setupToolbar()
+        //setupToolbar()
         setupObservers()
 
         findNavController().addOnDestinationChangedListener { controller, destination, arguments -> }
@@ -78,6 +81,8 @@ class DepartmentDetailsFragment : BaseFragment<FragmentDepartmentDetailsLayoutBi
 
     private fun setupViews(departments: List<DepartmentItem>) {
         with(binding) {
+            binding.toolbar.backButtonImageView.setOnClickListener { findNavController().navigateUp() }
+
             //successfulBarChart.clipToOutline = true
             vaseisConstraintLayout.clipToOutline = true
             totalPeopleLinearLayout.clipToOutline = true
@@ -115,7 +120,7 @@ class DepartmentDetailsFragment : BaseFragment<FragmentDepartmentDetailsLayoutBi
             lineChart.axisRight.setDrawGridLines(false)
             lineChart.axisRight.setDrawAxisLine(false)
             lineChart.axisRight.typeface = Typeface.SERIF
-            lineChart.axisRight.textColor = Color.GRAY
+            lineChart.axisRight.textColor = ResourcesCompat.getColor(resources, R.color.text_dr_grey, null)
             lineChart.axisRight.setDrawGridLines(false)
 
             val xAxisFormatter = object : ValueFormatter() {
@@ -138,7 +143,7 @@ class DepartmentDetailsFragment : BaseFragment<FragmentDepartmentDetailsLayoutBi
             lineChart.xAxis.spaceMax = lineChart.xChartMax + 0.5f
             lineChart.xAxis.spaceMin = lineChart.xChartMin + 0.5f
             lineChart.xAxis.typeface = Typeface.SERIF
-            lineChart.xAxis.textColor = Color.GRAY
+            lineChart.xAxis.textColor = ResourcesCompat.getColor(resources, R.color.text_dr_grey, null)
 
             val lines = mutableListOf<LineDataSet>()
 
@@ -147,7 +152,7 @@ class DepartmentDetailsFragment : BaseFragment<FragmentDepartmentDetailsLayoutBi
 
                 val dataSet = LineDataSet(dept.entries, "Τμήμα")
                 dataSet.setDrawValues(false)
-                dataSet.valueTextColor = Color.DKGRAY
+                dataSet.valueTextColor = ResourcesCompat.getColor(resources, R.color.text_dr_grey, null)
                 dataSet.valueTypeface = Typeface.DEFAULT_BOLD
                 dataSet.valueTextSize = 13f
                 dataSet.setDrawCircles(true)
@@ -334,20 +339,20 @@ class DepartmentDetailsFragment : BaseFragment<FragmentDepartmentDetailsLayoutBi
             //successfulBarChart.xAxis.spaceMax = lineChart.xChartMax + 0.5f
             //successfulBarChart.xAxis.spaceMin = lineChart.xChartMin + 0.5f
             successfulBarChart.xAxis.typeface = Typeface.SERIF
-            successfulBarChart.xAxis.textColor = Color.GRAY
+            successfulBarChart.xAxis.textColor = ResourcesCompat.getColor(resources, R.color.text_dr_grey, null)
             successfulBarChart.xAxis.spaceMax = 0.1f
 
             successfulBarChart.axisRight.isEnabled = true
             successfulBarChart.axisRight.setDrawGridLines(true)
             successfulBarChart.axisRight.setDrawAxisLine(false)
             successfulBarChart.axisRight.typeface = Typeface.SERIF
-            successfulBarChart.axisRight.textColor = Color.GRAY
+            successfulBarChart.axisRight.textColor = ResourcesCompat.getColor(resources, R.color.text_dr_grey, null)
 
             successfulBarChart.axisLeft.isEnabled = true
             successfulBarChart.axisLeft.setDrawGridLines(true)
             successfulBarChart.axisLeft.setDrawAxisLine(false)
             successfulBarChart.axisLeft.typeface = Typeface.SERIF
-            successfulBarChart.axisLeft.textColor = Color.GRAY
+            successfulBarChart.axisLeft.textColor = ResourcesCompat.getColor(resources, R.color.text_dr_grey, null)
 
 
             val valueList = ArrayList<Double>()

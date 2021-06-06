@@ -27,7 +27,7 @@
     <string name="category_subtitle">Ποια κατηγορία πανελληνίων σας ενδιαφέρει; \n
         You can change your choice later into app.</string>
 
-    <!-- Group Fragment -->
+    <!-- CalculatorGroup Fragment -->
     <string name="group_title">Group</string>
     <string name="group_subtitle">Select your group</string>
 
@@ -39,7 +39,7 @@
     <string name="theme_default">System Default</string>
 
 
-    <!-- Topics Fragment -->
+    <!-- TopicsModule Fragment -->
     <string name="topics_title">Past\nExams\n</string>
 
     <!-- Account -->
@@ -69,6 +69,23 @@
     <string name="calculator_degree_title">Degree</string>
 
     <string name="department_more_stats">Statistics by year   </string>
+
+    <!-- Bases Fragment -->
+    <string name="filter_fab">Filters</string>
+    <string name="base_filter_from">Degree from:</string>
+    <string name="base_filter_to">To:</string>
+    <string name="enable_department_only">Only Enable Departments</string>
+    <string name="order_alphabetic">Alphabetic</string>
+    <string name="order_increasing">Increasing degree</string>
+    <string name="order_decreasing">Decreasing degree</string>
+    <string name="bases_first_degree" translatable="false">%1$s μόρια</string>
+    <string name="bases_first_degree_label" translatable="false">έγραψε ο πρώτος εισακτέος του τμήματος το %1$s</string>
+    <string name="bases_university_label" translatable="false">της σχολής</string>
+    <string name="bases_city_label" translatable="false">στη πόλη</string>
+    <string name="bases_university_format" translatable="false">%1$s, %2$s</string>
+    <string name="bases_university_select_all" translatable="false">Επιλογή όλων</string>
+    <string name="bases_university_count" >%1$s departments </string>
+    <string name="bases_university_search_hint" >search...</string>
 
 
 </resources>

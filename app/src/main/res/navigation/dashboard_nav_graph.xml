@@ -19,6 +19,20 @@
             app:popEnterAnim="@anim/slide_in_right"
             app:popExitAnim="@anim/slide_out_right"
             app:popUpTo="@id/departmentFragment" />
+        <action
+            android:id="@+id/action_department_to_singleDepartmentDetails"
+            app:destination="@id/singleDepartmentDetails"
+            app:enterAnim="@anim/slide_in_left"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_right"
+            app:popExitAnim="@anim/slide_out_right"/>
+        <action
+            android:id="@+id/action_departmentFragment_to_base_filter_nav_graph"
+            app:destination="@id/base_filter_nav_graph"
+            app:enterAnim="@anim/slide_in_bottom"
+            app:exitAnim="@anim/stable"
+            app:popEnterAnim="@anim/stable"
+            app:popExitAnim="@anim/slide_out_top" />
     </fragment>
     <fragment
         android:id="@+id/departmentDetailsFragment"
@@ -72,4 +86,18 @@
         app:launchSingleTop="true"
         app:popUpTo="@id/main_nav_grap"
         app:popUpToInclusive="true"/>
+    <fragment
+        android:id="@+id/singleDepartmentDetails"
+        android:name="com.example.vaseisapp.ui.dashboard.departmentcenter.departmentdetails.SingleDepartmentDetailsFragment"
+        android:label="SingleDepartmentDetailsFragment"
+        tools:layout="@layout/fragment_single_department_details">
+        <argument
+            android:name="id"
+            app:argType="string" />
+        <argument
+            android:name="name"
+            app:argType="string"
+            android:defaultValue=""/>
+    </fragment>
+    <include app:graph="@navigation/base_filter_nav_graph" />
 </navigation>

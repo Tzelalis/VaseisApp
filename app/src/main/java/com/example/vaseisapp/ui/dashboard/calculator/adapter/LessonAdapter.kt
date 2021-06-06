@@ -7,7 +7,6 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.vaseisapp.databinding.ItemLessonsBinding
-import com.example.vaseisapp.domain.calculation.entities.Lesson
 import com.example.vaseisapp.ui.dashboard.calculator.model.LessonItem
 import com.example.vaseisapp.ui.diffutil.LESSON_ITEM_DIFF_UTIL
 import com.example.vaseisapp.utils.filters.DecimalDigitsInputFilter
@@ -15,6 +14,11 @@ import com.example.vaseisapp.utils.filters.MinMaxFilter
 
 
 class LessonAdapter(private val listener: LessonListener) : ListAdapter<LessonItem, LessonAdapter.LessonViewHolder>(LESSON_ITEM_DIFF_UTIL) {
+
+    companion object    {
+        private const val NORMAL_ITEM = 0
+        private const val LAST_ITEM = 1
+    }
 
     interface LessonListener {
         fun onLessonTextChanged()
@@ -27,17 +31,20 @@ class LessonAdapter(private val listener: LessonListener) : ListAdapter<LessonIt
     }
 
     override fun onBindViewHolder(holder: LessonViewHolder, position: Int) {
-        holder.bindTo(getItem(position))
+        if(getItemViewType(position) == LAST_ITEM)
+            holder.bindLastTo()
+        else
+            holder.bindTo(getItem(position))
     }
 
     override fun getItemViewType(position: Int): Int {
-        return position
+        return if (position == currentList.size - 1) LAST_ITEM else NORMAL_ITEM
     }
 
     inner class LessonViewHolder(private val binding: ItemLessonsBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bindTo(item: LessonItem) {
             with(binding) {
-                lessonsTextView.text = item.lesson.shortName
+                lessonsTextView.text = item.calculatorLesson.shortName
                 lessonsNumberPicker.binding.lessonEdittext.setText(item.degree)
                 lessonsNumberPicker.binding.lessonEdittext.filters = arrayOf(MinMaxFilter(0.0, 20.0), DecimalDigitsInputFilter(2, 2))
 
@@ -53,6 +60,10 @@ class LessonAdapter(private val listener: LessonListener) : ListAdapter<LessonIt
                     }
                 })
             }
+        }
+
+        fun bindLastTo()    {
+
         }
     }
 }

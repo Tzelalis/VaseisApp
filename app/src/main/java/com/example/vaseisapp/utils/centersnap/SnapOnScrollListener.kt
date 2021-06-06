@@ -18,7 +18,7 @@ class SnapOnScrollListener(
         NOTIFY_ON_SCROLL_STATE_IDLE
     }
 
-    private var snapPosition = 0
+    private var snapPosition = -1
 
     override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
         if (behavior == Behavior.NOTIFY_ON_SCROLL) {

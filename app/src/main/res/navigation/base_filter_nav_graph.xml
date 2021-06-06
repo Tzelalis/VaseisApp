@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/base_filter_nav_graph"
+    app:startDestination="@id/basesFilterFragment">
+
+    <fragment
+        android:id="@+id/basesFilterFragment"
+        android:name="com.example.vaseisapp.ui.dashboard.departmentcenter.filters.BasesFilterFragment"
+        android:label="BasesFilterFragment" >
+        <action
+            android:id="@+id/action_basesFilterFragment2_to_basesFilterUniversitiesFragment"
+            app:destination="@id/basesFilterUniversitiesFragment" />
+        <action
+            android:id="@+id/action_basesFilterFragment_to_baseFilterCityFragment"
+            app:destination="@id/baseFilterCityFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/basesFilterUniversitiesFragment"
+        android:name="com.example.vaseisapp.ui.dashboard.departmentcenter.filters.BasesFilterUniversitiesFragment"
+        android:label="BasesFilterUniversitiesFragment" />
+    <fragment
+        android:id="@+id/baseFilterCityFragment"
+        android:name="com.example.vaseisapp.ui.dashboard.departmentcenter.filters.BaseFilterCityFragment"
+        android:label="BaseFilterCityFragment" />
+</navigation>

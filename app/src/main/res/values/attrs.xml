@@ -6,4 +6,13 @@
         <attr name="minValue" format="string" />
         <attr name="maxValue" format="string" />
     </declare-styleable>
+
+
+    <declare-styleable name="constraint_radio_button">
+        <!-- The id of the child radio button that should be checked by default
+             within this radio group. -->
+        <attr name="checkedButtonId" format="integer"/>
+        <!--<attr name="radioButtonStyle" format="reference"/>
+        <attr name="android:checkedButton"/>-->
+    </declare-styleable>
 </resources>

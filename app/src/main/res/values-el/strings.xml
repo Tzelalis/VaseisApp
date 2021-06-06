@@ -3,7 +3,7 @@
     <string name="app_name">Vaseis App</string>
 
     <!-- Dashboard Bottom Nav Menu-->
-    <string name="basesTitle">Βάσες</string>
+    <string name="basesTitle">Βάσεις</string>
     <string name="topicTitle">Θέματα</string>
     <string name="calculatorTitle">Μόρια</string>
     <string name="accountTitle">Λογαριασμός</string>
@@ -25,7 +25,7 @@
     <string name="category_title">Κατηγορία</string>
     <string name="category_subtitle">Ποια κατηγορία πανελληνίων σας ενδιαφέρει;\n</string>
 
-    <!-- Group Fragment -->
+    <!-- CalculatorGroup Fragment -->
     <string name="group_title">Πεδίο</string>
     <string name="group_subtitle">Επιλέξτε το πεδίο που επιθυμείτε.\n</string>
 
@@ -36,7 +36,7 @@
     <string name="theme_light">Φωτεινό</string>
     <string name="theme_default">Προεπιλογή Συστήματος</string>
 
-    <!-- Topics Fragment -->
+    <!-- TopicsModule Fragment -->
     <string name="topics_title">Παλιά\nΘέματα\nΕξετάσεων </string>
 
     <!-- Account -->
@@ -65,7 +65,17 @@
     <!-- Calculator Fragment -->
     <string name="calculator_degree_title">Μόρια</string>
 
-
     <string name="department_more_stats">Στατιστικά τμήματος ανά έτος</string>
+
+    <!-- Bases Fragment -->
+    <string name="filter_fab">Φίλτρα</string>
+    <string name="base_filter_from">Μόρια από:</string>
+    <string name="base_filter_to">Έως:</string>
+    <string name="enable_department_only">Ενεργά τμήματα μόνο</string>
+    <string name="order_alphabetic">Αλφαβιτικά</string>
+    <string name="order_increasing">Αύξοντα μόρια</string>
+    <string name="order_decreasing">Φθίνοντα μόρια</string>
+    <string name="bases_university_count" >%1$s τμήματα </string>
+    <string name="bases_university_search_hint" >αναζήτηση...</string>
 
 </resources>

@@ -1,11 +1,10 @@
 package com.example.vaseisapp.data.calculator
 
-import com.example.vaseisapp.domain.calculation.entities.ExamType
+import com.example.vaseisapp.domain.calculation.entities.CalculatorExamType
 
 interface CalculatorRepository {
-    suspend fun fetchExamsTypes()
 
-    suspend fun saveDataLocal(listOfExamType: List<ExamType>)
+    suspend fun saveDataLocal(listOfCalculatorExamType: List<CalculatorExamType>)
 
-    suspend fun getAllExamsTypes(): List<ExamType>
+    suspend fun getAllExamsTypes(): List<CalculatorExamType>
 }

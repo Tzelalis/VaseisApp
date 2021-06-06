@@ -1,7 +1,5 @@
 package com.example.vaseisapp.ui.personalization.examtype
 
-import android.content.Context
-import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
@@ -12,9 +10,8 @@ import com.example.vaseisapp.databinding.ItemPersonalizationCategoryBinding
 import com.example.vaseisapp.ui.dashboard.topicscenter.model.ExamTypeItem
 import com.example.vaseisapp.ui.diffutil.EXAM_TYPE_ITEM_DIFF_UTIL
 
-class ExamTypeListAdapter(private val listener: ExamTypeClickListener) : ListAdapter<ExamTypeItem, ExamTypeListAdapter.CategoryViewHolder>(
-    EXAM_TYPE_ITEM_DIFF_UTIL
-) {
+class ExamTypeListAdapter(private val listener: ExamTypeClickListener) :
+    ListAdapter<ExamTypeItem, ExamTypeListAdapter.CategoryViewHolder>(EXAM_TYPE_ITEM_DIFF_UTIL) {
 
     private var selectedIndex: Int? = null
 
@@ -35,12 +32,11 @@ class ExamTypeListAdapter(private val listener: ExamTypeClickListener) : ListAda
     inner class CategoryViewHolder(private val binding: ItemPersonalizationCategoryBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bindTo(examTypeItem: ExamTypeItem, position: Int) {
             with(binding) {
-                examTypeTitleTextView.text = examTypeItem.examType.short_name
-
+                examTypeTitleTextView.text = examTypeItem.examType.shortName
 
                 if (examTypeItem.isSelected) {
                     root.setBackgroundResource(R.drawable.cardview_background_16_selectable)
-                    examTypeTitleTextView.setTextColor(ContextCompat.getColor(root.context, R.color.white))
+                    examTypeTitleTextView.setTextColor(ContextCompat.getColor(root.context, R.color.white_stable))
                     selectedIndex = position
                 } else {
                     root.setBackgroundResource(R.drawable.cardview_background_16_white)

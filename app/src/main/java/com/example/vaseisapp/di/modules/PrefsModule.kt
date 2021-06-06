@@ -1,14 +1,9 @@
 package com.example.vaseisapp.di.modules
 
 import android.content.SharedPreferences
-import com.example.vaseisapp.data.calculator.CalculatorDataSourceImpl
-import com.example.vaseisapp.data.calculator.CalculatorRepository
 import com.example.vaseisapp.data.prefs.PrefsDataSourceImpl
 import com.example.vaseisapp.data.prefs.PrefsRepository
-import com.example.vaseisapp.domain.calculation.CalculatorDataSource
 import com.example.vaseisapp.domain.prefs.PrefsDataSource
-import com.example.vaseisapp.framework.calculator.CalculatorApi
-import com.example.vaseisapp.framework.calculator.CalculatorRepositoryImpl
 import com.example.vaseisapp.framework.prefs.PrefsRepositoryImpl
 import com.squareup.moshi.Moshi
 import dagger.Module

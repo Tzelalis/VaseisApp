@@ -3,6 +3,7 @@ package com.example.vaseisapp.ui.dashboard.departmentcenter.departmentdetails
 import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.MutableLiveData
 import com.example.vaseisapp.base.BaseViewModel
+import com.example.vaseisapp.domain.bases.entities.DepartmentBases
 import com.example.vaseisapp.ui.dashboard.departmentcenter.departmentdetails.model.DepartmentDetailsArguments
 import com.example.vaseisapp.ui.dashboard.departmentcenter.departmentdetails.model.DepartmentItem
 import com.example.vaseisapp.ui.dashboard.departmentcenter.departmentdetails.model.LIST_OF_COLORS
@@ -14,6 +15,9 @@ class DepartmentDetailsViewModel @ViewModelInject constructor(
 ) : BaseViewModel() {
     private var _departmentItems = MutableLiveData<List<DepartmentItem>>()
     val departmentItem = _departmentItems
+
+    private var _singleDepartment = MutableLiveData<DepartmentBases>()
+    val singleDepartment = _singleDepartment
 
     fun loadSelectedDepartments(departments: Array<DepartmentDetailsArguments>) {
         launch(true) {
@@ -28,7 +32,6 @@ class DepartmentDetailsViewModel @ViewModelInject constructor(
                         if (base.examType == "ΓΕΛ ΕΣΠΕΡΙΝΑ" || base.examType == "ΓΕΛ ΝΕΟ ΗΜΕΡΗΣΙΑ" || base.examType == "ΓΕΛ, ΕΠΑΛΒ ΗΜΕΡΗΣΙΑ")
                             entriesList.add(Entry(base.year.toFloat(), base.baseLast.toFloat()))
                     }
-
 
                     departmentItems.add(
                         DepartmentItem(
@@ -47,8 +50,20 @@ class DepartmentDetailsViewModel @ViewModelInject constructor(
             _departmentItems.value = departmentItems
         }
     }
+
+    fun loadSingleDepartment(code: String) {
+        launch(true) {
+            val result = getDepartmentBases(code)
+
+            _singleDepartment.value = result[0]
+        }
+    }
 }
 
-fun departmentPopularity() {
+private fun departmentPopularity() {
     //todo return a double about popularity of department. Calculate with positions (firstPos*3 + secondPos*2...etc)
 }
+
+
+
+

@@ -1,256 +1,269 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:scrollbars="none"
-    android:overScrollMode="never">
+    android:layout_height="match_parent">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingBottom="16dp">
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/layout_department_details_toolbar" />
 
-        <include layout="@layout/main_toolbar" />
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/departmentRecyclerView"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            app:layout_constraintDimensionRatio="3:1"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp"
-            android:clipToPadding="false"
-            android:paddingTop="8dp"
-            android:paddingBottom="8dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/toolbar_layout"
-            tools:itemCount="1"
-            tools:listitem="@layout/item_departments_comparison" />
-
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/department_scroll_view"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:overScrollMode="never"
+        android:scrollbars="none"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/toolbar">
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/vaseisConstraintLayout"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="16dp"
-            android:layout_marginBottom="8dp"
-            android:background="@drawable/cardview_background_16_white"
-            android:gravity="center"
-            android:orientation="horizontal"
-            android:paddingBottom="4dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/departmentRecyclerView">
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-            <TextView
-                android:id="@+id/vaseisTextView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="4dp"
-                android:layout_marginEnd="8dp"
-                android:layout_marginBottom="0dp"
-                android:text="Ιστορικό βάσεων"
-                android:textAppearance="@font/roboto"
-                android:textColor="@color/text_dr_grey"
-                android:textSize="18sp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <ImageView
-                android:id="@+id/forwordImageViwe"
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:padding="0dp"
-                android:src="@drawable/ic_baseline_arrow_left_24"
-                app:layout_constraintEnd_toStartOf="@id/circleImageView"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <ImageView
-                android:id="@+id/circleImageView"
-                android:layout_width="8dp"
-                android:layout_height="8dp"
-                android:padding="0dp"
-                android:src="@drawable/ic_baseline_circle_24"
-                app:layout_constraintBottom_toBottomOf="@id/previousImageView"
-                app:layout_constraintEnd_toStartOf="@id/previousImageView"
-                app:layout_constraintTop_toTopOf="@id/previousImageView" />
-
-            <ImageView
-                android:id="@+id/previousImageView"
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:padding="0dp"
-                android:src="@drawable/ic_baseline_arrow_right_24"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <com.github.mikephil.charting.charts.LineChart
-                android:id="@+id/lineChart"
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/departmentRecyclerView"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                android:layout_marginTop="0dp"
-                app:layout_constraintDimensionRatio="4:3"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                android:clipToPadding="false"
+                android:paddingTop="8dp"
+                android:paddingBottom="8dp"
+                app:layout_constraintDimensionRatio="3:1"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/vaseisTextView" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-        <TextView
-            android:id="@+id/moreStatsTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="4dp"
-            android:layout_marginTop="8dp"
-            android:fontFamily="@font/roboto_thin"
-            android:text="@string/department_more_stats"
-            android:textSize="22sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/vaseisConstraintLayout" />
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/years_recycler_view"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="4dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="4dp"
-            android:layout_marginBottom="8dp"
-            android:fadingEdge="vertical"
-            android:fadingEdgeLength="100dp"
-            android:fillViewport="false"
-            android:requiresFadingEdge="horizontal"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/moreStatsTextView"
-            tools:itemCount="1"
-            tools:listitem="@layout/item_year" />
-
-        <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/centerGuidLine"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:orientation="vertical"
-            app:layout_constraintGuide_percent="0.5" />
+                app:layout_constraintTop_toTopOf="parent"
+                tools:itemCount="1"
+                tools:listitem="@layout/item_departments_comparison" />
 
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/successfulConstraintLayout"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="16dp"
-            android:layout_marginBottom="8dp"
-            android:background="@drawable/cardview_background_16_white"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/years_recycler_view">
-
-            <TextView
-                android:id="@+id/successfulTextView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Κατάταξη τμήματος στο μηχανογραφικό επιτυχόντων "
-                android:layout_marginStart="4dp"
-                android:layout_marginEnd="4dp"
-                android:layout_marginTop="4dp"
-                android:textAppearance="@font/roboto"
-                android:textColor="@color/text_dr_grey"
-                android:textSize="18sp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <com.github.mikephil.charting.charts.BarChart
-                android:id="@+id/successfulBarChart"
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/vaseisConstraintLayout"
                 android:layout_width="0dp"
-                android:layout_height="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginBottom="8dp"
                 android:background="@drawable/cardview_background_16_white"
-                android:paddingStart="4dp"
-                android:paddingEnd="4dp"
-                app:layout_constraintDimensionRatio="2:1"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:paddingBottom="4dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/successfulTextView" />
+                app:layout_constraintTop_toBottomOf="@id/departmentRecyclerView">
+
+                <TextView
+                    android:id="@+id/vaseisTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_8dp"
+                    android:layout_marginTop="@dimen/margin_8dp"
+                    android:layout_marginEnd="@dimen/margin_8dp"
+                    android:layout_marginBottom="0dp"
+                    android:text="Ιστορικό βάσεων"
+                    android:textAppearance="@font/roboto"
+                    android:textColor="@color/text_dr_grey"
+                    android:textSize="18sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <ImageView
+                    android:id="@+id/forwordImageViwe"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:padding="0dp"
+                    android:src="@drawable/ic_baseline_arrow_left_24"
+                    app:layout_constraintEnd_toStartOf="@id/circleImageView"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <ImageView
+                    android:id="@+id/circleImageView"
+                    android:layout_width="8dp"
+                    android:layout_height="8dp"
+                    android:padding="0dp"
+                    android:src="@drawable/ic_baseline_circle_24"
+                    app:layout_constraintBottom_toBottomOf="@id/previousImageView"
+                    app:layout_constraintEnd_toStartOf="@id/previousImageView"
+                    app:layout_constraintTop_toTopOf="@id/previousImageView" />
+
+                <ImageView
+                    android:id="@+id/previousImageView"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:padding="0dp"
+                    android:src="@drawable/ic_baseline_arrow_right_24"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <com.github.mikephil.charting.charts.LineChart
+                    android:id="@+id/lineChart"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_marginTop="0dp"
+                    app:layout_constraintDimensionRatio="4:3"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/vaseisTextView" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <TextView
+                android:id="@+id/moreStatsTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:layout_marginTop="8dp"
+                android:fontFamily="@font/roboto_thin"
+                android:text="@string/department_more_stats"
+                android:textSize="22sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/vaseisConstraintLayout" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/years_recycler_view"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="4dp"
+                android:layout_marginBottom="8dp"
+                android:fadingEdge="vertical"
+                android:fadingEdgeLength="100dp"
+                android:fillViewport="false"
+                android:requiresFadingEdge="horizontal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/moreStatsTextView"
+                tools:itemCount="1"
+                tools:listitem="@layout/item_year" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/centerGuidLine"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.5" />
+
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/successfulConstraintLayout"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginBottom="8dp"
+                android:background="@drawable/cardview_background_16_white"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/years_recycler_view">
+
+                <TextView
+                    android:id="@+id/successfulTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_8dp"
+                    android:layout_marginTop="@dimen/margin_8dp"
+                    android:layout_marginEnd="@dimen/margin_8dp"
+                    android:text="Κατάταξη τμήματος στο μηχανογραφικό επιτυχόντων "
+                    android:textAppearance="@font/roboto"
+                    android:textColor="@color/text_dr_grey"
+                    android:textSize="18sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <com.github.mikephil.charting.charts.BarChart
+                    android:id="@+id/successfulBarChart"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:background="@drawable/cardview_background_16_white"
+                    android:paddingStart="4dp"
+                    android:paddingEnd="4dp"
+                    app:layout_constraintDimensionRatio="2:1"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/successfulTextView" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <LinearLayout
+                android:id="@+id/totalPeopleLinearLayout"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_16dp"
+                android:layout_marginTop="@dimen/margin_16dp"
+                android:layout_marginEnd="@dimen/margin_8dp"
+                android:layout_marginBottom="@dimen/margin_16dp"
+                android:background="@drawable/cardview_background_16_white"
+                android:orientation="vertical"
+                android:padding="8dp"
+                app:layout_constraintEnd_toEndOf="@id/centerGuidLine"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/successfulConstraintLayout"
+                app:layout_constraintBottom_toBottomOf="parent">
+
+                <TextView
+                    android:id="@+id/numberTotalPeopleTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="1500 άτομα"
+                    android:textAppearance="@font/roboto_bold"
+                    android:textColor="@color/black"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/labelOfTotalPeopleTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="δήλωσαν στις πρώτες 6 θέσεις του μηχανογραφικού τους αυτό το τμήμα το 2020"
+                    android:textAppearance="@font/roboto"
+                    android:textColor="@color/text_dr_grey"
+                    android:textSize="13sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/bestLinearLayout"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginStart="@dimen/margin_8dp"
+                android:layout_marginTop="@dimen/margin_16dp"
+                android:layout_marginEnd="@dimen/margin_16dp"
+                android:layout_marginBottom="@dimen/margin_16dp"
+                android:background="@drawable/cardview_background_16_white"
+                android:orientation="vertical"
+                android:padding="8dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@id/centerGuidLine"
+                app:layout_constraintTop_toBottomOf="@id/successfulConstraintLayout"
+                app:layout_constraintBottom_toBottomOf="parent">
+
+                <TextView
+                    android:id="@+id/labelOfBestTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Ο πρώτος εισακτέος στο τμήμα έγραψε"
+                    android:textAppearance="@font/roboto"
+                    android:textColor="@color/text_dr_grey"
+                    android:textSize="13sp" />
+
+                <TextView
+                    android:id="@+id/numberBestPeopleTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="17000 μόρια"
+                    android:textAppearance="@font/roboto_bold"
+                    android:textColor="@color/black"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+
         </androidx.constraintlayout.widget.ConstraintLayout>
-
-        <LinearLayout
-            android:id="@+id/totalPeopleLinearLayout"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginBottom="8dp"
-            android:background="@drawable/cardview_background_16_white"
-            android:orientation="vertical"
-            android:padding="8dp"
-            app:layout_constraintEnd_toEndOf="@id/centerGuidLine"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/successfulConstraintLayout">
-
-            <TextView
-                android:id="@+id/numberTotalPeopleTextView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="1500 άτομα"
-                android:textAppearance="@font/roboto_bold"
-                android:textColor="@color/black"
-                android:textSize="18sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/labelOfTotalPeopleTextView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="@font/roboto"
-                android:textColor="@color/text_dr_grey"
-                android:textSize="13sp"
-                android:text="δήλωσαν στις πρώτες 6 θέσεις του μηχανογραφικού τους αυτό το τμήμα το 2020" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/bestLinearLayout"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="16dp"
-            android:layout_marginBottom="8dp"
-            android:background="@drawable/cardview_background_16_white"
-            android:orientation="vertical"
-            android:padding="8dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="@id/centerGuidLine"
-            app:layout_constraintTop_toBottomOf="@id/successfulConstraintLayout">
-
-            <TextView
-                android:id="@+id/labelOfBestTextView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="@font/roboto"
-                android:textSize="13sp"
-                android:textColor="@color/text_dr_grey"
-                android:text="Ο πρώτος εισακτέος στο τμήμα έγραψε" />
-
-            <TextView
-                android:id="@+id/numberBestPeopleTextView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="17000 μόρια"
-                android:textAppearance="@font/roboto_bold"
-                android:textColor="@color/black"
-                android:textSize="18sp"
-                android:textStyle="bold" />
-
-        </LinearLayout>
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-</ScrollView>
+    </androidx.core.widget.NestedScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -5,7 +5,6 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.vaseisapp.base.BaseViewModel
 import com.example.vaseisapp.domain.prefs.Theme
-import com.example.vaseisapp.ui.dashboard.accountcenter.model.PrefProperty
 import com.example.vaseisapp.usecase.prefs.GetThemeUseCase
 import com.example.vaseisapp.usecase.prefs.SetThemeUseCase
 
@@ -15,19 +14,22 @@ class ThemeViewModel @ViewModelInject constructor(
 ) : BaseViewModel() {
 
     private var _themeUI = MutableLiveData<Theme>()
-    val themeUI : LiveData<Theme> = _themeUI
+    val themeUI: LiveData<Theme> = _themeUI
 
-    private var _savedUI = MutableLiveData<Unit>()
-    val savedUI : LiveData<Unit> = _savedUI
+    private var _savedUI = MutableLiveData<Theme>()
+    val savedUI: LiveData<Theme> = _savedUI
 
     fun loadPrefTheme() {
-        launch(true)    {
+        launch(true) {
             _themeUI.value = getThemeUseCase() ?: Theme.SYSTEM_DEFAULT
         }
     }
 
-    fun saveTheme() {
-
+    fun saveTheme(theme: Theme) {
+        launch(true) {
+            setThemeUseCase(theme)
+            _savedUI.value = theme
+        }
     }
 
 }
