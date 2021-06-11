@@ -18,7 +18,7 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:text="Μαθηματικά" />
 
-    <com.example.vaseisapp.utils.views.CustomNumberPicker
+    <com.vaseis.app.utils.views.CustomNumberPicker
         android:id="@+id/lessons_number_picker"
         android:layout_width="0dp"
         android:layout_height="wrap_content"

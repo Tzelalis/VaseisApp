@@ -41,6 +41,7 @@
 
     <!-- TopicsModule Fragment -->
     <string name="topics_title">Past\nExams\n</string>
+    <string name="topics_pdf_no_open">Unable to find application to open PDF file.</string>
 
     <!-- Account -->
     <string name="account_account_title">Account</string>
@@ -78,14 +79,27 @@
     <string name="order_alphabetic">Alphabetic</string>
     <string name="order_increasing">Increasing degree</string>
     <string name="order_decreasing">Decreasing degree</string>
-    <string name="bases_first_degree" translatable="false">%1$s μόρια</string>
-    <string name="bases_first_degree_label" translatable="false">έγραψε ο πρώτος εισακτέος του τμήματος το %1$s</string>
-    <string name="bases_university_label" translatable="false">της σχολής</string>
+    <string name="bases_first_degree" translatable="false">μόρια\n%1$s</string>
+    <string name="bases_first_degree_label" translatable="false">καλύτερη επίδοση</string>
+    <string name="bases_total_candidates_label" translatable="false">συνολική συμμετοχή</string>
+    <string name="bases_university_label" translatable="false">του ιδρύματος</string>
     <string name="bases_city_label" translatable="false">στη πόλη</string>
     <string name="bases_university_format" translatable="false">%1$s, %2$s</string>
     <string name="bases_university_select_all" translatable="false">Επιλογή όλων</string>
-    <string name="bases_university_count" >%1$s departments </string>
-    <string name="bases_university_search_hint" >search...</string>
+    <string name="bases_university_count">%1$s departments </string>
+    <string name="bases_university_search_hint">search...</string>
+    <string name="bases_candidates_label">Προτιμήσεις υποψηφίων</string>
+    <string name="bases_candidates_sub_label">Πρώτες 3 θέσεις</string>
+
+    <plurals name="bases_candidate">
+        <item quantity="one">%d\ncandidate</item>
+        <item quantity="other">%d\ncandidates</item>
+    </plurals>
+
+    <plurals name="bases_candidate_label">
+        <item quantity="one">δήλωσε στις πρώτες 3 θέσεις του μηχανογρφικού τους αυτό το τμήμα για το %1$s</item>
+        <item quantity="other">δήλωσαν στις πρώτες 3 θέσεις του μηχανογρφικού τους αυτό το τμήμα για το %1$s</item>
+    </plurals>
 
 
 </resources>

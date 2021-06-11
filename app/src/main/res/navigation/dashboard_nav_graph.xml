@@ -8,7 +8,7 @@
 
     <fragment
         android:id="@+id/departmentFragment"
-        android:name="com.example.vaseisapp.ui.dashboard.departmentcenter.department.DepartmentFragment"
+        android:name="com.vaseis.app.ui.dashboard.departmentcenter.department.DepartmentFragment"
         android:label="DepartmentFragment"
         tools:layout="@layout/fragment_department_layout">
         <action
@@ -36,26 +36,26 @@
     </fragment>
     <fragment
         android:id="@+id/departmentDetailsFragment"
-        android:name="com.example.vaseisapp.ui.dashboard.departmentcenter.departmentdetails.DepartmentDetailsFragment"
+        android:name="com.vaseis.app.ui.dashboard.departmentcenter.departmentdetails.DepartmentDetailsFragment"
         android:label="Comparation"
         tools:layout="@layout/fragment_department_details_layout">
         <argument
             android:name="departments"
-            app:argType="com.example.vaseisapp.ui.dashboard.departmentcenter.departmentdetails.model.DepartmentDetailsArguments[]" />
+            app:argType="com.vaseis.app.ui.dashboard.departmentcenter.departmentdetails.model.DepartmentDetailsArguments[]" />
     </fragment>
     <fragment
         android:id="@+id/accountFragment"
-        android:name="com.example.vaseisapp.ui.dashboard.accountcenter.AccountFragment"
+        android:name="com.vaseis.app.ui.dashboard.accountcenter.AccountFragment"
         android:label="AccountFragment"
         tools:layout="@layout/fragment_account"/>
     <fragment
         android:id="@+id/fragmentCalculator"
-        android:name="com.example.vaseisapp.ui.dashboard.calculator.CalculatorFragment"
+        android:name="com.vaseis.app.ui.dashboard.calculator.CalculatorFragment"
         android:label="FragmentCalculator"
         tools:layout="@layout/fragment_calculator"/>
     <fragment
         android:id="@+id/topicsFragment"
-        android:name="com.example.vaseisapp.ui.dashboard.topicscenter.TopicsFragment"
+        android:name="com.vaseis.app.ui.dashboard.topicscenter.TopicsFragment"
         android:label="TopicsFragment"
         tools:layout="@layout/fragment_topics"/>
 
@@ -88,7 +88,7 @@
         app:popUpToInclusive="true"/>
     <fragment
         android:id="@+id/singleDepartmentDetails"
-        android:name="com.example.vaseisapp.ui.dashboard.departmentcenter.departmentdetails.SingleDepartmentDetailsFragment"
+        android:name="com.vaseis.app.ui.dashboard.departmentcenter.departmentdetails.SingleDepartmentDetailsFragment"
         android:label="SingleDepartmentDetailsFragment"
         tools:layout="@layout/fragment_single_department_details">
         <argument

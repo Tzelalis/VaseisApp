@@ -13,7 +13,7 @@
     app:layout_constraintTop_toTopOf="parent"
     app:layout_constraintWidth_percent="0.4">
 
-    <com.example.vaseisapp.utils.views.NoSelectionEditText
+    <com.vaseis.app.utils.views.NoSelectionEditText
         android:id="@+id/lesson_edittext"
         android:layout_width="0dp"
         android:layout_height="wrap_content"

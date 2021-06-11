@@ -38,6 +38,7 @@
 
     <!-- TopicsModule Fragment -->
     <string name="topics_title">Παλιά\nΘέματα\nΕξετάσεων </string>
+    <string name="topics_pdf_no_open">Αδυναμία εύρεσης εφαρμογής για άνοιγμα PDF αρχείου.</string>
 
     <!-- Account -->
     <string name="account_account_title">Λογαριασμός</string>
@@ -77,5 +78,17 @@
     <string name="order_decreasing">Φθίνοντα μόρια</string>
     <string name="bases_university_count" >%1$s τμήματα </string>
     <string name="bases_university_search_hint" >αναζήτηση...</string>
+    <string name="bases_candidates_label">Προτιμήσεις υποψηφίων</string>
+    <string name="bases_candidates_sub_label">Πρώτες 3 θέσεις</string>
+
+    <plurals name="bases_candidate">
+        <item quantity="one">%1$s\nυποψήφιος</item>
+        <item quantity="other">%1$s\nυποψήφιοι</item>
+    </plurals>
+
+    <plurals     name="bases_candidate_label">
+        <item quantity="one">από τους %1$s δήλωσε το τμήμα στις πρώτες 3 θέσεις του μηχανογρφικού του για το %2$s</item>
+        <item quantity="other">από τους %1$s δήλωσαν το τμήμα στις πρώτες 3 θέσεις του μηχανογρφικού τους για το %2$s</item>
+    </plurals>
 
 </resources>

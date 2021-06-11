@@ -16,6 +16,7 @@
     <color name="topics_year_transparent">#B35D8BB1</color>
     <color name="topics_group_background">#FAFAFA</color>
     <color name="university_selected_background">#4D2196F3</color>
+    <color name="single_department_base_stats_bar_text_color">#4C88B8</color>
 
     <color name="night_dark_grey">#171717</color>
 
@@ -32,6 +33,8 @@
 
 
     <!-- LINE COLORS    ========================================================= -->
+    <color name="barChartSecondColor">#58ACD6</color>
+    <color name="barCharCandidatesSecondColor">#EE7A40</color>
     <color name="lineColor1">#4391B8</color>
     <color name="lineColor2">#55B843</color>
     <color name="lineColor3">#B8B243</color>

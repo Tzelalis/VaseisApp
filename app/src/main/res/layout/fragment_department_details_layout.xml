@@ -207,7 +207,7 @@
                 app:layout_constraintBottom_toBottomOf="parent">
 
                 <TextView
-                    android:id="@+id/numberTotalPeopleTextView"
+                    android:id="@+id/candidate_title_txt"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="1500 άτομα"
@@ -217,7 +217,7 @@
                     android:textStyle="bold" />
 
                 <TextView
-                    android:id="@+id/labelOfTotalPeopleTextView"
+                    android:id="@+id/candidate_subtitle_txt"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="δήλωσαν στις πρώτες 6 θέσεις του μηχανογραφικού τους αυτό το τμήμα το 2020"
@@ -244,7 +244,7 @@
                 app:layout_constraintBottom_toBottomOf="parent">
 
                 <TextView
-                    android:id="@+id/labelOfBestTextView"
+                    android:id="@+id/first_base_sub_title_txt"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Ο πρώτος εισακτέος στο τμήμα έγραψε"
@@ -253,7 +253,7 @@
                     android:textSize="13sp" />
 
                 <TextView
-                    android:id="@+id/numberBestPeopleTextView"
+                    android:id="@+id/first_base_title_txt"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="17000 μόρια"

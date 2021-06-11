@@ -5,6 +5,8 @@ plugins {
     id 'kotlin-android-extensions'
     id 'androidx.navigation.safeargs.kotlin'
     id 'dagger.hilt.android.plugin'
+    id 'com.google.gms.google-services'
+    id 'com.google.firebase.crashlytics'
 }
 
 android {
@@ -12,7 +14,7 @@ android {
     buildToolsVersion "30.0.2"
 
     defaultConfig {
-        applicationId "com.example.vaseisapp"
+        applicationId "com.vaseis.app"
         minSdkVersion 21
         targetSdkVersion 30
         versionCode 1
@@ -105,10 +107,14 @@ dependencies {
     implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0'
 
     def room_version = "2.2.6"
-
     implementation "androidx.room:room-runtime:$room_version"
     kapt "androidx.room:room-compiler:$room_version"
     implementation "androidx.room:room-ktx:$room_version"
 
     implementation 'com.google.code.gson:gson:2.8.6'
+
+    def firestore_version = "28.1.0"
+    implementation platform("com.google.firebase:firebase-bom:$firestore_version")
+    releaseImplementation 'com.google.firebase:firebase-crashlytics-ktx'
+    releaseImplementation 'com.google.firebase:firebase-analytics-ktx'
 }

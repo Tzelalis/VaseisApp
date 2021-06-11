@@ -3,8 +3,10 @@
     <words>
       <w>cardview</w>
       <w>edittext</w>
+      <w>firestore</w>
       <w>moshi</w>
       <w>textview</w>
+      <w>webview</w>
     </words>
   </dictionary>
 </component>

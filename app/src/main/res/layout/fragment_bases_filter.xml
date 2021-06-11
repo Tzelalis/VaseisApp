@@ -49,7 +49,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <com.example.vaseisapp.utils.ConstraintRadioGroup
+        <com.vaseis.app.utils.ConstraintRadioGroup
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/margin_16dp"
@@ -99,7 +99,7 @@
                 app:layout_constraintEnd_toStartOf="@id/order_guideline"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/alphabetic_radiobutton" />
-        </com.example.vaseisapp.utils.ConstraintRadioGroup>
+        </com.vaseis.app.utils.ConstraintRadioGroup>
 
         <View
             android:layout_width="0dp"

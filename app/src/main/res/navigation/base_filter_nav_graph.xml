@@ -5,7 +5,7 @@
 
     <fragment
         android:id="@+id/basesFilterFragment"
-        android:name="com.example.vaseisapp.ui.dashboard.departmentcenter.filters.BasesFilterFragment"
+        android:name="com.vaseis.app.ui.dashboard.departmentcenter.filters.BasesFilterFragment"
         android:label="BasesFilterFragment" >
         <action
             android:id="@+id/action_basesFilterFragment2_to_basesFilterUniversitiesFragment"
@@ -16,10 +16,10 @@
     </fragment>
     <fragment
         android:id="@+id/basesFilterUniversitiesFragment"
-        android:name="com.example.vaseisapp.ui.dashboard.departmentcenter.filters.BasesFilterUniversitiesFragment"
+        android:name="com.vaseis.app.ui.dashboard.departmentcenter.filters.BasesFilterUniversitiesFragment"
         android:label="BasesFilterUniversitiesFragment" />
     <fragment
         android:id="@+id/baseFilterCityFragment"
-        android:name="com.example.vaseisapp.ui.dashboard.departmentcenter.filters.BaseFilterCityFragment"
+        android:name="com.vaseis.app.ui.dashboard.departmentcenter.filters.BaseFilterCityFragment"
         android:label="BaseFilterCityFragment" />
 </navigation>
