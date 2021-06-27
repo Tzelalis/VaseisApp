@@ -16,6 +16,8 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"/>-->
 
+
+
     <ImageView
         android:id="@+id/back_button_image_view"
         android:layout_width="36dp"
@@ -161,6 +163,36 @@
                 app:layout_constraintWidth_percent="0.8"
                 tools:text="Θεσσαλονίκη" />
 
+            <TextView
+                android:id="@+id/field_title_textview"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_16dp"
+                android:layout_marginTop="@dimen/margin_16dp"
+                android:layout_marginEnd="16dp"
+                android:fontFamily="@font/roboto_thin"
+                android:gravity="center"
+                android:text="@string/bases_fields_label"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/city_textview" />
+
+            <TextView
+                android:id="@+id/field_textview"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/roboto"
+                android:gravity="center"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/field_title_textview"
+                app:layout_constraintWidth_percent="0.8"
+                tools:text="4" />
+
+
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/contact_rv"
                 android:layout_width="wrap_content"
@@ -174,9 +206,25 @@
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/city_textview"
+                app:layout_constraintTop_toBottomOf="@id/field_textview"
                 tools:itemCount="3"
                 tools:listitem="@layout/item_contact_dept" />
+
+            <TextView
+                android:id="@+id/error_txt"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_16dp"
+                android:layout_marginEnd="@dimen/margin_16dp"
+                android:layout_marginTop="48dp"
+                android:gravity="center"
+                android:fontFamily="@font/roboto_bold"
+                android:textSize="20sp"
+                android:visibility="invisible"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/contact_rv"
+                tools:text="Δεν μπορείτε να περάσετε σε αυτό το τμήμα από την επιλεγμένη κατηγορία"/>
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/vaseisConstraintLayout"

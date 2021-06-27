@@ -33,7 +33,7 @@
             motion:layout_constraintStart_toStartOf="parent"
             motion:layout_constraintTop_toBottomOf="@id/back_button_image_view"
             motion:layout_constraintWidth_percent="0.15"
-            motion:visibilityMode="ignore"/>
+            motion:visibilityMode="ignore" />
         <Constraint
             android:id="@+id/department_name_text_view"
             android:layout_width="0dp"
@@ -58,9 +58,9 @@
             android:layout_width="0dp"
             android:layout_height="0.5dp"
             android:layout_marginTop="@dimen/margin_16dp"
-            motion:layout_constraintTop_toBottomOf="@id/department_name_text_view"
             motion:layout_constraintEnd_toEndOf="parent"
             motion:layout_constraintStart_toStartOf="parent"
+            motion:layout_constraintTop_toBottomOf="@id/department_name_text_view"
             motion:layout_constraintWidth_percent="0.7" />
     </ConstraintSet>
     <ConstraintSet android:id="@+id/end">
@@ -95,7 +95,7 @@
             motion:layout_constraintDimensionRatio="1:1"
             motion:layout_constraintEnd_toEndOf="parent"
             motion:layout_constraintTop_toTopOf="@id/back_button_image_view"
-            motion:visibilityMode="ignore"/>
+            motion:visibilityMode="ignore" />
         <Constraint
             android:id="@+id/department_name_text_view"
             android:layout_width="0dp"
@@ -120,9 +120,9 @@
             android:id="@+id/toolbar_line_view"
             android:layout_width="0dp"
             android:layout_height="0.5dp"
-            motion:layout_constraintTop_toBottomOf="@id/department_name_text_view"
             motion:layout_constraintEnd_toEndOf="parent"
             motion:layout_constraintStart_toStartOf="parent"
+            motion:layout_constraintTop_toBottomOf="@id/department_name_text_view"
             motion:layout_constraintWidth_percent="1" />
 
     </ConstraintSet>

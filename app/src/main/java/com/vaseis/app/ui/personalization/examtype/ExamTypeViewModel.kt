@@ -4,6 +4,7 @@ import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.vaseis.app.base.BaseViewModel
+import com.vaseis.app.domain.properties.ExamType
 import com.vaseis.app.ui.dashboard.accountcenter.model.PrefProperty
 import com.vaseis.app.ui.dashboard.topicscenter.model.ExamTypeItem
 import com.vaseis.app.ui.dashboard.topicscenter.model.map
@@ -26,7 +27,7 @@ class ExamTypeViewModel @ViewModelInject constructor(
 
     fun loadTypes() {
         launch(true)    {
-            val list = map(getAllExamsTypesUseCase())
+            val list = map(getAllExamsTypesUseCase(ExamType.FILTERS))
             val savedExamType = getExamTypeUseCase()
 
             list.firstOrNull { it.examType.id == savedExamType.id}?.isSelected = true

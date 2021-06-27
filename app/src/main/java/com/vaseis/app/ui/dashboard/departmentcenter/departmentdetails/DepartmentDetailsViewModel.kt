@@ -1,8 +1,10 @@
 package com.vaseis.app.ui.dashboard.departmentcenter.departmentdetails
 
+import android.widget.Toast
 import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.viewModelScope
 import com.vaseis.app.base.BaseViewModel
 import com.vaseis.app.domain.bases.entities.DepartmentBases
 import com.vaseis.app.domain.bases.entities.StatsDept
@@ -12,10 +14,15 @@ import com.vaseis.app.ui.dashboard.departmentcenter.departmentdetails.model.LIST
 import com.vaseis.app.usecase.bases.GetDepartmentBases
 import com.vaseis.app.usecase.bases.GetDeptStatsUseCase
 import com.github.mikephil.charting.data.Entry
+import com.vaseis.app.domain.bases.entities.DeptInfo
+import com.vaseis.app.usecase.bases.GetDepartmentInfo
+import kotlinx.coroutines.launch
+import java.io.IOException
 
 class DepartmentDetailsViewModel @ViewModelInject constructor(
     private val getDepartmentBases: GetDepartmentBases,
-    private val getDeptStatsUseCase: GetDeptStatsUseCase
+    private val getDeptStatsUseCase: GetDeptStatsUseCase,
+    private val getDepartmentInfo: GetDepartmentInfo
 ) : BaseViewModel() {
     private var _departmentItems = MutableLiveData<List<DepartmentItem>>()
     val departmentItem = _departmentItems
@@ -26,12 +33,18 @@ class DepartmentDetailsViewModel @ViewModelInject constructor(
     private var _singleStats = MutableLiveData<StatsDept>()
     val singleStats: LiveData<StatsDept> = _singleStats
 
+    private var _singleDeptInfo = MutableLiveData<DeptInfo>()
+    val singleDeptInfo: LiveData<DeptInfo> = _singleDeptInfo
+
+    private var _error = MutableLiveData<String>()
+    val error: LiveData<String> = _error
+
     fun loadSelectedDepartments(departments: Array<DepartmentDetailsArguments>) {
         launch {
             val departmentItems = mutableListOf<DepartmentItem>()
 
             for (i in departments.indices) {
-                val result = getDepartmentBases(departments[i].code)
+                val result = getDepartmentBases(departments[i].code, "gel-ime-gen")
 
                 for (resultDept in result) {
                     val entriesList = mutableListOf<Entry>()
@@ -58,11 +71,20 @@ class DepartmentDetailsViewModel @ViewModelInject constructor(
         }
     }
 
-    fun loadSingleDepartment(code: String) {
-        launch {
-            val result = getDepartmentBases(code)
+    fun loadSingleDepartment(code: String, type : String? = null) {
+        viewModelScope.launch {
+            if(type==null)  {
+                val result = getDepartmentInfo(code)
+                _singleDeptInfo.value = result
+                return@launch
+            }
 
-            _singleDepartment.value = result[0]
+            try {
+                val result = getDepartmentBases(code, type)
+                _singleDepartment.value = result[0]
+            } catch (e : IOException)   {
+                _error.value = e.message
+            }
         }
     }
 

@@ -16,5 +16,4 @@
         android:fitsSystemWindows="true"
         app:defaultNavHost="true"
         app:navGraph="@navigation/app_nav_graph" />
-
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

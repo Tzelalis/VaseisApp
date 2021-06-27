@@ -21,7 +21,8 @@ class PropertiesExamTypeMapper @Inject constructor() {
         return PropertiesExamType(
             this?.id ?:"",
             this?.fullName ?:"",
-            this?.shortName ?:""
+            this?.shortName ?:"",
+            this?.filter ?: ""
         )
     }
 }

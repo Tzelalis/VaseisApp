@@ -9,5 +9,6 @@ data class RemotePropertiesExamTypeResponse(
 data class RemotePropertiesExamType(
     @Json(name = "exam_type_id")val id : String?,
     @Json(name = "full_name")val fullName : String?,
-    @Json(name = "short_name")val shortName : String?
+    @Json(name = "short_name")val shortName : String?,
+    val filter : String?
 )

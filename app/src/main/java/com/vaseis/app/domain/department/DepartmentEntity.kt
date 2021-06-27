@@ -17,5 +17,6 @@ data class Department(
     val websiteURL : String,
     val phone : String,
     val email : String,
-    val uniLogoURL : String
+    val uniLogoURL : String,
+    val fields : List<String>
 )

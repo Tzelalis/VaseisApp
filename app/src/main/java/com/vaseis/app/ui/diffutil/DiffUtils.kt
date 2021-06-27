@@ -6,15 +6,18 @@ import com.vaseis.app.ui.dashboard.accountcenter.model.PropertyItem
 import com.vaseis.app.ui.dashboard.calculator.model.GroupItem
 import com.vaseis.app.ui.dashboard.calculator.model.LessonItem
 import com.vaseis.app.ui.dashboard.departmentcenter.department.models.DepartmentWithSelected
+import com.vaseis.app.ui.dashboard.departmentcenter.department.models.FilterChip
 import com.vaseis.app.ui.dashboard.departmentcenter.departmentdetails.model.DepartmentItem
 import com.vaseis.app.ui.dashboard.departmentcenter.departmentdetails.model.DeptContactItem
+import com.vaseis.app.ui.dashboard.departmentcenter.filters.models.BaseFilterExamTypeItem
 import com.vaseis.app.ui.dashboard.departmentcenter.filters.models.CityFilterItem
+import com.vaseis.app.ui.dashboard.departmentcenter.filters.models.FieldFilterItem
 import com.vaseis.app.ui.dashboard.departmentcenter.filters.models.UniversityFilterItem
 import com.vaseis.app.ui.dashboard.topicscenter.model.ExamTypeItem
 
 val DEPARTMENT_DIFF_UTIL = object : DiffUtil.ItemCallback<DepartmentWithSelected>() {
     override fun areItemsTheSame(oldItem: DepartmentWithSelected, newItem: DepartmentWithSelected): Boolean =
-        oldItem.code == newItem.code
+        oldItem.department.code == newItem.department.code
 
     override fun areContentsTheSame(oldItem: DepartmentWithSelected, newItem: DepartmentWithSelected): Boolean =
         oldItem == newItem
@@ -85,4 +88,25 @@ val DEPT_CONTACT_ITEM_DIFF_UTIL = object : DiffUtil.ItemCallback<DeptContactItem
 
     override fun areContentsTheSame(oldItem: DeptContactItem, newItem: DeptContactItem): Boolean = oldItem == newItem
 }
+
+val BASE_FILTER_EXAM_TYPE_ITEM_DIFF_UTIL = object : DiffUtil.ItemCallback<BaseFilterExamTypeItem>() {
+    override fun areItemsTheSame(oldItem: BaseFilterExamTypeItem, newItem: BaseFilterExamTypeItem): Boolean =
+        oldItem.examType.id == newItem.examType.id
+
+    override fun areContentsTheSame(oldItem: BaseFilterExamTypeItem, newItem: BaseFilterExamTypeItem): Boolean = oldItem == newItem
+}
+
+val FILTER_CHIP_ITEM_DIFF_UTIL = object : DiffUtil.ItemCallback<FilterChip>() {
+    override fun areItemsTheSame(oldItem: FilterChip, newItem: FilterChip): Boolean = oldItem == newItem
+
+    override fun areContentsTheSame(oldItem: FilterChip, newItem: FilterChip): Boolean = oldItem == newItem
+}
+
+val FIELD_FILTER_ITEM_DIFF_UTIL = object : DiffUtil.ItemCallback<FieldFilterItem>() {
+    override fun areItemsTheSame(oldItem: FieldFilterItem, newItem: FieldFilterItem): Boolean = oldItem == newItem
+
+    override fun areContentsTheSame(oldItem: FieldFilterItem, newItem: FieldFilterItem): Boolean = oldItem == newItem
+}
+
+
 

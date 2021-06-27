@@ -4,6 +4,7 @@ import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.vaseis.app.base.BaseViewModel
+import com.vaseis.app.domain.properties.ExamType
 import com.vaseis.app.domain.topics.TopicLesson
 import com.vaseis.app.ui.dashboard.topicscenter.model.ExamTypeItem
 import com.vaseis.app.ui.dashboard.topicscenter.model.map
@@ -34,7 +35,7 @@ class TopicsViewModel @ViewModelInject constructor(
 
     fun loadExamTypes() {
         launch(true) {
-            val result = map(getAllExamsTypesUseCase())
+            val result = map(getAllExamsTypesUseCase(ExamType.TOPICS))
             (result.firstOrNull { it.examType.id == getExamTypeUseCase().id } ?: result[0]).isSelected = true
             _examTypeUI.value = result
         }

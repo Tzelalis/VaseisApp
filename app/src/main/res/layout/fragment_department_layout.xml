@@ -9,6 +9,19 @@
         android:id="@+id/toolbar_layout"
         layout="@layout/main_toolbar" />-->
 
+    <View
+        android:id="@+id/headerBackground"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@color/backgroundColor"
+        android:elevation="1dp"
+        android:paddingBottom="@dimen/margin_8dp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toTopOf="@id/recyclerView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <SearchView
         android:id="@+id/searchbar"
         android:layout_width="0dp"
@@ -16,6 +29,8 @@
         android:layout_marginTop="@dimen/margin_8dp"
         android:layout_marginBottom="@dimen/margin_8dp"
         android:background="@drawable/shape_search_edittext"
+        android:elevation="1dp"
+        android:outlineProvider="none"
         android:fontFamily="@font/roboto"
         android:hint="@string/bases_university_search_hint"
         android:iconifiedByDefault="false"
@@ -29,62 +44,28 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintWidth_percent="0.9" />
 
-    <!--<EditText
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/filter_chips_rv"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="@dimen/margin_8dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="@dimen/margin_8dp"
-        android:background="@drawable/shape_search_edittext"
-        android:fontFamily="@font/roboto"
-        android:hint="αναζητήστε το τμήμα που επιθυμείτε"
-        android:paddingStart="16dp"
-        android:paddingTop="16dp"
-        android:paddingEnd="16dp"
-        android:paddingBottom="16dp"
-        android:singleLine="true"
-        android:textSize="16sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />-->
-
-    <!--<com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/searchTextField"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="8dp"
-        android:hint="Αναζήτηση"
+        android:layout_marginTop="@dimen/margin_4dp"
+        android:layout_marginBottom="@dimen/margin_4dp"
+        android:clipToPadding="false"
+        android:elevation="1dp"
+        android:outlineProvider="none"
+        android:orientation="horizontal"
+        android:paddingStart="@dimen/margin_4dp"
+        android:paddingTop="@dimen/margin_4dp"
+        android:paddingEnd="@dimen/margin_4dp"
+        android:paddingBottom="@dimen/margin_4dp"
         android:visibility="gone"
-        app:boxCornerRadiusBottomEnd="16dp"
-        app:boxCornerRadiusBottomStart="16dp"
-        app:boxCornerRadiusTopEnd="16dp"
-        app:boxCornerRadiusTopStart="16dp"
-        app:endIconMode="clear_text"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/searchTextView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:imeOptions="actionSearch"
-            android:singleLine="true" />
-    </com.google.android.material.textfield.TextInputLayout>-->
-
-    <!--<ImageView
-        android:id="@+id/filterImageView"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@id/searchTextField"
-        app:layout_constraintBottom_toBottomOf="@id/searchTextField"
-        android:src="@drawable/ic_more"/>-->
+        app:layout_constraintTop_toBottomOf="@id/searchbar"
+        app:layout_goneMarginTop="@dimen/margin_16dp"
+        tools:listitem="@layout/item_filter_chip"
+        tools:visibility="visible" />
 
     <com.google.android.material.progressindicator.CircularProgressIndicator
         android:id="@+id/progress_indicator"
@@ -128,6 +109,9 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:orientation="vertical"
+        android:layout_marginTop="@dimen/margin_8dp"
+        android:paddingBottom="128dp"
+        android:clipToPadding="false"
         android:overScrollMode="never"
         android:scrollbars="none"
         android:splitMotionEvents="false"
@@ -135,7 +119,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/searchbar"
+        app:layout_constraintTop_toBottomOf="@id/filter_chips_rv"
         tools:listitem="@layout/item_department" />
 
     <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton

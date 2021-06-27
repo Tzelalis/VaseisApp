@@ -24,7 +24,8 @@ data class RemoteBase(
     val examType: String?,
     val positions: Int?,
     val specialCat: String?,
-    val year: Int?
+    val year: Int?,
+    val field : String?
 )
 
 
@@ -54,6 +55,7 @@ fun RemoteBase.toBase(): Base {
         examType ?: "",
         positions ?: 0,
         specialCat ?: "",
-        year ?: 0
+        year ?: 0,
+        field ?: ""
     )
 }

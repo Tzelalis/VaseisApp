@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Vaseis App</string>
+    <string name="app_name">e-Vaseis</string>
 
     <!-- Dashboard Bottom Nav Menu-->
     <string name="basesTitle">Βάσεις</string>
@@ -72,14 +72,16 @@
     <string name="filter_fab">Φίλτρα</string>
     <string name="base_filter_from">Μόρια από:</string>
     <string name="base_filter_to">Έως:</string>
-    <string name="enable_department_only">Ενεργά τμήματα μόνο</string>
+    <string name="enable_department_only">Προβολή μη ενεργών τμημάτων</string>
     <string name="order_alphabetic">Αλφαβιτικά</string>
-    <string name="order_increasing">Αύξοντα μόρια</string>
+    <string name="order_university">Βάση Ιδρύματος</string>
     <string name="order_decreasing">Φθίνοντα μόρια</string>
     <string name="bases_university_count" >%1$s τμήματα </string>
     <string name="bases_university_search_hint" >αναζήτηση...</string>
     <string name="bases_candidates_label">Προτιμήσεις υποψηφίων</string>
     <string name="bases_candidates_sub_label">Πρώτες 3 θέσεις</string>
+    <string name="bases_fields_label">πεδία</string>
+
 
     <plurals name="bases_candidate">
         <item quantity="one">%1$s\nυποψήφιος</item>

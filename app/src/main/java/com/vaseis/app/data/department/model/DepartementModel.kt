@@ -17,5 +17,6 @@ data class RemoteDepartment(
     val websiteURL : String?,
     val phone : String?,
     val email : String?,
-    val uniLogoURL : String?
+    val uniLogoURL : String?,
+    @Json(name = "field") val fields : String?
 )

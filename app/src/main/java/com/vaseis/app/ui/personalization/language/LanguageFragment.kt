@@ -57,9 +57,9 @@ class LanguageFragment : BaseFragment<FragmentLanguageBinding>() {
         with(viewModel) {
             currentLangUI.observe(viewLifecycleOwner, { lang ->
                 when (lang) {
-                    Language.SYSTEM_DEFAULT -> binding.defaultRadioButton.isChecked = true
                     Language.GREEK -> binding.greekRadioButton.isChecked = true
                     Language.ENGLISH -> binding.englishRadioButton.isChecked = true
+                    else -> binding.defaultRadioButton.isChecked = true
                 }
             })
 

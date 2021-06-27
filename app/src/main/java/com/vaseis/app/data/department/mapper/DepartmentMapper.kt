@@ -19,6 +19,7 @@ class DepartmentMapper @Inject constructor() {
             dept.phone ?: "",
             dept.email ?: "",
             dept.uniLogoURL ?: "",
+            dept.fields?.split("/") ?: listOf()
         )
     }
 }

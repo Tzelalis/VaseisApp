@@ -13,6 +13,12 @@
         <action
             android:id="@+id/action_basesFilterFragment_to_baseFilterCityFragment"
             app:destination="@id/baseFilterCityFragment" />
+        <action
+            android:id="@+id/action_basesFilterFragment_to_basesFilterExamType"
+            app:destination="@id/basesFilterExamType" />
+        <action
+            android:id="@+id/action_basesFilterFragment_to_basesFilterFieldsFragment"
+            app:destination="@id/basesFilterFieldsFragment" />
     </fragment>
     <fragment
         android:id="@+id/basesFilterUniversitiesFragment"
@@ -22,4 +28,12 @@
         android:id="@+id/baseFilterCityFragment"
         android:name="com.vaseis.app.ui.dashboard.departmentcenter.filters.BaseFilterCityFragment"
         android:label="BaseFilterCityFragment" />
+    <fragment
+        android:id="@+id/basesFilterExamType"
+        android:name="com.vaseis.app.ui.dashboard.departmentcenter.filters.BasesFilterExamTypeFragment"
+        android:label="BasesFilterExamType" />
+    <fragment
+        android:id="@+id/basesFilterFieldsFragment"
+        android:name="com.vaseis.app.ui.dashboard.departmentcenter.filters.BasesFilterFieldsFragment"
+        android:label="BasesFilterFieldsFragment" />
 </navigation>

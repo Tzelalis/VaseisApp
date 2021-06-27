@@ -77,7 +77,7 @@ class AccountFragment : BaseFragment<FragmentAccountBinding>() {
     private fun setupObservers() {
         with(viewModel) {
             propertiesUI.observe(viewLifecycleOwner, { prefs ->
-                setupRecyclerView(prefs, R.drawable.img_logo)
+                setupRecyclerView(prefs, R.drawable.api_logo)
             })
 
             loadData()

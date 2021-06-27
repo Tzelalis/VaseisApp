@@ -6,7 +6,7 @@ import androidx.core.content.res.ResourcesCompat
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.vaseis.app.R
-import com.vaseis.app.databinding.ItemBaseFilterUniversityBinding
+import com.vaseis.app.databinding.ItemRvCheckboxBinding
 import com.vaseis.app.ui.dashboard.departmentcenter.filters.models.UniversityFilterItem
 import com.vaseis.app.ui.diffutil.UNIVERSITY_ITEM_DIFF_UTIL
 
@@ -24,7 +24,7 @@ class BaseFilterUniversityAdapter(private val listener: FilterUniversityListener
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FilterUniversityViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
-        val binding = ItemBaseFilterUniversityBinding.inflate(layoutInflater, parent, false)
+        val binding = ItemRvCheckboxBinding.inflate(layoutInflater, parent, false)
         return FilterUniversityViewHolder(binding)
     }
 
@@ -39,18 +39,18 @@ class BaseFilterUniversityAdapter(private val listener: FilterUniversityListener
         return if (position == 0) FIRST_ITEM else NORMAL_ITEM
     }
 
-    inner class FilterUniversityViewHolder(private val binding: ItemBaseFilterUniversityBinding) : RecyclerView.ViewHolder(binding.root) {
+    inner class FilterUniversityViewHolder(private val binding: ItemRvCheckboxBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bindTo(item: UniversityFilterItem) {
             with(binding) {
-                universityNameTextview.text = item.university.title
-                universityCheckbox.isChecked = item.isSelected
+                textView.text = item.university.title
+                checkbox.isChecked = item.isSelected
 
                 root.setOnClickListener {
-                    universityCheckbox.isChecked = !universityCheckbox.isChecked
-                    item.isSelected = universityCheckbox.isChecked
+                    checkbox.isChecked = !checkbox.isChecked
+                    item.isSelected = checkbox.isChecked
                 }
 
-                universityCheckbox.setOnCheckedChangeListener { buttonView, isChecked ->
+                checkbox.setOnCheckedChangeListener { buttonView, isChecked ->
                     if (buttonView.isPressed)
                         item.isSelected = isChecked
                 }
@@ -59,15 +59,15 @@ class BaseFilterUniversityAdapter(private val listener: FilterUniversityListener
 
         fun bindFirstTo(item: UniversityFilterItem) {
             with(binding) {
-                universityNameTextview.text = root.resources.getString(R.string.bases_university_select_all)
-                universityCheckbox.isChecked = item.isSelected
-                universityNameTextview.typeface = ResourcesCompat.getFont(root.context, R.font.roboto_bold);
+                textView.text = root.resources.getString(R.string.bases_university_select_all)
+                checkbox.isChecked = item.isSelected
+                textView.typeface = ResourcesCompat.getFont(root.context, R.font.roboto_bold);
 
                 root.setOnClickListener {
                     listener.selectAllClickListener()
                 }
 
-                universityCheckbox.setOnClickListener {
+                checkbox.setOnClickListener {
                     listener.selectAllClickListener()
                 }
             }

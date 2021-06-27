@@ -8,6 +8,7 @@ import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import com.vaseis.app.R
 import com.vaseis.app.databinding.ActivityMainLayoutBinding
+import com.vaseis.app.ui.main.MainViewModel
 import com.vaseis.app.utils.ThemeHelper
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.activity_main_layout.view.*
@@ -19,8 +20,8 @@ import java.util.*
 class AppActivity : AppCompatActivity() {
 
     private var _binding: ActivityMainLayoutBinding? = null
-    private val binding = _binding
     private val viewModel: AppViewModel by viewModels()
+    private val mainViewModel: MainViewModel by viewModels()
 
     private lateinit var controller: NavController
 
@@ -32,10 +33,8 @@ class AppActivity : AppCompatActivity() {
 
         setContentView(binding.root)
 
-        setupCrashlytics(false)
         setupObservers()
         setupViews()
-
     }
 
     private fun setupViews() {
@@ -43,9 +42,6 @@ class AppActivity : AppCompatActivity() {
         controller = navHostFragment.navController
     }
 
-    private fun setupCrashlytics(enable : Boolean = true)  {
-
-    }
 
     private fun setupObservers() {
         with(viewModel) {

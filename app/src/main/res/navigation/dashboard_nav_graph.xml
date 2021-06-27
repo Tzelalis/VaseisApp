@@ -28,11 +28,7 @@
             app:popExitAnim="@anim/slide_out_right"/>
         <action
             android:id="@+id/action_departmentFragment_to_base_filter_nav_graph"
-            app:destination="@id/base_filter_nav_graph"
-            app:enterAnim="@anim/slide_in_bottom"
-            app:exitAnim="@anim/stable"
-            app:popEnterAnim="@anim/stable"
-            app:popExitAnim="@anim/slide_out_top" />
+            app:destination="@id/base_filter_nav_graph" />
     </fragment>
     <fragment
         android:id="@+id/departmentDetailsFragment"
@@ -98,6 +94,10 @@
             android:name="name"
             app:argType="string"
             android:defaultValue=""/>
+        <argument
+            android:name="type"
+            app:argType="string"
+            android:defaultValue="gel-ime-gen"/>
     </fragment>
     <include app:graph="@navigation/base_filter_nav_graph" />
 </navigation>

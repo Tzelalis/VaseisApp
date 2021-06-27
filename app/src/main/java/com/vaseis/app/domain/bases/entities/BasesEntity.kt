@@ -21,7 +21,8 @@ data class Base(
     val examType: String,
     val positions: Int,
     val specialCat: String,
-    val year: Int
+    val year: Int,
+    val field : String
 )
 
 enum class SpecialType {

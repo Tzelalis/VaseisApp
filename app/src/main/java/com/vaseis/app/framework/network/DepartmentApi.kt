@@ -7,7 +7,7 @@ import retrofit2.http.Query
 
 interface DepartmentApi {
 
-    @GET("/api/index.php/departments/?details=full")
+    @GET("/api/index.php/departments/?details=full&fields=true")
     suspend fun fetchAllDepartments(): List<RemoteDepartment>
 
     @GET("bases/department/{dept_id}")

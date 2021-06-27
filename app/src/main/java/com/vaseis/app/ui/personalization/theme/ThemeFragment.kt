@@ -60,9 +60,9 @@ class ThemeFragment : BaseFragment<FragmentThemeBinding>() {
         with(viewModel) {
             themeUI.observe(viewLifecycleOwner, { theme ->
                 when (theme) {
-                    Theme.SYSTEM_DEFAULT -> binding.defaultRadioButton.isChecked = true
                     Theme.LIGHT -> binding.lightRadioButton.isChecked = true
                     Theme.DARK -> binding.darkRadioButton.isChecked = true
+                    else -> binding.defaultRadioButton.isChecked = true
                 }
             })
 
@@ -83,6 +83,4 @@ class ThemeFragment : BaseFragment<FragmentThemeBinding>() {
             }
         }
     }
-
-
 }

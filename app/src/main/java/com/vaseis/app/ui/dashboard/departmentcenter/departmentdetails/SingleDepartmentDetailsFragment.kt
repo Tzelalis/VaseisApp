@@ -1,4 +1,4 @@
-package com.vaseis.app.ui.dashboard.departmentcenter.departmentdetails
+ package com.vaseis.app.ui.dashboard.departmentcenter.departmentdetails
 
 import android.content.Intent
 import android.graphics.Color
@@ -8,6 +8,7 @@ import android.net.Uri
 import android.os.Bundle
 import android.view.View
 import android.view.animation.AccelerateInterpolator
+import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.core.content.res.ResourcesCompat
 import androidx.core.view.isVisible
@@ -16,6 +17,12 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
+import com.github.mikephil.charting.charts.BarChart
+import com.github.mikephil.charting.components.XAxis
+import com.github.mikephil.charting.data.*
+import com.github.mikephil.charting.formatter.ValueFormatter
+import com.github.mikephil.charting.highlight.Highlight
+import com.github.mikephil.charting.listener.OnChartValueSelectedListener
 import com.vaseis.app.R
 import com.vaseis.app.base.BaseFragment
 import com.vaseis.app.databinding.FragmentSingleDepartmentDetailsBinding
@@ -26,15 +33,9 @@ import com.vaseis.app.ui.dashboard.departmentcenter.departmentdetails.model.Depa
 import com.vaseis.app.ui.dashboard.departmentcenter.departmentdetails.model.DeptConcatType
 import com.vaseis.app.ui.dashboard.departmentcenter.departmentdetails.model.DeptContactItem
 import com.vaseis.app.ui.dashboard.departmentcenter.departmentdetails.model.LIST_OF_COLORS
+import com.vaseis.app.utils.centersnap.CenterDecoration
 import com.vaseis.app.utils.centersnap.CenterSnapHelper
 import com.vaseis.app.utils.centersnap.SnapOnScrollListener
-import com.github.mikephil.charting.charts.BarChart
-import com.github.mikephil.charting.components.XAxis
-import com.github.mikephil.charting.data.*
-import com.github.mikephil.charting.formatter.ValueFormatter
-import com.github.mikephil.charting.highlight.Highlight
-import com.github.mikephil.charting.listener.OnChartValueSelectedListener
-import com.vaseis.app.utils.centersnap.CenterDecoration
 import dagger.hilt.android.AndroidEntryPoint
 
 
@@ -81,11 +82,8 @@ class SingleDepartmentDetailsFragment : BaseFragment<FragmentSingleDepartmentDet
             binding.root.progress = savedInstanceState.getFloat(MOTION_PROGRESS, 0f)
         }
 
-
         setupViews()
         setupObservers()
-
-
     }
 
 
@@ -106,7 +104,15 @@ class SingleDepartmentDetailsFragment : BaseFragment<FragmentSingleDepartmentDet
                 binding.candidatesHorizontalBarChart.updateStatsBarChartAxisHeight(stats.statistics.getMaxCandidatesPositions())
             })
 
-            loadSingleDepartment(args.id)
+            error.observe(viewLifecycleOwner, {
+                loadSingleDepartment(args.id)
+            })
+
+            singleDeptInfo.observe(viewLifecycleOwner, { deptInfo ->
+                fillDeptInfo(deptInfo)
+            })
+
+            loadSingleDepartment(args.id, args.type)
             loadSingleDeptStats(args.id)
         }
     }
@@ -193,11 +199,7 @@ class SingleDepartmentDetailsFragment : BaseFragment<FragmentSingleDepartmentDet
     }
 
     private fun setFirstBase(position: Int) {
-        val baseFirst = viewModel.singleDepartment.value?.bases?.firstOrNull {
-            (it.examType == "ΓΕΛ ΗΜΕΡΗΣΙΑ" || it.examType == "ΓΕΛ ΝΕΟ ΗΜΕΡΗΣΙΑ" || it.examType == "ΓΕΛ, ΕΠΑΛΒ ΗΜΕΡΗΣΙΑ")
-                    && it.year.toString() == yearsAdapter.currentList[position]
-        }?.baseFirst
-
+        val baseFirst = viewModel.singleDepartment.value?.bases?.firstOrNull { it.year.toString() == yearsAdapter.currentList[position] }?.baseFirst
         if (baseFirst.toString().isEmpty()) {
             binding.bestLinearLayout.isVisible = false
             return
@@ -342,6 +344,34 @@ class SingleDepartmentDetailsFragment : BaseFragment<FragmentSingleDepartmentDet
         this.axisLeft.axisMinimum = min
     }
 
+    private fun fillDeptInfo(department: DeptInfo)  {
+        //todo na pw ton malaka na balei to name apo to uni
+        with(binding) {
+            setLogoImg(department.logoURL, department.uniLogoUrl)
+
+            try {
+                departmentNameTextView.text = department.name.substring(0, department.name.indexOf("("))
+                cityTextview.text = department.name.substring(department.name.indexOf("(") + 1, department.name.indexOf(")"))
+            } catch (e: StringIndexOutOfBoundsException) {
+                departmentNameTextView.text = department.name
+                cityTextview.visibility = View.GONE
+                cityTitleTextview.visibility = View.GONE
+            }
+
+            universityTextview.text = getString(R.string.bases_university_format, department.uniFullName, department.uniShortName)
+            bestLinearLayout.isVisible = false
+            successfulConstraintLayout.isVisible = false
+            totalPeopleLinearLayout.isVisible = false
+            vaseisConstraintLayout.isVisible = false
+            moreStatsTextView.isVisible = false
+            fieldTitleTextview.isVisible = false
+            fieldTextview.isVisible = false
+            errorTxt.text = "Δεν υπάρχει ιστορικό βάσεων για τον επιλεγμένο τύπο εξετάσεων."
+            errorTxt.isVisible = true
+        }
+        fillDeptContactAdapter(department.phone, department.websiteURL, department.email)
+    }
+
     private fun fillData(department: DepartmentBases) {
         with(binding) {
             setLogoImg(department.deptLogoURL, department.uniLogoURL)
@@ -349,22 +379,31 @@ class SingleDepartmentDetailsFragment : BaseFragment<FragmentSingleDepartmentDet
             try {
                 departmentNameTextView.text = department.deptName.substring(0, department.deptName.indexOf("("))
                 cityTextview.text = department.deptName.substring(department.deptName.indexOf("(") + 1, department.deptName.indexOf(")"))
-
             } catch (e: StringIndexOutOfBoundsException) {
                 departmentNameTextView.text = department.deptName
                 cityTextview.visibility = View.GONE
                 cityTitleTextview.visibility = View.GONE
             }
 
+            val fields = department.bases.firstOrNull { base ->
+                base.year == department.bases.maxOf { it.year }
+                        && (base.examType == "ΓΕΛ ΗΜΕΡΗΣΙΑ" || base.examType == "ΓΕΛ ΝΕΟ ΗΜΕΡΗΣΙΑ" || base.examType == "ΓΕΛ, ΕΠΑΛΒ ΗΜΕΡΗΣΙΑ")
+                        && base.field.isNotBlank()
+            }?.field
+            if (fields.isNullOrBlank()) {
+                fieldTextview.visibility = View.GONE
+                fieldTitleTextview.visibility = View.GONE
+            } else {
+                fieldTextview.text = fields.replace("/", ", ")
+            }
+
             binding.universityTextview.text = getString(R.string.bases_university_format, department.uniTitle, department.uniTitleShort)
         }
-        fillDeptContactAdapter(department)
+        fillDeptContactAdapter(department.phone, department.websiteURL, department.email)
 
         val entriesList = mutableListOf<Entry>()
-        for (base in department.bases) {
-            if (base.examType == "ΓΕΛ ΗΜΕΡΗΣΙΑ" || base.examType == "ΓΕΛ ΝΕΟ ΗΜΕΡΗΣΙΑ" || base.examType == "ΓΕΛ, ΕΠΑΛΒ ΗΜΕΡΗΣΙΑ")
-                entriesList.add(Entry(base.year.toFloat(), base.baseLast.toFloat()))
-        }
+        for (base in department.bases)
+            entriesList.add(Entry(base.year.toFloat(), base.baseLast.toFloat()))
 
         val deptItem = DepartmentItem(
             department.code,
@@ -400,10 +439,10 @@ class SingleDepartmentDetailsFragment : BaseFragment<FragmentSingleDepartmentDet
         binding.departmentImg.visibility = View.INVISIBLE
     }
 
-    private fun fillDeptContactAdapter(department: DepartmentBases) {
-        val phones = department.phone.split(", ")
-        val websites = department.websiteURL.split(", ")
-        val emails = department.email.split(", ")
+    private fun fillDeptContactAdapter(phonesValue : String, websitesValue : String, emailsValue : String) {
+        val phones = phonesValue.split(", ")
+        val websites = websitesValue.split(", ")
+        val emails = emailsValue.split(", ")
 
         val list = mutableListOf<DeptContactItem>()
         for (phone in phones)

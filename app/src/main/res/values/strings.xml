@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Vaseis App</string>
+    <string name="app_name">e-Vaseis</string>
 
     <!-- Dashboard Bottom Nav Menu-->
     <string name="basesTitle">Bases</string>
@@ -75,21 +75,30 @@
     <string name="filter_fab">Filters</string>
     <string name="base_filter_from">Degree from:</string>
     <string name="base_filter_to">To:</string>
-    <string name="enable_department_only">Only Enable Departments</string>
+    <string name="enable_department_only">Show disable departments</string>
     <string name="order_alphabetic">Alphabetic</string>
-    <string name="order_increasing">Increasing degree</string>
+    <string name="order_university">By University</string>
     <string name="order_decreasing">Decreasing degree</string>
     <string name="bases_first_degree" translatable="false">μόρια\n%1$s</string>
     <string name="bases_first_degree_label" translatable="false">καλύτερη επίδοση</string>
     <string name="bases_total_candidates_label" translatable="false">συνολική συμμετοχή</string>
-    <string name="bases_university_label" translatable="false">του ιδρύματος</string>
-    <string name="bases_city_label" translatable="false">στη πόλη</string>
+    <string name="bases_university_label" translatable="false">ίδρυμα</string>
+    <string name="bases_fields_label">πεδία</string>
+    <string name="bases_city_label" translatable="false">πόλη</string>
     <string name="bases_university_format" translatable="false">%1$s, %2$s</string>
     <string name="bases_university_select_all" translatable="false">Επιλογή όλων</string>
     <string name="bases_university_count">%1$s departments </string>
     <string name="bases_university_search_hint">search...</string>
     <string name="bases_candidates_label">Προτιμήσεις υποψηφίων</string>
     <string name="bases_candidates_sub_label">Πρώτες 3 θέσεις</string>
+    <string name="bases_filter_universities_count" translatable="false">(%1$s)</string>
+    <string name="bases_filter_universities_chip" translatable="false">Ιδρύματα (%1$s)</string>
+    <string name="bases_filter_fields" translatable="false">Επιστημονικά Πεδία</string>
+
+    <plurals name="bases_filter_universities_chip">
+        <item quantity="one">Ίδρυμα (%1$s)</item>
+        <item quantity="other">Ιδρύματα (%1$s)</item>
+    </plurals>
 
     <plurals name="bases_candidate">
         <item quantity="one">%d\ncandidate</item>

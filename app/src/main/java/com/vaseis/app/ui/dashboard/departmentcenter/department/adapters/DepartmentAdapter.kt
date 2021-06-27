@@ -46,26 +46,26 @@ class DepartmentAdapter(
 
     inner class UniversityViewHolder(private val binding: ItemDepartmentBinding) : RecyclerView.ViewHolder(binding.root) {
         @SuppressLint("ResourceAsColor")
-        fun bindTo(department: DepartmentWithSelected, position: Int) {
+        fun bindTo(departmentItem: DepartmentWithSelected, position: Int) {
             with(binding) {
                 try {
-                    titleTextView.text = department.name.substring(0, department.name.indexOf("("))
+                    titleTextView.text = departmentItem.department.name.substring(0, departmentItem.department.name.indexOf("("))
                     cityAndUniversityTextView.text = String.format(
-                        "${department.uniTitle}, ${
-                            department.name.substring(
-                                department.name.indexOf("(") + 1,
-                                department.name.indexOf(")")
+                        "${departmentItem.department.uniTitle}, ${
+                            departmentItem.department.name.substring(
+                                departmentItem.department.name.indexOf("(") + 1,
+                                departmentItem.department.name.indexOf(")")
                             )
                         }"
                     )
                 } catch (e: StringIndexOutOfBoundsException) {
-                    titleTextView.text = department.name
+                    titleTextView.text = departmentItem.department.name
                 }
 
-                setupLogoImg(department.logoUrl, department.uniUrl)
+                setupLogoImg(departmentItem.department.logoUrl, departmentItem.department.uniLogoURL)
 
                 root.setOnClickListener {
-                    listener.onItemClickListener(department.code, department.name)
+                    listener.onItemClickListener(departmentItem.department.code, departmentItem.department.name)
                 }
 
                 root.setOnLongClickListener {
@@ -76,18 +76,18 @@ class DepartmentAdapter(
                     listener.onCodeClickListener(position)
                 }
 
-                if (department.isSelected) {
+                if (departmentItem.isSelected) {
                     backgroundView.setBackgroundColor(ContextCompat.getColor(root.context, R.color.university_selected_background))
                     idTextView.text = ""
                     idTextView.background = ContextCompat.getDrawable(root.context, R.drawable.ic_check)
                 } else {
                     root.background = ContextCompat.getDrawable(root.context, R.drawable.cardview_background_16_clickable)
-                    idTextView.text = department.code
+                    idTextView.text = departmentItem.department.code
                     idTextView.background = ContextCompat.getDrawable(root.context, R.drawable.circle_view)
                 }
 
 
-                if (!department.isNowSelected)
+                if (!departmentItem.isNowSelected)
                     return
 
                 //text flip
@@ -101,15 +101,15 @@ class DepartmentAdapter(
                 oa1.addListener(object : AnimatorListenerAdapter() {
                     override fun onAnimationEnd(animation: Animator) {
                         super.onAnimationEnd(animation)
-                        if (department.isSelected) {
+                        if (departmentItem.isSelected) {
                             idTextView.text = ""
                             idTextView.background = ContextCompat.getDrawable(root.context, R.drawable.ic_check)
                         } else {
-                            idTextView.text = department.code.toString()
+                            idTextView.text = departmentItem.department.code
                             idTextView.background = ContextCompat.getDrawable(root.context, R.drawable.circle_view)
                         }
                         oa2.start()
-                        department.isNowSelected = false
+                        departmentItem.isNowSelected = false
                     }
                 })
                 oa1.start()

@@ -64,6 +64,13 @@
             app:exitAnim="@anim/stable"
             app:popEnterAnim="@anim/stable"
             app:popExitAnim="@anim/slide_out_right"/>
+        <action
+            android:id="@+id/action_mainFragment_to_base_filter_nav_graph"
+            app:destination="@id/base_filter_nav_graph"
+            app:enterAnim="@anim/slide_in_bottom"
+            app:exitAnim="@anim/stable"
+            app:popEnterAnim="@anim/stable"
+            app:popExitAnim="@anim/slide_out_top"/>
     </fragment>
     <include app:graph="@navigation/personalization_nav_graph" />
 
@@ -95,4 +102,5 @@
         android:name="com.vaseis.app.ui.personalization.theme.ThemeFragment"
         android:label="ThemeFragment"
         tools:layout="@layout/fragment_theme"/>
+    <include app:graph="@navigation/base_filter_nav_graph" />
 </navigation>

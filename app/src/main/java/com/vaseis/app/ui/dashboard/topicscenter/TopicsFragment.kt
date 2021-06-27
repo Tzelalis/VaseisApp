@@ -107,6 +107,7 @@ class TopicsFragment : BaseFragment<FragmentTopicsBinding>() {
 
             val listener = object : TopicsAdapter.TopicListener {
                 override fun topicOnClick(topic: Topic) {
+
                     try {
                         val intent = Intent(Intent.ACTION_VIEW)
                         intent.setDataAndType(Uri.parse(topic.pdfUrl), "application/pdf")
@@ -116,6 +117,7 @@ class TopicsFragment : BaseFragment<FragmentTopicsBinding>() {
                         Toast.makeText(context, getString(R.string.topics_pdf_no_open), Toast.LENGTH_SHORT).show()
                         startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(topic.pdfUrl)))
                     }
+
                 }
             }
             val adapter = TopicsAdapter(listener)

@@ -5,7 +5,7 @@ import com.vaseis.app.domain.bases.entities.DepartmentBases
 import javax.inject.Inject
 
 class GetDepartmentBases @Inject constructor(private val dataSource: BasesDataSource) {
-    suspend operator fun invoke(code: String): List<DepartmentBases> {
-        return dataSource.getBases(code)
+    suspend operator fun invoke(code: String, type : String): List<DepartmentBases> {
+        return dataSource.getBases(code, type)
     }
 }
