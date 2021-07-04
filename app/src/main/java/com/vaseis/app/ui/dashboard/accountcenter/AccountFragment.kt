@@ -39,13 +39,13 @@ class AccountFragment : BaseFragment<FragmentAccountBinding>() {
         override fun onClickListener(property: PropertyItem) {
             when (property.id) {
                 PropertyFragment.LANGUAGE -> mainViewModel.navigate(MainFragmentDirections.actionMainToLanguage())
-                PropertyFragment.USER_TYPE -> mainViewModel.navigate(MainFragmentDirections.actionMainToUserType())
                 PropertyFragment.EXAM_TYPE -> mainViewModel.navigate(MainFragmentDirections.actionMainToExamType())
-                PropertyFragment.GROUP_TYPE -> mainViewModel.navigate(MainFragmentDirections.actionMainToGroup())
+                PropertyFragment.FIELDS -> mainViewModel.navigate(MainFragmentDirections.actionMainToGroup())
                 PropertyFragment.THEME -> mainViewModel.navigate(MainFragmentDirections.actionMainToTheme())
                 PropertyFragment.RATE_US -> rateUs()
                 PropertyFragment.SHARE -> shareApp()
                 PropertyFragment.BUG -> sendBug()
+                PropertyFragment.ABOUT_API -> aboutAPI()
                 else -> {
                 }
             }
@@ -85,11 +85,17 @@ class AccountFragment : BaseFragment<FragmentAccountBinding>() {
     }
 
     private fun setupRecyclerView(prefs: PropertiesFromPrefs, imgId: Int) {
+        val fieldsBuilder = StringBuilder()
+        for (i in prefs.fields.indices) {
+            fieldsBuilder.append(prefs.fields[i].name)
+            if(i < prefs.fields.size-1)
+                fieldsBuilder.append(", ")
+        }
+
         val accountList = listOf(
             PropertyItem(null, getString(R.string.account_account_title), ""),
-            PropertyItem(PropertyFragment.USER_TYPE, getString(PropertyFragment.USER_TYPE.stringId), ""),
             PropertyItem(PropertyFragment.EXAM_TYPE, getString(PropertyFragment.EXAM_TYPE.stringId), prefs.examsType),
-            PropertyItem(PropertyFragment.GROUP_TYPE, getString(PropertyFragment.GROUP_TYPE.stringId), prefs.groupType),
+            PropertyItem(PropertyFragment.FIELDS, getString(PropertyFragment.FIELDS.stringId), fieldsBuilder.toString()),
         )
         val systemList = listOf(
             PropertyItem(null, getString(R.string.account_system), ""),
@@ -105,7 +111,7 @@ class AccountFragment : BaseFragment<FragmentAccountBinding>() {
         val creditsList = listOf(
             PropertyItem(null, getString(R.string.account_credits), ""),
             PropertyItem(null, getString(R.string.account_about_app), ""),
-            PropertyItem(null, getString(R.string.account_about_api), ""),
+            PropertyItem(PropertyFragment.ABOUT_API, getString(R.string.account_about_api), ""),
             PropertyItem(null, getString(R.string.account_special_thanks), ""),
         )
         val versionList = listOf("Version ${context?.packageManager?.getPackageInfo(requireContext().packageName, 0)?.versionName}")
@@ -149,6 +155,12 @@ class AccountFragment : BaseFragment<FragmentAccountBinding>() {
         } catch (e: ActivityNotFoundException) {
             startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=" + activity?.packageName)))
         }
+    }
+
+    private fun aboutAPI()  {
+        val i = Intent(Intent.ACTION_VIEW)
+        i.data = Uri.parse("https://vaseis.iee.ihu.gr/api/")
+        startActivity(i)
     }
 
 

@@ -8,7 +8,7 @@ data class PropertiesFromPrefs(
     @IntegerRes val language: Int,
     @IntegerRes val theme : Int,
     val examsType: String,
-    val groupType: String
+    val fields: List<PrefProperty>
 )
 
 @Parcelize

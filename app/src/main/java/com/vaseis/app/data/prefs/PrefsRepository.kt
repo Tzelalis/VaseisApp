@@ -9,9 +9,9 @@ interface PrefsRepository {
 
     suspend fun getExamType() : String
 
-    suspend fun setGroupType(type : String)
+    suspend fun setPrefsField(type : String)
 
-    suspend fun getGroupType() : String
+    suspend fun getPrefsFields() : String
 
     suspend fun setTheme(theme : String)
 

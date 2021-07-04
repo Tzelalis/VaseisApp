@@ -10,7 +10,7 @@ import com.vaseis.app.domain.prefs.Theme
 import com.vaseis.app.ui.dashboard.accountcenter.model.PropertiesFromPrefs
 import com.vaseis.app.ui.dashboard.accountcenter.model.PropertyItem
 import com.vaseis.app.usecase.prefs.GetExamTypeUseCase
-import com.vaseis.app.usecase.prefs.GetGroupTypeUseCase
+import com.vaseis.app.usecase.prefs.GetPrefsFieldsUseCase
 import com.vaseis.app.usecase.prefs.GetLanguageUseCase
 import com.vaseis.app.usecase.prefs.GetThemeUseCase
 import com.vaseis.app.utils.SingleLiveEvent
@@ -18,7 +18,7 @@ import com.vaseis.app.utils.SingleLiveEvent
 class AccountViewModel @ViewModelInject constructor(
     private val getLanguageUseCase: GetLanguageUseCase,
     private val getExamTypeUseCase: GetExamTypeUseCase,
-    private val getGroupTypeUseCase: GetGroupTypeUseCase,
+    private val getPrefsFieldsUseCase: GetPrefsFieldsUseCase,
     private val getThemeUseCase: GetThemeUseCase
 ) : BaseViewModel() {
     private var _properties = MutableLiveData<List<List<PropertyItem>>>()
@@ -42,9 +42,9 @@ class AccountViewModel @ViewModelInject constructor(
             }
 
             val exams = getExamTypeUseCase()
-            val group = getGroupTypeUseCase()
+            val group = getPrefsFieldsUseCase()
 
-            _propertiesUI.value = PropertiesFromPrefs(langString, themeString, exams.name, group.name)
+            _propertiesUI.value = PropertiesFromPrefs(langString, themeString, exams.name, group)
         }
     }
 }

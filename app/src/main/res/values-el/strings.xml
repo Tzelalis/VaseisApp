@@ -16,18 +16,13 @@
     <string name="language_subtitle">Επιλέξτε την γλώσσα της εφαρμογής.\nΚάποιες πληροφοριές θα εμφανίζοντε πάντα στα ελληνικά.</string>
     <string name="language_system_default">Γλώσσα συστήματος</string>
 
-    <!-- UserType Fragment -->
-    <string name="user_type_title">Τύπος χρήστη</string>
-    <string name="user_type_subtitle">Τι τύπου χρήστης είστε; \n
-        Μπορείτε να αλλάξετε την επιλογή σας αργότερα από τις ρυθμίσεις.</string>
-
     <!-- Exam Type Fragment-->
     <string name="category_title">Κατηγορία</string>
     <string name="category_subtitle">Ποια κατηγορία πανελληνίων σας ενδιαφέρει;\n</string>
 
-    <!-- CalculatorGroup Fragment -->
-    <string name="group_title">Πεδίο</string>
-    <string name="group_subtitle">Επιλέξτε το πεδίο που επιθυμείτε.\n</string>
+    <!-- Fields Fragment -->
+    <string name="fields_title">Επιστημονικά Πεδία</string>
+    <string name="fields_subtitle">Επιλέξτε τα επιστημονικά πεδία που επιθυμείτε.\n</string>
 
     <!-- Theme Fragment -->
     <string name="theme_title">Θέμα</string>
@@ -42,9 +37,8 @@
 
     <!-- Account -->
     <string name="account_account_title">Λογαριασμός</string>
-    <string name="account_user_type">Τύπος χρήστη</string>
     <string name="account_exam_type_name">Τύπος εξετάσης</string>
-    <string name="account_group_type">Πεδίο</string>
+    <string name="account_fields">Επιστημονικά Πεδία</string>
     <string name="account_user_type_student">Μαθητής</string>
     <string name="account_user_type_teacher">Φοιτητής</string>
     <string name="account_system">Σύστημα</string>

@@ -7,53 +7,53 @@ import com.vaseis.app.data.calculator.model.RemoteCalculatorResponse
 import com.vaseis.app.domain.calculation.entities.CalculatorExamType
 import com.vaseis.app.domain.calculation.entities.CalculatorGroup
 import com.vaseis.app.domain.calculation.entities.CalculatorLesson
+import com.vaseis.app.domain.calculation.entities.CalculatorResponse
 import com.vaseis.app.utils.mapAsync
 import javax.inject.Inject
 
 class CalculatorMapper @Inject constructor() {
 
-    suspend operator fun invoke(examTypes: RemoteCalculatorResponse): List<CalculatorExamType> {
-        return map(examTypes.examsTypes.toMutableList())
+    suspend operator fun invoke(response: RemoteCalculatorResponse): CalculatorResponse {
+        return CalculatorResponse(mapExamType(response.examTypes))
     }
 
-    private suspend fun map(mappable: MutableList<RemoteCalculatorExamType?>?): List<CalculatorExamType> {
-        return mappable?.map { it.toCalculatorExamType() } ?: emptyList()
+    private suspend fun mapExamType(mappable: List<RemoteCalculatorExamType?>?): List<CalculatorExamType> {
+        return mappable?.mapAsync { it?.toCalculatorExamType() ?: CalculatorExamType("", "", "", listOf()) } ?: emptyList()
     }
 
-    private suspend fun RemoteCalculatorExamType?.toCalculatorExamType(): CalculatorExamType {
-        return CalculatorExamType(
-            this?.id ?: "",
-            this?.fullName ?: "",
-            this?.shortName ?: "",
-            mapGroup(this?.groups?.toMutableList())
+    private suspend fun RemoteCalculatorExamType.toCalculatorExamType(): CalculatorExamType =
+        CalculatorExamType(
+            examTypeItem ?: "",
+            fullName ?: "",
+            shortName ?: "",
+            mapGroup(groups)
         )
+
+
+    private suspend fun mapGroup(mappable: List<RemoteCalculatorGroup?>?): List<CalculatorGroup> {
+        return mappable?.mapAsync { it?.toCalculatorGroup() ?: CalculatorGroup("", "", "", listOf()) } ?: emptyList()
     }
 
-    private suspend fun mapGroup(mappable: MutableList<RemoteCalculatorGroup?>?): List<CalculatorGroup> {
-        return mappable?.map { it.toCalculatorGroup() } ?: emptyList()
-    }
-
-    private suspend fun RemoteCalculatorGroup?.toCalculatorGroup(): CalculatorGroup {
-        return CalculatorGroup(
-            this?.id ?: "",
-            this?.fullName ?: "",
-            this?.shortName ?: "",
-            mapLesson(this?.mandatoryLessons?.toMutableList()),
-            this?.optionalCount ?: 0
+    private suspend fun RemoteCalculatorGroup.toCalculatorGroup(): CalculatorGroup =
+        CalculatorGroup(
+            groupId ?: "",
+            fullName ?: "",
+            shortName ?: "",
+            mapLesson(lessons)
         )
+
+    private suspend fun mapLesson(mappable: List<RemoteCalculatorLesson?>?): List<CalculatorLesson> {
+        return mappable?.mapAsync {
+            it?.toCalculatorLesson() ?: CalculatorLesson("", "", "", false, 0.0)
+        } ?: emptyList()
     }
 
-    suspend fun mapLesson(mappable: MutableList<RemoteCalculatorLesson?>?): List<CalculatorLesson> {
-        return mappable?.mapAsync { it.toCalculatorLesson() } ?: emptyList()
-    }
-
-    private fun RemoteCalculatorLesson?.toCalculatorLesson(): CalculatorLesson {
-        return CalculatorLesson(
-            this?.id ?: "",
-            this?.fullName ?: "",
-            this?.shortName ?: "",
-            this?.gravity ?: 0.0,
-            this?.isMandatory ?: false
+    private fun RemoteCalculatorLesson.toCalculatorLesson(): CalculatorLesson =
+        CalculatorLesson(
+            lessonId ?: "",
+            fullName ?: "",
+            shortName ?: "",
+            isMandatory ?: false,
+            weight ?: 0.0
         )
-    }
 }

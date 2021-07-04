@@ -9,12 +9,12 @@ data class PropertyItem(
 )
 
 enum class PropertyFragment(val stringId: Int) {
-    USER_TYPE(R.string.account_user_type),
     THEME(R.string.account_theme),
     LANGUAGE(R.string.account_language),
     RATE_US(R.string.account_rate),
     SHARE(R.string.account_share),
     BUG(R.string.account_bug),
     EXAM_TYPE(R.string.account_exam_type_name),
-    GROUP_TYPE(R.string.account_group_type)
+    FIELDS(R.string.account_fields),
+    ABOUT_API(R.string.account_about_api)
 }

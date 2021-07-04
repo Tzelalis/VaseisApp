@@ -60,7 +60,7 @@ val TOPIC_ITEM_DIFF_UTIL = object : DiffUtil.ItemCallback<Topic>() {
 }
 
 val GROUP_ITEM_DIFF_UTIL = object : DiffUtil.ItemCallback<GroupItem>() {
-    override fun areItemsTheSame(oldItem: GroupItem, newItem: GroupItem): Boolean = oldItem.calculatorGroup.id == oldItem.calculatorGroup.id
+    override fun areItemsTheSame(oldItem: GroupItem, newItem: GroupItem): Boolean = oldItem.calculatorGroup.groupId == oldItem.calculatorGroup.groupId
 
     override fun areContentsTheSame(oldItem: GroupItem, newItem: GroupItem): Boolean = oldItem == newItem
 }

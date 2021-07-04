@@ -36,7 +36,7 @@ class CalculatorGroupFragment : BaseFragment<FragmentCalculatorGroupBinding>() {
     private val groupListener = object : GroupAdapter.GroupListener {
         override fun onGroupClickListener(selectedGroup: GroupItem, position: Int) {
             binding.groupsRecyclerView.smoothScrollToPosition(position)
-            viewModel.groupsUI.value?.get(position)?.calculatorGroup?.mandatoryCalculatorLessons?.let { viewModel.loadLessons(it) }
+            viewModel.groupsUI.value?.get(position)?.calculatorGroup?.lessons?.let { viewModel.loadLessons(it) }
 
             setResultDegree()
         }
@@ -84,13 +84,13 @@ class CalculatorGroupFragment : BaseFragment<FragmentCalculatorGroupBinding>() {
         groupAdapter.submitList(groups)
 
         val index = groups.indexOf((groups.firstOrNull { it.isSelected } ?: groups[0]))
-        viewModel.loadLessons(groups[index].calculatorGroup.mandatoryCalculatorLessons)
+        viewModel.loadLessons(groups[index].calculatorGroup.lessons)
     }
 
     private fun setResultDegree() {
         var result = 0.0
         for (i in 0 until lessonsAdapter.currentList.size) {
-            result += (lessonsAdapter.currentList[i].degree.toDoubleOrNull() ?: 0.0) * lessonsAdapter.currentList[i].calculatorLesson.gravity
+            result += (lessonsAdapter.currentList[i].degree.toDoubleOrNull() ?: 0.0) * lessonsAdapter.currentList[i].calculatorLesson.weight
         }
 
         calculatorViewModel.changeResult(result.toInt().toString())

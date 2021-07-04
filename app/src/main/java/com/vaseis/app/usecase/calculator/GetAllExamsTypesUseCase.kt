@@ -6,6 +6,6 @@ import javax.inject.Inject
 
 class GetAllExamsTypesUseCase @Inject constructor(private val dataSource: CalculatorDataSource) {
     suspend operator fun invoke(): List<CalculatorExamType> {
-        return dataSource.getAllExamsTypes()
+        return dataSource.getCalculator()
     }
 }

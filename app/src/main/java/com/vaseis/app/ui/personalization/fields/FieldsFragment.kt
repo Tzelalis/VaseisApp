@@ -1,23 +1,24 @@
-package com.vaseis.app.ui.personalization.group
+package com.vaseis.app.ui.personalization.fields
 
 import android.content.Context
 import android.os.Bundle
 import android.view.View
 import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import com.vaseis.app.base.BaseFragment
 import com.vaseis.app.databinding.FragmentGroupBinding
 import com.vaseis.app.ui.dashboard.accountcenter.model.PrefProperty
+import com.vaseis.app.ui.personalization.fields.adapter.FieldsAdapter
 import com.vaseis.app.utils.setTopMarginForStatusBar
 import dagger.hilt.android.AndroidEntryPoint
 
 
 @AndroidEntryPoint
-class GroupFragment : BaseFragment<FragmentGroupBinding>() {
+class FieldsFragment : BaseFragment<FragmentGroupBinding>() {
 
-    private val viewModel: GroupViewModel by viewModels()
-
-    private val adapter: GroupTypeListAdapter by lazy { GroupTypeListAdapter() }
+    private val viewModel: FieldsViewModel by viewModels()
+    private val adapter: FieldsAdapter by lazy { FieldsAdapter() }
 
     override fun getViewBinding(): FragmentGroupBinding = FragmentGroupBinding.inflate(layoutInflater)
 
@@ -34,12 +35,14 @@ class GroupFragment : BaseFragment<FragmentGroupBinding>() {
             true // default to enabled
         ) {
             override fun handleOnBackPressed() {
-                adapter.currentList.firstOrNull { item -> item.isSelected }?.calculatorGroup?.let { group ->
-                    viewModel.savedData(PrefProperty(group.id, group.shortName))
+                val properties = mutableListOf<PrefProperty>()
+                for (selectedFields in adapter.currentList.filter { item -> item.isSelected }) {
+                    properties.add(PrefProperty(selectedFields.field.key, selectedFields.field.shortName))
                 }
+                viewModel.savedData(properties)
 
                 isEnabled = false
-                activity?.onBackPressed()
+                findNavController().navigateUp()
             }
         }
         requireActivity().onBackPressedDispatcher.addCallback(this, callback)
@@ -55,22 +58,23 @@ class GroupFragment : BaseFragment<FragmentGroupBinding>() {
 
             groupRecyclerView.adapter = adapter
 
-            proceedButton.setOnClickListener {
-                adapter.currentList.firstOrNull { item -> item.isSelected }?.calculatorGroup?.let { group ->
-                    viewModel.savedData(
-                        PrefProperty(
-                            group.id,
-                            group.shortName
-                        )
-                    )
-                }
-            }
+            /* proceedButton.setOnClickListener {
+                 adapter.currentList.firstOrNull { item -> item.isSelected }?.calculatorGroup?.let { group ->
+                     viewModel.savedData(
+                         PrefProperty(
+                             group.id,
+                             group.shortName
+                         )
+                     )
+                 }
+             }*/
         }
     }
 
     private fun setupObservers() {
         with(viewModel) {
-            groupsUI.observe(viewLifecycleOwner, { list ->
+            fieldsUI.observe(viewLifecycleOwner, { list ->
+
                 adapter.submitList(list)
             })
 

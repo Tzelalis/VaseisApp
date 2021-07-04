@@ -37,12 +37,12 @@ class CalculatorFragment : BaseFragment<FragmentCalculatorBinding>() {
         }
     }
 
-    private fun setupViewPagerWithTabs(examsTypeCalculators: List<CalculatorExamType>) {
+    private fun setupViewPagerWithTabs(examsTypeDummyCalculators: List<CalculatorExamType>) {
         with(binding) {
             if (groupsViewPager.adapter == null) {   //viewpager keep adapter (for some reason) after change fragment
-                groupsViewPager.adapter = ExamTypeViewPagerAdapter(this@CalculatorFragment, examsTypeCalculators)
+                groupsViewPager.adapter = ExamTypeViewPagerAdapter(this@CalculatorFragment, examsTypeDummyCalculators)
                 TabLayoutMediator(examsTypeTabLayout, groupsViewPager) { tab, position ->
-                    tab.text = examsTypeCalculators[position].short_name
+                    tab.text = examsTypeDummyCalculators[position].shortName
                 }.attach()
             }
         }

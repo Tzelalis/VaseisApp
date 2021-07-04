@@ -11,9 +11,9 @@ interface PrefsDataSource {
 
     suspend fun getExamType() : PrefProperty
 
-    suspend fun setGroupType(type : PrefProperty)
+    suspend fun setPrefsFields(type : List<PrefProperty>)
 
-    suspend fun getGroupType() : PrefProperty
+    suspend fun getPrefsFieldsType() : List<PrefProperty>
 
     suspend fun setTheme(theme : Theme)
 

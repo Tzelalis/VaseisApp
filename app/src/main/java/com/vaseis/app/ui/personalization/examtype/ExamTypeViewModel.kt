@@ -11,13 +11,12 @@ import com.vaseis.app.ui.dashboard.topicscenter.model.map
 import com.vaseis.app.usecase.calculator.GetPropertiesExamsTypes
 import com.vaseis.app.usecase.prefs.GetExamTypeUseCase
 import com.vaseis.app.usecase.prefs.SetExamTypeUseCase
-import com.vaseis.app.usecase.prefs.SetGroupTypeUseCase
+import com.vaseis.app.usecase.prefs.SetPrefsFieldsUseCase
 
 class ExamTypeViewModel @ViewModelInject constructor(
     private val getAllExamsTypesUseCase: GetPropertiesExamsTypes,
     private val setExamTypeUseCase: SetExamTypeUseCase,
     private val getExamTypeUseCase: GetExamTypeUseCase,
-    private val setGroupTypeUseCase: SetGroupTypeUseCase
 ) : BaseViewModel() {
     private var _typesUI = MutableLiveData<List<ExamTypeItem>>()
     val typesUI : LiveData<List<ExamTypeItem>> = _typesUI
@@ -38,9 +37,6 @@ class ExamTypeViewModel @ViewModelInject constructor(
 
     fun saveTypes(property : PrefProperty) {
         launch(true){
-            if(property.id != getExamTypeUseCase().id)
-                setGroupTypeUseCase(PrefProperty("", ""))
-
             setExamTypeUseCase(property)
             _savedUI.value = Unit
         }

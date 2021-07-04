@@ -17,19 +17,14 @@
     <string name="language_greek" translatable="false">Ελληνικά</string>
     <string name="language_system_default">System Default</string>
 
-    <!-- UserType Fragment -->
-    <string name="user_type_title">User type</string>
-    <string name="user_type_subtitle">Ποια κατηγορία πανελληνίων σας ενδιαφέρει; \n
-        You can change your choice later into app.</string>
-
     <!-- Exam Type Fragment -->
     <string name="category_title">Category</string>
     <string name="category_subtitle">Ποια κατηγορία πανελληνίων σας ενδιαφέρει; \n
         You can change your choice later into app.</string>
 
-    <!-- CalculatorGroup Fragment -->
-    <string name="group_title">Group</string>
-    <string name="group_subtitle">Select your group</string>
+    <!-- Field Fragment -->
+    <string name="fields_title">Scientific Fields</string>
+    <string name="fields_subtitle">Select your scientific fields</string>
 
     <!-- Theme Fragment -->
     <string name="theme_title">Theme</string>
@@ -46,8 +41,7 @@
     <!-- Account -->
     <string name="account_account_title">Account</string>
     <string name="account_exam_type_name">Category</string>
-    <string name="account_user_type">User Type</string>
-    <string name="account_group_type">Group Type</string>
+    <string name="account_fields">Scientific Fields </string>
     <string name="account_user_type_student">Student</string>
     <string name="account_user_type_teacher">Teacher</string>
     <string name="account_system">System</string>

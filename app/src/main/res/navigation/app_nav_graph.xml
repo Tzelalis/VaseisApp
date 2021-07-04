@@ -37,13 +37,6 @@
             app:popEnterAnim="@anim/stable"
             app:popExitAnim="@anim/slide_out_right" />
         <action
-            android:id="@+id/action_main_to_userType"
-            app:destination="@id/userTypeFragment2"
-            app:enterAnim="@anim/slide_in_left"
-            app:exitAnim="@anim/stable"
-            app:popEnterAnim="@anim/stable"
-            app:popExitAnim="@anim/slide_out_right"/>
-        <action
             android:id="@+id/action_main_to_examType"
             app:destination="@id/examTypeFragment3"
             app:enterAnim="@anim/slide_in_left"
@@ -79,7 +72,7 @@
         app:destination="@id/mainFragment" />
     <fragment
         android:id="@+id/groupFragment3"
-        android:name="com.vaseis.app.ui.personalization.group.GroupFragment"
+        android:name="com.vaseis.app.ui.personalization.fields.FieldsFragment"
         android:label="GroupFragment"
         tools:layout="@layout/fragment_group"/>
     <fragment
@@ -87,11 +80,6 @@
         android:name="com.vaseis.app.ui.personalization.examtype.ExamTypeFragment"
         android:label="ExamTypeFragment"
         tools:layout="@layout/fragment_exam_type"/>
-    <fragment
-        android:id="@+id/userTypeFragment2"
-        android:name="com.vaseis.app.ui.personalization.usertype.UserTypeFragment"
-        android:label="UserTypeFragment"
-        tools:layout="@layout/fragment_user_type"/>
     <fragment
         android:id="@+id/languageFragment"
         android:name="com.vaseis.app.ui.personalization.language.LanguageFragment"

@@ -16,7 +16,7 @@
     </fragment>
     <fragment
         android:id="@+id/groupFragment"
-        android:name="com.vaseis.app.ui.personalization.group.GroupFragment"
+        android:name="com.vaseis.app.ui.personalization.fields.FieldsFragment"
         android:label="GroupFragment"
         tools:layout="@layout/fragment_group">
         <argument

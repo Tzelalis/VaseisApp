@@ -53,14 +53,14 @@ object UseCaseModule {
 
     @ActivityScoped
     @Provides
-    fun provideSetGroupTypeUseCase(dataSource: PrefsDataSource): SetGroupTypeUseCase {
-        return SetGroupTypeUseCase(dataSource)
+    fun provideSetGroupTypeUseCase(dataSource: PrefsDataSource): SetPrefsFieldsUseCase {
+        return SetPrefsFieldsUseCase(dataSource)
     }
 
     @ActivityScoped
     @Provides
-    fun provideGetGroupTypeUseCase(dataSource: PrefsDataSource): GetGroupTypeUseCase {
-        return GetGroupTypeUseCase(dataSource)
+    fun provideGetGroupTypeUseCase(dataSource: PrefsDataSource): GetPrefsFieldsUseCase {
+        return GetPrefsFieldsUseCase(dataSource)
     }
 
     @ActivityScoped

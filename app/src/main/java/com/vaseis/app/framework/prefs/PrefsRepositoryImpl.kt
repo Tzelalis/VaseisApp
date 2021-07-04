@@ -2,10 +2,7 @@ package com.vaseis.app.framework.prefs
 
 import android.content.SharedPreferences
 import com.vaseis.app.data.prefs.PrefsRepository
-import com.vaseis.app.utils.EXAMS_TYPE_PREFS
-import com.vaseis.app.utils.GROUP_TYPE_PREFS
-import com.vaseis.app.utils.LANGUAGE_PREFS
-import com.vaseis.app.utils.THEME_PREFS
+import com.vaseis.app.utils.*
 
 class PrefsRepositoryImpl(private val prefs: SharedPreferences) : PrefsRepository {
     override suspend fun setLanguage(lang: String) {
@@ -24,12 +21,12 @@ class PrefsRepositoryImpl(private val prefs: SharedPreferences) : PrefsRepositor
         return prefs.getString(EXAMS_TYPE_PREFS, "") ?: ""
     }
 
-    override suspend fun setGroupType(type: String) {
-        prefs.edit().putString(GROUP_TYPE_PREFS, type).apply()
+    override suspend fun setPrefsField(type: String) {
+        prefs.edit().putString(FIELDS_PREFS, type).apply()
     }
 
-    override suspend fun getGroupType(): String {
-        return prefs.getString(GROUP_TYPE_PREFS, "") ?: ""
+    override suspend fun getPrefsFields(): String {
+        return prefs.getString(FIELDS_PREFS, "") ?: ""
     }
 
     override suspend fun setTheme(theme: String) {

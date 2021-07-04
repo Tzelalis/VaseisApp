@@ -4,7 +4,7 @@ import com.vaseis.app.domain.calculation.entities.CalculatorLesson
 
 data class LessonItem(
     val calculatorLesson: CalculatorLesson,
-    var degree : String
+    var degree: String
 )
 
 fun CalculatorLesson.toGroupItem(): LessonItem {

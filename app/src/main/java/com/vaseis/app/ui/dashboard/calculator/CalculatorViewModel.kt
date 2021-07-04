@@ -25,13 +25,13 @@ class CalculatorViewModel @ViewModelInject constructor(
     fun loadData() {
         launch(true) {
 
-            val examsTypes = getAllExamsTypesUseCase() ?: listOf()
+            val examsTypes = getAllExamsTypesUseCase()
             val pref = getExamTypeUseCase()
             _examsTypes.value = examsTypes
-            _examTypePref.value = examsTypes.indexOfFirst { it.id == pref.id } ?: 0
+            _examTypePref.value = examsTypes.indexOfFirst { it.examTypeId == pref.id } ?: 0
 
-            /*_examTypePref.value =
-                if (examsTypeCalculators.indexOfFirst { examType -> examType.id == pref } != -1) examsTypeCalculators.indexOfFirst { examType -> examType.id == pref } else 0*/
+            _examTypePref.value =
+                if (examsTypes.indexOfFirst { examType -> examType.examTypeId == pref.id } != -1) examsTypes.indexOfFirst { examType -> examType.examTypeId == pref.id } else 0
         }
     }
 

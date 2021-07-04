@@ -18,7 +18,7 @@ class ExamTypeViewPagerAdapter(fragment: Fragment, private val list: List<Calcul
                 groupIdList.add(calculatorGroup.id)
 
             putStringArrayList(CalculatorGroupFragment.GROUP_KEY, ArrayList(groupIdList))*/
-            putParcelableArrayList(CalculatorGroupFragment.GROUP_KEY, ArrayList(list[position].calculatorGroups))
+            putParcelableArrayList(CalculatorGroupFragment.GROUP_KEY, ArrayList(list[position].groups))
         }
         return fragment
     }

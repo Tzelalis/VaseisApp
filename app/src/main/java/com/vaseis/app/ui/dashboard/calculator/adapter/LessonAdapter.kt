@@ -31,9 +31,6 @@ class LessonAdapter(private val listener: LessonListener) : ListAdapter<LessonIt
     }
 
     override fun onBindViewHolder(holder: LessonViewHolder, position: Int) {
-        if(getItemViewType(position) == LAST_ITEM)
-            holder.bindLastTo()
-        else
             holder.bindTo(getItem(position))
     }
 
