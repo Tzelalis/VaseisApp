@@ -5,6 +5,8 @@ import android.os.Bundle
 import android.view.View
 import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.viewModels
+import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.vaseis.app.base.BaseFragment
 import com.vaseis.app.databinding.FragmentExamTypeBinding
 import com.vaseis.app.ui.dashboard.accountcenter.model.PrefProperty

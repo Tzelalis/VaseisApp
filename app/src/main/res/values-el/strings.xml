@@ -17,16 +17,17 @@
     <string name="language_system_default">Γλώσσα συστήματος</string>
 
     <!-- Exam Type Fragment-->
-    <string name="category_title">Κατηγορία</string>
-    <string name="category_subtitle">Ποια κατηγορία πανελληνίων σας ενδιαφέρει;\n</string>
+    <string name="category_title">Τύπος Εξέτασης</string>
+    <string name="category_subtitle">Ποιος τύπος εξέτασης πανελληνίων σας ενδιαφέρει περισσότερο;\n</string>
 
     <!-- Fields Fragment -->
     <string name="fields_title">Επιστημονικά Πεδία</string>
-    <string name="fields_subtitle">Επιλέξτε τα επιστημονικά πεδία που επιθυμείτε.\n</string>
+    <string name="fields_subtitle">Επιλέξτε τα επιστημονικά πεδία που σας ενδιαφέρουν.\n</string>
 
     <!-- Theme Fragment -->
     <string name="theme_title">Θέμα</string>
-    <string name="theme_subtitle">Επιλέξτε το θέμα που σας ταιρίαζει καλύτερα.</string>
+    <string name="theme_subtitle">Επιλέξτε το θέμα που σας ταιρίαζει καλύτερα.\n
+        Η αλλαγή θα πραγματοποιηθεί όταν φύγετε από αυτή την οθόνη.</string>
     <string name="theme_dark">Σκοτείνό</string>
     <string name="theme_light">Φωτεινό</string>
     <string name="theme_default">Προεπιλογή Συστήματος</string>

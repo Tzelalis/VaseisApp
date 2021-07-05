@@ -68,9 +68,9 @@ class DepartmentAdapter(
                     listener.onItemClickListener(departmentItem.department.code, departmentItem.department.name)
                 }
 
-                root.setOnLongClickListener {
+                /*root.setOnLongClickListener {
                     listener.onItemLongClickListener(position)
-                }
+                }*/
 
                 idTextView.setOnClickListener {
                     listener.onCodeClickListener(position)
