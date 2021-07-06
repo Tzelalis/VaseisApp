@@ -35,7 +35,7 @@ class LessonAdapter(private val listener: LessonListener) : ListAdapter<LessonIt
     }
 
     override fun getItemViewType(position: Int): Int {
-        return if (position == currentList.size - 1) LAST_ITEM else NORMAL_ITEM
+        return NORMAL_ITEM
     }
 
     inner class LessonViewHolder(private val binding: ItemLessonsBinding) : RecyclerView.ViewHolder(binding.root) {

@@ -2,16 +2,22 @@ package com.vaseis.app.ui.dashboard.calculator.group
 
 import android.os.Bundle
 import android.view.View
-import androidx.core.view.isVisible
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
+import androidx.recyclerview.widget.ConcatAdapter
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.PagerSnapHelper
+import androidx.recyclerview.widget.SnapHelper
 import com.vaseis.app.base.BaseFragment
 import com.vaseis.app.databinding.FragmentCalculatorGroupBinding
 import com.vaseis.app.domain.calculation.entities.CalculatorGroup
 import com.vaseis.app.ui.dashboard.calculator.CalculatorViewModel
 import com.vaseis.app.ui.dashboard.calculator.adapter.GroupAdapter
+import com.vaseis.app.ui.dashboard.calculator.adapter.HorizontalLessonsAdapter
 import com.vaseis.app.ui.dashboard.calculator.adapter.LessonAdapter
 import com.vaseis.app.ui.dashboard.calculator.model.GroupItem
+import com.vaseis.app.ui.dashboard.calculator.model.LessonItem
+import com.vaseis.app.utils.centersnap.SnapOnScrollListener
 import dagger.hilt.android.AndroidEntryPoint
 
 
@@ -24,21 +30,16 @@ class CalculatorGroupFragment : BaseFragment<FragmentCalculatorGroupBinding>() {
 
     private val calculatorViewModel: CalculatorViewModel by activityViewModels()
     private val viewModel: CalculatorGroupViewModel by viewModels()
-
-    private val lessonsAdapter: LessonAdapter by lazy { LessonAdapter(lessonListener) }
-    private val lessonListener = object : LessonAdapter.LessonListener {
-        override fun onLessonTextChanged() {
-            setResultDegree()
-        }
-    }
+    private val concatAdapter: ConcatAdapter by lazy { ConcatAdapter() }
+    private val snapHelper: SnapHelper by lazy { PagerSnapHelper() }
 
     private val groupAdapter: GroupAdapter by lazy { GroupAdapter(groupListener) }
     private val groupListener = object : GroupAdapter.GroupListener {
         override fun onGroupClickListener(selectedGroup: GroupItem, position: Int) {
             binding.groupsRecyclerView.smoothScrollToPosition(position)
-            viewModel.groupsUI.value?.get(position)?.calculatorGroup?.lessons?.let { viewModel.loadLessons(it) }
+            binding.lessonsRecyclerView.smoothScrollToPosition(position)
 
-            setResultDegree()
+            //setResultDegree()
         }
     }
 
@@ -50,7 +51,7 @@ class CalculatorGroupFragment : BaseFragment<FragmentCalculatorGroupBinding>() {
         setupViews()
         setupObservers()
 
-        arguments?.getParcelableArrayList<CalculatorGroup>(GROUP_KEY)?.let { viewModel.loadGroups((it)) }
+        //arguments?.getParcelableArrayList<CalculatorGroup>(GROUP_KEY)?.let { viewModel.loadGroups((it)) }
     }
 
     override fun onResume() {
@@ -60,8 +61,30 @@ class CalculatorGroupFragment : BaseFragment<FragmentCalculatorGroupBinding>() {
 
     private fun setupViews() {
         with(binding) {
-            lessonsRecyclerView.adapter = lessonsAdapter
-            lessonsRecyclerView.itemAnimator = null
+            lessonsRecyclerView.adapter = concatAdapter
+            snapHelper.attachToRecyclerView(lessonsRecyclerView)
+
+            lessonsRecyclerView.addOnScrollListener(
+                SnapOnScrollListener(snapHelper,
+                    SnapOnScrollListener.Behavior.NOTIFY_ON_SCROLL_STATE_IDLE,
+                    object : SnapOnScrollListener.OnSnapPositionChangeListener {
+                        override fun onSnapPositionChange(position: Int, oldPosition: Int) {
+                            if (position == -1)
+                                return
+
+                            groupAdapter.currentList.firstOrNull { it.isSelected }?.isSelected = false
+                            groupAdapter.currentList[position].isSelected = true
+                            binding.groupsRecyclerView.smoothScrollToPosition(position)
+                            groupAdapter.notifyItemChanged(position)
+
+                            if (oldPosition != -1)
+                                groupAdapter.notifyItemChanged(oldPosition)
+
+                            setResultDegree()
+                        }
+                    })
+            )
+
             groupsRecyclerView.adapter = groupAdapter
         }
     }
@@ -71,34 +94,44 @@ class CalculatorGroupFragment : BaseFragment<FragmentCalculatorGroupBinding>() {
             groupsUI.observe(viewLifecycleOwner, { groupItems ->
                 fillData(groupItems)
             })
-
-            lessonsUI.observe(viewLifecycleOwner, { lessonItems ->
-                lessonsAdapter.submitList(lessonItems.filter { it.calculatorLesson.isMandatory })
-            })
         }
-
-        setVisibleTimer()
+        calculatorViewModel.examsTypes.observe(viewLifecycleOwner, { examList ->
+            arguments?.getInt(GROUP_KEY, 0)?.let { viewModel.loadGroups((examList[it].groups)) }
+        })
     }
 
     private fun fillData(groups: List<GroupItem>) {
         groupAdapter.submitList(groups)
 
-        val index = groups.indexOf((groups.firstOrNull { it.isSelected } ?: groups[0]))
-        viewModel.loadLessons(groups[index].calculatorGroup.lessons)
+        for (group in groups) {
+            val list = mutableListOf<LessonItem>()
+            for (lesson in group.calculatorGroup.lessons)
+                list.add(LessonItem(lesson, "0"))
+
+            val lessonListener = object : LessonAdapter.LessonListener {
+                override fun onLessonTextChanged() {
+                    setResultDegree()
+                }
+            }
+
+            val adapter = LessonAdapter(lessonListener)
+            adapter.submitList(list.filter { it.calculatorLesson.isMandatory })
+            concatAdapter.addAdapter(HorizontalLessonsAdapter(requireContext(), adapter))
+        }
     }
 
     private fun setResultDegree() {
         var result = 0.0
-        for (i in 0 until lessonsAdapter.currentList.size) {
-            result += (lessonsAdapter.currentList[i].degree.toDoubleOrNull() ?: 0.0) * lessonsAdapter.currentList[i].calculatorLesson.weight
+        val position = (binding.lessonsRecyclerView.layoutManager as? LinearLayoutManager)?.findFirstCompletelyVisibleItemPosition() ?: return
+
+        if (position == -1)
+            return
+
+        val lessonAdapter = ((concatAdapter.adapters[position]) as? HorizontalLessonsAdapter)?.getAdapter() ?: return
+        for (i in 0 until lessonAdapter.currentList.size) {
+            result += (lessonAdapter.currentList[i].degree.toDoubleOrNull() ?: 0.0) * lessonAdapter.currentList[i].calculatorLesson.weight
         }
 
         calculatorViewModel.changeResult(result.toInt().toString())
-    }
-
-    private fun setVisibleTimer() {
-        with(binding) {
-            root.isVisible = true
-        }
     }
 }

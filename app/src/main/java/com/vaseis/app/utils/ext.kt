@@ -1,7 +1,9 @@
 package com.vaseis.app.utils
 
 import android.app.Activity
+import android.content.Context
 import android.view.inputmethod.InputMethodManager
+import android.widget.Toast
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
 import retrofit2.Response

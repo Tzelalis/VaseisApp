@@ -1,8 +1,14 @@
 package com.vaseis.app.di.modules
 
+import android.app.Application
+import android.content.Context
+import android.net.ConnectivityManager
+import com.vaseis.app.BuildConfig
 import com.vaseis.app.di.scopes.BaseAndroidApiHttpClient
 import com.vaseis.app.di.scopes.BaseHttpClient
 import com.vaseis.app.utils.Utf8Interceptor
+import com.vaseis.app.utils.helper.ConnectivityHelper
+import com.vaseis.app.utils.interceptors.ConnectivityInterceptor
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -18,6 +24,13 @@ import javax.inject.Singleton
 @InstallIn(ApplicationComponent::class)
 object NetworkModule {
 
+    @Singleton
+    @Provides
+    fun provideConnectivityHelper(application: Application): ConnectivityHelper {
+        val connectivityManager = application.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+        return ConnectivityHelper(connectivityManager)
+    }
+
 
     @Singleton
     @Provides
@@ -30,15 +43,18 @@ object NetworkModule {
     @Provides
     fun provideBaseClient(
         httpLoggingInterceptor: HttpLoggingInterceptor,
+        connectivityInterceptor: ConnectivityInterceptor
     ): OkHttpClient {
 
         val okHttpClient = OkHttpClient.Builder()
             .addInterceptor(Utf8Interceptor())
+            .addInterceptor(connectivityInterceptor)
             .connectTimeout(15, TimeUnit.SECONDS)
             .readTimeout(15, TimeUnit.SECONDS)
             .writeTimeout(15, TimeUnit.SECONDS)
 
-        okHttpClient.addNetworkInterceptor(httpLoggingInterceptor)
+        if (BuildConfig.DEBUG)
+            okHttpClient.addNetworkInterceptor(httpLoggingInterceptor)
 
         return okHttpClient.build()
     }
@@ -46,7 +62,10 @@ object NetworkModule {
     @BaseAndroidApiHttpClient
     @ActivityScoped
     @Provides
-    fun provideAndroidApiClient(httpLoggingInterceptor: HttpLoggingInterceptor): OkHttpClient {
+    fun provideAndroidApiClient(
+        httpLoggingInterceptor: HttpLoggingInterceptor,
+        connectivityInterceptor: ConnectivityInterceptor
+    ): OkHttpClient {
 
         val okHttpClient = OkHttpClient.Builder()
             .addInterceptor {
@@ -55,11 +74,13 @@ object NetworkModule {
                 it.proceed(request)
             }
             .addInterceptor(Utf8Interceptor())
+            .addInterceptor(connectivityInterceptor)
             .connectTimeout(15, TimeUnit.SECONDS)
             .readTimeout(15, TimeUnit.SECONDS)
             .writeTimeout(15, TimeUnit.SECONDS)
 
-        okHttpClient.addNetworkInterceptor(httpLoggingInterceptor)
+        if (BuildConfig.DEBUG)
+            okHttpClient.addNetworkInterceptor(httpLoggingInterceptor)
 
         return okHttpClient.build()
     }

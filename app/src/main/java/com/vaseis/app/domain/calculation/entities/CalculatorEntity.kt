@@ -5,7 +5,7 @@ import kotlinx.android.parcel.Parcelize
 
 
 data class CalculatorResponse(
-    val examTypeDummies: List<CalculatorExamType>
+    val examTypes: List<CalculatorExamType>
 )
 
 data class CalculatorExamType(

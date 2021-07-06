@@ -5,13 +5,13 @@ import androidx.room.Dao
 @Dao
 interface CalculatorDao {
     /*  @Query("SELECT * FROM exam_type e INNER JOIN `calculatorGroup` g ON e.id=g.exam_type_id_fk INNER JOIN calculatorLesson l ON g.id=l.group_id_fk")
-      suspend fun getExamTypeDummies(): List<ExamTypeItem>
+      suspend fun getExamTypeDummies(): List<CalculatorExamTypeItem>
 
       @Query("SELECT * FROM  `calculatorGroup` g")
       suspend fun getCalculatorGroups(): List<DummyCalculatorGroup>
 
       @Insert
-      suspend fun insertExamType(vararg users: ExamTypeItem)
+      suspend fun insertExamType(vararg users: CalculatorExamTypeItem)
 
       @Insert
       suspend fun insertGroup(vararg calculatorGroup: DummyCalculatorGroup)

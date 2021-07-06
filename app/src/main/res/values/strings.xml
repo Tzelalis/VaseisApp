@@ -1,6 +1,9 @@
 <resources>
     <string name="app_name">e-Vaseis</string>
 
+    <!-- Errors -->
+    <string name="error_no_internet">No Internet connection.</string>
+
     <!-- Dashboard Bottom Nav Menu-->
     <string name="basesTitle">Bases</string>
     <string name="topicTitle">Topics</string>

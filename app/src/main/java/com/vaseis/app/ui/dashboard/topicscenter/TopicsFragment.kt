@@ -20,7 +20,7 @@ import com.vaseis.app.ui.dashboard.topicscenter.adapters.TopicsAdapter
 import com.vaseis.app.ui.dashboard.topicscenter.adapters.TopicsExamsTypeAdapter
 import com.vaseis.app.ui.dashboard.topicscenter.adapters.TopicsTitleAdapter
 import com.vaseis.app.ui.dashboard.topicscenter.model.ExamTypeItem
-import com.vaseis.app.utils.adapters.HorizontalConcatAdapter
+import com.vaseis.app.utils.adapters.HorizontalTopicsAdapter
 import com.vaseis.app.utils.views.enforceSingleScrollDirection
 import dagger.hilt.android.AndroidEntryPoint
 import kotlin.math.abs
@@ -122,7 +122,7 @@ class TopicsFragment : BaseFragment<FragmentTopicsBinding>() {
             }
             val adapter = TopicsAdapter(listener)
             adapter.submitList(lesson.topics)
-            concatAdapter.addAdapter(HorizontalConcatAdapter(requireContext(), adapter))
+            concatAdapter.addAdapter(HorizontalTopicsAdapter(requireContext(), adapter))
         }
     }
 

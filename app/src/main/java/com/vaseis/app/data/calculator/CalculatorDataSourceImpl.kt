@@ -17,6 +17,6 @@ class CalculatorDataSourceImpl @Inject constructor(
 
     override suspend fun getCalculator(): List<CalculatorExamType> {
         val response = repo.getAllExamsTypes()
-        return calculatorMapper(response).examTypeDummies
+        return calculatorMapper(response).examTypes
     }
 }

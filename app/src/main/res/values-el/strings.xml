@@ -2,6 +2,9 @@
 <resources>
     <string name="app_name">e-Vaseis</string>
 
+    <!-- Errors -->
+    <string name="error_no_internet">Δεν υπάρχει σύνδεση στο διαδίκτυο.</string>
+
     <!-- Dashboard Bottom Nav Menu-->
     <string name="basesTitle">Βάσεις</string>
     <string name="topicTitle">Θέματα</string>

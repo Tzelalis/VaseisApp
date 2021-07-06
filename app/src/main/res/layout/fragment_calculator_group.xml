@@ -3,9 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:visibility="invisible"
-    tools:visibility="visible">
+    android:layout_height="match_parent">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/groups_recycler_view"
@@ -16,6 +14,9 @@
         android:overScrollMode="never"
         android:paddingTop="4dp"
         android:paddingBottom="4dp"
+        android:paddingStart="@dimen/margin_8dp"
+        android:paddingEnd="@dimen/margin_8dp"
+        android:clipToPadding="true"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -27,14 +28,17 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginTop="32dp"
-        android:orientation="vertical"
+        android:orientation="horizontal"
         android:overScrollMode="never"
-        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/groups_recycler_view"
-        app:spanCount="2"
-        tools:listitem="@layout/item_lessons" />
+        tools:listitem="@layout/item_lessons"
+        tools:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+        tools:spanCount="2"
+        tools:orientation="vertical"
+        tools:itemCount="4"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

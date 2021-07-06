@@ -15,7 +15,7 @@ import kotlin.math.abs
 import kotlin.math.sign
 
 
-class HorizontalConcatAdapter(private val context: Context, private val topicAdapter: TopicsAdapter) :
+class HorizontalTopicsAdapter(private val context: Context, private val topicAdapter: TopicsAdapter) :
     RecyclerView.Adapter<BaseConcatHolder<*>>() {
 
     companion object {
